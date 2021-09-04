@@ -36,7 +36,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-function"
 
-static void play_sound(s32 soundBits, f32 *pos) {}
+extern void play_sound(s32 soundBits, f32 *pos); // moved to soundHandler.c
 static void enable_time_stop() {}
 static void disable_time_stop() {}
 static void *segmented_to_virtual(const void *addr) { return (void*)addr; }
