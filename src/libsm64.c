@@ -258,6 +258,17 @@ SM64_LIB_FN void sm64_mario_set_cap( int32_t marioId, uint32_t capType )
     gMarioState->flags = (capType | MARIO_CAP_ON_HEAD);
 }
 
+SM64_LIB_FN void sm64_mario_set_water_level( int32_t marioId, signed int yLevel ){
+    if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
+    {
+        DEBUG_PRINT("Tried to set water level of non-existant Mario with ID: %u", marioId);
+        return;
+    }
+
+    global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
+    gMarioState->waterLevel = yLevel;
+}
+
 SM64_LIB_FN uint32_t sm64_surface_object_create( const struct SM64SurfaceObject *surfaceObject )
 {
     uint32_t id = surfaces_load_object( surfaceObject );
