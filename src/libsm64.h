@@ -79,6 +79,7 @@ extern SM64_LIB_FN void sm64_mario_tick( int32_t marioId, const struct SM64Mario
 extern SM64_LIB_FN void sm64_mario_delete( int32_t marioId );
 extern SM64_LIB_FN void sm64_mario_teleport(int32_t marioId, float x, float y, float z);
 extern SM64_LIB_FN void sm64_mario_set_cap(int32_t marioId, uint32_t capType);
+extern SM64_LIB_FN void sm64_mario_set_water_level( int32_t marioId, signed int yLevel );
 
 extern SM64_LIB_FN uint32_t sm64_surface_object_create( const struct SM64SurfaceObject *surfaceObject );
 extern SM64_LIB_FN void sm64_surface_object_move( uint32_t objectId, const struct SM64ObjectTransform *transform );
