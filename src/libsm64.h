@@ -20,7 +20,7 @@ struct SM64Surface
     int16_t type;
     int16_t force;
     uint16_t terrain;
-    int16_t vertices[3][3];
+    int32_t vertices[3][3];
 };
 
 struct SM64MarioInputs
