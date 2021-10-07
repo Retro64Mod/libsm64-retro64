@@ -1,7 +1,7 @@
 default: lib
 
 CC      := cc
-CFLAGS  := -g -Wall -fPIC -DSM64_LIB_EXPORT
+CFLAGS  := -g -Wall -fPIC -DSM64_LIB_EXPORT -DGBI_FLOATS
 LDFLAGS := -lm -shared
 
 SRC_DIRS  := src src/decomp src/decomp/engine src/decomp/game src/decomp/mario src/decomp/tools
