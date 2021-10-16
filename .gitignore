@@ -8,3 +8,4 @@ run-test
 *.so
 compile_commands.json
 /.cache/
+.vscode/*
