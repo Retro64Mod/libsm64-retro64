@@ -205,6 +205,8 @@ SM64_LIB_FN void sm64_mario_tick( int32_t marioId, const struct SM64MarioInputs 
     vec3f_copy( outState->position, gMarioState->pos );
     vec3f_copy( outState->velocity, gMarioState->vel );
     outState->faceAngle = (float)gMarioState->faceAngle[1] / 32768.0f * 3.14159f;
+    outState->flags = gMarioState->flags;
+    outState->action = gMarioState->action;
 }
 
 SM64_LIB_FN void sm64_mario_delete( int32_t marioId )
@@ -239,23 +241,29 @@ SM64_LIB_FN void sm64_mario_teleport( int32_t marioId, float x, float y, float z
     gMarioState->pos[2]=z;
 }
 
-SM64_LIB_FN void sm64_mario_set_cap( int32_t marioId, uint32_t capType )
+SM64_LIB_FN void sm64_mario_set_state( int32_t marioId, uint32_t stateFlags )
 {
     if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
     {
-        DEBUG_PRINT("Tried to set cap of non-existant Mario with ID: %u", marioId);
-        return;
-    }
-
-    if ((capType&MARIO_CAPS)==0)
-    {
-        DEBUG_PRINT("Invalid cap type: %i", capType);
+        DEBUG_PRINT("Tried to set state of non-existant Mario with ID: %u", marioId);
         return;
     }
 
     global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
 
-    gMarioState->flags = (capType | MARIO_CAP_ON_HEAD);
+    gMarioState->flags = stateFlags;
+}
+
+SM64_LIB_FN void sm64_mario_set_action( int32_t marioId, uint32_t actionId ){
+    if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
+    {
+        DEBUG_PRINT("Tried to set action of non-existant Mario with ID: %u", marioId);
+        return;
+    }
+
+    global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
+
+    set_mario_action( gMarioState, actionId, 0);
 }
 
 SM64_LIB_FN void sm64_mario_set_water_level( int32_t marioId, signed int yLevel ){
