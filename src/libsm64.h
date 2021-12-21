@@ -77,6 +77,7 @@ extern SM64_LIB_FN void sm64_global_terminate( void );
 extern SM64_LIB_FN void sm64_static_surfaces_load( const struct SM64Surface *surfaceArray, uint32_t numSurfaces );
 
 extern SM64_LIB_FN int32_t sm64_mario_create( int16_t x, int16_t y, int16_t z );
+extern SM64_LIB_FN struct AnimInfo* sm64_get_anim_info(int32_t marioId);
 extern SM64_LIB_FN void sm64_mario_animTick(int32_t marioId, uint32_t stateFlags,uint32_t animID,struct SM64MarioGeometryBuffers *outBuffers);
 extern SM64_LIB_FN void sm64_mario_tick( int32_t marioId, const struct SM64MarioInputs *inputs, struct SM64MarioState *outState, struct SM64MarioGeometryBuffers *outBuffers );
 extern SM64_LIB_FN void sm64_mario_delete( int32_t marioId );
