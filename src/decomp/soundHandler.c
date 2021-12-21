@@ -1,13 +1,9 @@
 #include "include/types.h"
+#include "soundHandler.h"
 
 u8 sSoundRequestCount = 0;
 
-struct Sound {
-    s32 soundBits;
-    f32 *position;
-}; // size = 0x8
-
-struct Sound sSoundRequests[0x100];
+struct SM64Sound sSoundRequests[0x100];
 
 void play_sound(s32 soundBits, f32 *pos) {
     // add a request to play the sound to the "queue"
@@ -16,8 +12,7 @@ void play_sound(s32 soundBits, f32 *pos) {
     sSoundRequestCount++;
 }
 
-
-__declspec(dllexport) u8 sm64_getSoundRequests(struct Sound* snds){
+SM64_LIB_FN u8 sm64_getSoundRequests(struct SM64Sound* snds){
     u8 totalReqs = sSoundRequestCount;
     sSoundRequestCount=0; // reset queue counter
     for (int i = 0;i<totalReqs;i++){
