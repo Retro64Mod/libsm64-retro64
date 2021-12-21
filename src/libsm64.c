@@ -182,7 +182,7 @@ SM64_LIB_FN struct AnimInfo* sm64_get_anim_info(int32_t marioId){
     return &gMarioState->marioObj->header.gfx.animInfo;
 }
 
-SM64_LIB_FN void sm64_mario_animTick(int32_t marioId, uint32_t stateFlags,uint32_t animID,struct SM64MarioGeometryBuffers *outBuffers){
+SM64_LIB_FN void sm64_mario_animTick(int32_t marioId, uint32_t stateFlags,struct AnimInfo* info,struct SM64MarioGeometryBuffers *outBuffers){
     if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
     {
         DEBUG_PRINT("Tried to tick non-existant Mario with ID: %u", marioId);
@@ -193,7 +193,8 @@ SM64_LIB_FN void sm64_mario_animTick(int32_t marioId, uint32_t stateFlags,uint32
 
 
     gMarioState->flags = stateFlags;
-    set_mario_animation( gMarioState, animID );
+    if (gMarioState->marioObj->header.gfx.animInfo.animFrame!=info->animID)
+        set_mario_anim_with_accel( gMarioState, info->animID,info->animAccel );
 
     gfx_adapter_bind_output_buffers( outBuffers );
 
@@ -237,6 +238,7 @@ SM64_LIB_FN void sm64_mario_tick( int32_t marioId, const struct SM64MarioInputs 
     outState->faceAngle = (float)gMarioState->faceAngle[1] / 32768.0f * 3.14159f;
     outState->flags = gMarioState->flags;
     outState->action = gMarioState->action;
+
 }
 
 SM64_LIB_FN void sm64_mario_delete( int32_t marioId )
