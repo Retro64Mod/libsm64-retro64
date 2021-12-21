@@ -171,6 +171,24 @@ SM64_LIB_FN int32_t sm64_mario_create( int16_t x, int16_t y, int16_t z )
     return marioIndex;
 }
 
+SM64_LIB_FN sm64_mario_animTick(int32_t marioId, uint32_t stateFlags,uint32_t animID,struct SM64MarioGeometryBuffers *outBuffers){
+    if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
+    {
+        DEBUG_PRINT("Tried to tick non-existant Mario with ID: %u", marioId);
+        return;
+    }
+
+    global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
+
+
+    gMarioState->flags = stateFlags;
+    set_mario_animation( gMarioState, animID );
+
+    gfx_adapter_bind_output_buffers( outBuffers );
+
+    geo_process_root_hack_single_node( s_mario_graph_node );
+}
+
 SM64_LIB_FN void sm64_mario_tick( int32_t marioId, const struct SM64MarioInputs *inputs, struct SM64MarioState *outState, struct SM64MarioGeometryBuffers *outBuffers )
 {
     if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
