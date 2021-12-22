@@ -195,6 +195,7 @@ SM64_LIB_FN void sm64_mario_animTick(int32_t marioId, uint32_t stateFlags,struct
     gMarioState->flags = stateFlags;
     if (gMarioState->marioObj->header.gfx.animInfo.animFrame!=info->animID)
         set_mario_anim_with_accel( gMarioState, info->animID,info->animAccel );
+    gMarioState->marioObj->header.gfx.animInfo.animAccel=info->animAccel;
 
     gfx_adapter_bind_output_buffers( outBuffers );
 
