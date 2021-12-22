@@ -171,18 +171,20 @@ SM64_LIB_FN int32_t sm64_mario_create( int16_t x, int16_t y, int16_t z )
     return marioIndex;
 }
 
-SM64_LIB_FN struct AnimInfo* sm64_get_anim_info(int32_t marioId){
+SM64_LIB_FN struct AnimInfo* sm64_get_anim_info(int32_t marioId,int16_t rot[3]){
     if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
     {
         DEBUG_PRINT("Tried to get anim for non-existant Mario with ID: %u", marioId);
         return;
     }
     global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
-
+    (rot)[0]=gMarioState->marioObj->header.gfx.angle[0];
+    (rot)[1]=gMarioState->marioObj->header.gfx.angle[1];
+    (rot)[2]=gMarioState->marioObj->header.gfx.angle[2];
     return &gMarioState->marioObj->header.gfx.animInfo;
 }
 
-SM64_LIB_FN void sm64_mario_animTick(int32_t marioId, uint32_t stateFlags,struct AnimInfo* info,struct SM64MarioGeometryBuffers *outBuffers){
+SM64_LIB_FN void sm64_mario_animTick(int32_t marioId, uint32_t stateFlags,struct AnimInfo* info,struct SM64MarioGeometryBuffers *outBuffers,int16_t rot[3]){
     if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
     {
         DEBUG_PRINT("Tried to tick non-existant Mario with ID: %u", marioId);
@@ -190,6 +192,10 @@ SM64_LIB_FN void sm64_mario_animTick(int32_t marioId, uint32_t stateFlags,struct
     }
 
     global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
+
+    gMarioState->marioObj->header.gfx.angle[0]=rot[0];
+    gMarioState->marioObj->header.gfx.angle[1]=rot[1];
+    gMarioState->marioObj->header.gfx.angle[2]=rot[2];
 
 
     gMarioState->flags = stateFlags;
