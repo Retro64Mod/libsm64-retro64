@@ -280,6 +280,18 @@ SM64_LIB_FN void sm64_mario_teleport( int32_t marioId, float x, float y, float z
     gMarioState->pos[2]=z;
 }
 
+SM64_LIB_FN void sm64_mario_apply_damage( int32_t marioId, uint32_t damage,uint32_t interactionSubtype,float xSrc,float ySrc,float zSrc)
+{
+    if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
+    {
+        DEBUG_PRINT("Tried to apply damage to non-existant Mario with ID: %u", marioId);
+        return;
+    }
+    global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
+
+    fake_damage_knock_back(gMarioState,damage,interactionSubtype,xSrc,ySrc,zSrc);
+}
+
 SM64_LIB_FN void sm64_mario_set_state( int32_t marioId, uint32_t stateFlags )
 {
     if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
