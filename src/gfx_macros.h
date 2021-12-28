@@ -1,5 +1,4 @@
 #pragma once
-
 #include "decomp/include/types.h"
 #include "gfx_adapter_commands.h"
 
@@ -115,6 +114,7 @@ typedef struct {
 
 #define gsDPPipeSync() (GFXCMD_None)
 #define gsDPSetCombineMode(a, b) (GFXCMD_None)
+#define	gsDPSetCombineLERP(a0, b0, c0, d0, Aa0, Ab0, Ac0, Ad0, a1, b1, c1, d1,	Aa1, Ab1, Ac1, Ad1)	(GFXCMD_None)
 #define gsSPSetGeometryMode(word) (GFXCMD_None)
 #define gsDPLoadTextureBlock(timg, fmt, siz, width, height, pal, cms, cmt, masks, maskt, shifts, shiftt) (GFXCMD_None)
 #define gsSPClearGeometryMode(word) (GFXCMD_None)
@@ -124,5 +124,9 @@ typedef struct {
 #define gsDPSetTile(fmt, siz, line, tmem, tile, palette, cmt, maskt, shiftt, cms, masks, shifts) (GFXCMD_None)
 #define gsDPLoadBlock(tile, uls, ult, lrs, dxt) (GFXCMD_None)
 #define gsDPLoadSync() (GFXCMD_None)
+
+#define gsSPSetLights1(name)						\
+	gsSPLight(&name.l,1),					\
+	gsSPLight(&name.a,2)
 
 typedef int64_t Gfx;
