@@ -35,7 +35,7 @@ static void convert_uv_to_atlas( float *atlas_uv_out, short tc[] )
     float u = (float)((tc[0] * s_scaleS >> 16) - 8*s_uls) / 32.0f / s_texWidth;
     float v = (float)((tc[1] * s_scaleT >> 16) - 8*s_ult) / 32.0f / s_texHeight;
 
-    atlas_uv_out[0] = u * s_texWidth / 64.0f / (float)NUM_USED_TEXTURES + (float)s_textureIndex / (float)NUM_USED_TEXTURES;
+    atlas_uv_out[0] = u * s_texWidth / 64.0f / (float)getUsedTextures() + (float)s_textureIndex / (float)getUsedTextures();
     atlas_uv_out[1] = v * s_texHeight / 64.0f;
 }
 
@@ -161,8 +161,8 @@ static void process_display_list( void *dl )
                 int64_t i = *ptr++;
 
                 s_textureIndex = (int)i;
-                s_texWidth = mario_tex_widths[s_textureIndex];
-                s_texHeight = mario_tex_heights[s_textureIndex];
+                s_texWidth = getWidths()[s_textureIndex];
+                s_texHeight = getHeights()[s_textureIndex];
 
                 break;
             }

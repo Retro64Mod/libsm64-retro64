@@ -46,17 +46,17 @@ MarioMesh;
 typedef struct RenderState
 {
     CollisionMesh collision;
-    MarioMesh mario;
+    MarioMesh mChar;
     GLuint world_shader;
-    GLuint mario_shader;
-    GLuint mario_texture;
+    GLuint mChar_shader;
+    GLuint mChar_texture;
 }
 RenderState;
 
 static const char *MARIO_SHADER =
 "\n uniform mat4 view;"
 "\n uniform mat4 projection;"
-"\n uniform sampler2D marioTex;"
+"\n uniform sampler2D mCharTex;"
 "\n "
 "\n v2f vec3 v_color;"
 "\n v2f vec3 v_normal;"
@@ -88,7 +88,7 @@ static const char *MARIO_SHADER =
 "\n     void main() "
 "\n     {"
 "\n         float light = .5 + .5 * clamp( dot( v_normal, v_light ), 0., 1. );"
-"\n         vec4 texColor = texture2D( marioTex, v_uv );"
+"\n         vec4 texColor = texture2D( mCharTex, v_uv );"
 "\n         vec3 mainColor = mix( v_color, texColor.rgb, texColor.a ); // v_uv.x >= 0. ? texColor.a : 0. );"
 "\n         color = vec4( mainColor * light, 1 );"
 "\n     }"
@@ -275,7 +275,7 @@ static void load_collision_mesh( CollisionMesh *mesh )
     #undef X
 }
 
-static void load_mario_mesh( MarioMesh *mesh, struct SM64MarioGeometryBuffers *marioGeo )
+static void load_mChar_mesh( MarioMesh *mesh, struct SM64MarioGeometryBuffers *mCharGeo )
 {
     mesh->index = malloc( 3 * SM64_GEO_MAX_TRIANGLES * sizeof(uint16_t) );
     for( int i = 0; i < 3 * SM64_GEO_MAX_TRIANGLES; ++i )
@@ -294,59 +294,59 @@ static void load_mario_mesh( MarioMesh *mesh, struct SM64MarioGeometryBuffers *m
         glVertexAttribPointer( loc, sizeof( type ) / sizeof( float ), GL_FLOAT, GL_FALSE, sizeof( type ), NULL ); \
     } while( 0 )
 
-        X( 0, mesh->position_buffer, marioGeo->position, vec3 );
-        X( 1, mesh->normal_buffer,   marioGeo->normal,   vec3 );
-        X( 2, mesh->color_buffer,    marioGeo->color,    vec3 );
-        X( 3, mesh->uv_buffer,       marioGeo->uv,       vec2 );
+        X( 0, mesh->position_buffer, mCharGeo->position, vec3 );
+        X( 1, mesh->normal_buffer,   mCharGeo->normal,   vec3 );
+        X( 2, mesh->color_buffer,    mCharGeo->color,    vec3 );
+        X( 3, mesh->uv_buffer,       mCharGeo->uv,       vec2 );
 
     #undef X
 }
 
-static void update_mario_mesh( MarioMesh *mesh, struct SM64MarioGeometryBuffers *marioGeo )
+static void update_mChar_mesh( MarioMesh *mesh, struct SM64MarioGeometryBuffers *mCharGeo )
 {
     if( mesh->index == NULL )
-        load_mario_mesh( mesh, marioGeo );
+        load_mChar_mesh( mesh, mCharGeo );
 
-    mesh->num_vertices = 3 * marioGeo->numTrianglesUsed;
+    mesh->num_vertices = 3 * mCharGeo->numTrianglesUsed;
 
     glBindBuffer( GL_ARRAY_BUFFER, mesh->position_buffer );
-    glBufferData( GL_ARRAY_BUFFER, sizeof( vec3 ) * 3 * SM64_GEO_MAX_TRIANGLES, marioGeo->position, GL_DYNAMIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, sizeof( vec3 ) * 3 * SM64_GEO_MAX_TRIANGLES, mCharGeo->position, GL_DYNAMIC_DRAW );
     glBindBuffer( GL_ARRAY_BUFFER, mesh->normal_buffer );
-    glBufferData( GL_ARRAY_BUFFER, sizeof( vec3 ) * 3 * SM64_GEO_MAX_TRIANGLES, marioGeo->normal, GL_DYNAMIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, sizeof( vec3 ) * 3 * SM64_GEO_MAX_TRIANGLES, mCharGeo->normal, GL_DYNAMIC_DRAW );
     glBindBuffer( GL_ARRAY_BUFFER, mesh->color_buffer );
-    glBufferData( GL_ARRAY_BUFFER, sizeof( vec3 ) * 3 * SM64_GEO_MAX_TRIANGLES, marioGeo->color, GL_DYNAMIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, sizeof( vec3 ) * 3 * SM64_GEO_MAX_TRIANGLES, mCharGeo->color, GL_DYNAMIC_DRAW );
     glBindBuffer( GL_ARRAY_BUFFER, mesh->uv_buffer );
-    glBufferData( GL_ARRAY_BUFFER, sizeof( vec2 ) * 3 * SM64_GEO_MAX_TRIANGLES, marioGeo->uv, GL_DYNAMIC_DRAW );
+    glBufferData( GL_ARRAY_BUFFER, sizeof( vec2 ) * 3 * SM64_GEO_MAX_TRIANGLES, mCharGeo->uv, GL_DYNAMIC_DRAW );
 }
 
-void render_state_init( RenderState *renderState, uint8_t *marioTexture )
+void render_state_init( RenderState *renderState, uint8_t *mCharTexture )
 {
     load_collision_mesh( &renderState->collision );
     renderState->world_shader = shader_load( WORLD_SHADER );
-    renderState->mario_shader = shader_load( MARIO_SHADER );
+    renderState->mChar_shader = shader_load( MARIO_SHADER );
 
     glEnable( GL_CULL_FACE );
     glCullFace( GL_BACK );
     glClearColor( 0.2f, 0.2f, 0.2f, 1.0f );
     glEnable( GL_DEPTH_TEST );
 
-    glGenTextures( 1, &renderState->mario_texture );
-    glBindTexture( GL_TEXTURE_2D, renderState->mario_texture );
+    glGenTextures( 1, &renderState->mChar_texture );
+    glBindTexture( GL_TEXTURE_2D, renderState->mChar_texture );
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SM64_TEXTURE_WIDTH, SM64_TEXTURE_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, marioTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SM64_TEXTURE_WIDTH, SM64_TEXTURE_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, mCharTexture);
 }
 
-void render_draw( RenderState *renderState, const vec3 camPos, const struct SM64MarioState *marioState, struct SM64MarioGeometryBuffers *marioGeo )
+void render_draw( RenderState *renderState, const vec3 camPos, const struct SM64MarioState *mCharState, struct SM64MarioGeometryBuffers *mCharGeo )
 {
-    update_mario_mesh( &renderState->mario, marioGeo );
+    update_mChar_mesh( &renderState->mChar, mCharGeo );
 
     mat4 model, view, projection;
     glm_perspective( 45.0f, (float)WINDOW_WIDTH / (float)WINDOW_HEIGHT, 100.0f, 20000.0f, projection );
     glm_translate( view, (float*)camPos );
-    glm_lookat( (float*)camPos, (float*)marioState->position, (vec3){0,1,0}, view );
+    glm_lookat( (float*)camPos, (float*)mCharState->position, (vec3){0,1,0}, view );
     glm_mat4_identity( model );
 
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -358,14 +358,14 @@ void render_draw( RenderState *renderState, const vec3 camPos, const struct SM64
     glUniformMatrix4fv( glGetUniformLocation( renderState->world_shader, "projection" ), 1, GL_FALSE, (GLfloat*)projection );
     glDrawElements( GL_TRIANGLES, renderState->collision.num_vertices, GL_UNSIGNED_SHORT, renderState->collision.index );
 
-    glUseProgram( renderState->mario_shader );
+    glUseProgram( renderState->mChar_shader );
     glActiveTexture( GL_TEXTURE0 );
-    glBindTexture( GL_TEXTURE_2D, renderState->mario_texture );
-    glBindVertexArray( renderState->mario.vao );
-    glUniformMatrix4fv( glGetUniformLocation( renderState->mario_shader, "view" ), 1, GL_FALSE, (GLfloat*)view );
-    glUniformMatrix4fv( glGetUniformLocation( renderState->mario_shader, "projection" ), 1, GL_FALSE, (GLfloat*)projection );
-    glUniform1i( glGetUniformLocation( renderState->mario_shader, "marioTex" ), 0 );
-    glDrawElements( GL_TRIANGLES, renderState->mario.num_vertices, GL_UNSIGNED_SHORT, renderState->mario.index );
+    glBindTexture( GL_TEXTURE_2D, renderState->mChar_texture );
+    glBindVertexArray( renderState->mChar.vao );
+    glUniformMatrix4fv( glGetUniformLocation( renderState->mChar_shader, "view" ), 1, GL_FALSE, (GLfloat*)view );
+    glUniformMatrix4fv( glGetUniformLocation( renderState->mChar_shader, "projection" ), 1, GL_FALSE, (GLfloat*)projection );
+    glUniform1i( glGetUniformLocation( renderState->mChar_shader, "mCharTex" ), 0 );
+    glDrawElements( GL_TRIANGLES, renderState->mChar.num_vertices, GL_UNSIGNED_SHORT, renderState->mChar.index );
 }
 
 static float read_axis( int16_t val )
@@ -378,7 +378,41 @@ static float read_axis( int16_t val )
     return result > 0.0f ? (result - 0.2f) / 0.8f : (result + 0.2f) / 0.8f;
 }
 
-int main( void )
+bool isKeyDown(int key){
+    const Uint8 *state = SDL_GetKeyboardState(NULL);
+    return state[key];
+}
+
+float* getKbAxis(){
+    // return array of length 2, first element is x axis, second element is y axis
+    // x axis is -1 to 1, y axis is -1 to 1
+    float *axis = malloc(sizeof(float)*3);
+    axis[0]=0;
+    axis[1]=0;
+    axis[2]=0;
+    if(isKeyDown(SDL_SCANCODE_S)){
+        axis[1] = 1;
+    }
+    if(isKeyDown(SDL_SCANCODE_W)){
+        axis[1] = -1;
+    }
+    if(isKeyDown(SDL_SCANCODE_A)){
+        axis[0] = -1;
+    }
+    if(isKeyDown(SDL_SCANCODE_D)){
+        axis[0] = 1;
+    }
+    // left and right arrow keys
+    if(isKeyDown(SDL_SCANCODE_LEFT)){
+        axis[2] = -1;
+    }
+    if(isKeyDown(SDL_SCANCODE_RIGHT)){
+        axis[2] = 1;
+    }
+    return axis;
+}
+
+int main( int argc, char *argv[] )
 {
     size_t romSize;
 
@@ -393,14 +427,14 @@ int main( void )
     uint8_t *texture = malloc( 4 * SM64_TEXTURE_WIDTH * SM64_TEXTURE_HEIGHT );
 
     sm64_global_terminate();
-    sm64_global_init( rom, texture, NULL );
+    sm64_global_init( rom, 0,0,0,0,0,0,0,0, texture, NULL );
     sm64_static_surfaces_load( surfaces, surfaces_count );
-    uint32_t marioId = sm64_mario_create( 0, 1000, 0 );
+    uint32_t mCharId = sm64_mChar_create( 0, 1000, 0 );
 
     free( rom );
 
     RenderState renderState;
-    renderState.mario.index = NULL;
+    renderState.mChar.index = NULL;
     vec3 cameraPos = { 0, 0, 0 };
     float cameraRot = 0.0f;
 
@@ -411,40 +445,43 @@ int main( void )
     ts.tv_sec = 0;
     ts.tv_nsec = 0;
 
-    struct SM64MarioInputs marioInputs;
-    struct SM64MarioState marioState;
-    struct SM64MarioGeometryBuffers marioGeometry;
+    struct SM64MarioInputs mCharInputs;
+    struct SM64MarioState mCharState;
+    struct SM64MarioGeometryBuffers mCharGeometry;
 
-    marioGeometry.position = malloc( sizeof(float) * 9 * SM64_GEO_MAX_TRIANGLES );
-    marioGeometry.color    = malloc( sizeof(float) * 9 * SM64_GEO_MAX_TRIANGLES );
-    marioGeometry.normal   = malloc( sizeof(float) * 9 * SM64_GEO_MAX_TRIANGLES );
-    marioGeometry.uv       = malloc( sizeof(float) * 6 * SM64_GEO_MAX_TRIANGLES );
+    mCharGeometry.position = malloc( sizeof(float) * 9 * SM64_GEO_MAX_TRIANGLES );
+    mCharGeometry.color    = malloc( sizeof(float) * 9 * SM64_GEO_MAX_TRIANGLES );
+    mCharGeometry.normal   = malloc( sizeof(float) * 9 * SM64_GEO_MAX_TRIANGLES );
+    mCharGeometry.uv       = malloc( sizeof(float) * 6 * SM64_GEO_MAX_TRIANGLES );
 
     do
     {
         uint64_t frameTopTime = ns_clock();
 
         SDL_GameController *controller = context_get_controller();
-        float x_axis = read_axis( SDL_GameControllerGetAxis( controller, SDL_CONTROLLER_AXIS_LEFTX ));
-        float y_axis = read_axis( SDL_GameControllerGetAxis( controller, SDL_CONTROLLER_AXIS_LEFTY ));
-        float x0_axis = read_axis( SDL_GameControllerGetAxis( controller, SDL_CONTROLLER_AXIS_RIGHTX ));
+        float *kbAxis = getKbAxis();
+        float x_axis = read_axis( SDL_GameControllerGetAxis( controller, SDL_CONTROLLER_AXIS_LEFTX )) + kbAxis[0];
+        float y_axis = read_axis( SDL_GameControllerGetAxis( controller, SDL_CONTROLLER_AXIS_LEFTY )) + kbAxis[1];
+        float x0_axis = read_axis( SDL_GameControllerGetAxis( controller, SDL_CONTROLLER_AXIS_RIGHTX )) + kbAxis[2];
 
         cameraRot += 0.1f * x0_axis;
-        cameraPos[0] = marioState.position[0] + 1000.0f * cosf( cameraRot );
-        cameraPos[1] = marioState.position[1] + 200.0f;
-        cameraPos[2] = marioState.position[2] + 1000.0f * sinf( cameraRot );
+        cameraPos[0] = mCharState.position[0] + 1000.0f * cosf( cameraRot );
+        cameraPos[1] = mCharState.position[1] + 200.0f;
+        cameraPos[2] = mCharState.position[2] + 1000.0f * sinf( cameraRot );
 
-        marioInputs.buttonA = SDL_GameControllerGetButton( controller, 0 );
-        marioInputs.buttonB = SDL_GameControllerGetButton( controller, 2 );
-        marioInputs.buttonZ = SDL_GameControllerGetButton( controller, 9 );
-        marioInputs.camLookX = marioState.position[0] - cameraPos[0];
-        marioInputs.camLookZ = marioState.position[2] - cameraPos[2];
-        marioInputs.stickX = x_axis;
-        marioInputs.stickY = y_axis;
+        mCharInputs.buttonA = SDL_GameControllerGetButton( controller, 0 ) || isKeyDown(SDL_SCANCODE_SPACE);
+        mCharInputs.buttonB = SDL_GameControllerGetButton( controller, 2 ) || isKeyDown(SDL_SCANCODE_Z);
+        mCharInputs.buttonZ = SDL_GameControllerGetButton( controller, 9 ) || isKeyDown(SDL_SCANCODE_LSHIFT);
+        mCharInputs.camLookX = mCharState.position[0] - cameraPos[0];
+        mCharInputs.camLookZ = mCharState.position[2] - cameraPos[2];
+        mCharInputs.stickX = x_axis;
+        mCharInputs.stickY = y_axis;
 
-        sm64_mario_tick( marioId, &marioInputs, &marioState, &marioGeometry );
+        mCharState.currentModel=0;
 
-        render_draw( &renderState, cameraPos, &marioState, &marioGeometry );
+        sm64_mChar_tick( mCharId, &mCharInputs, &mCharState, &mCharGeometry );
+
+        render_draw( &renderState, cameraPos, &mCharState, &mCharGeometry );
 
         ts.tv_nsec = 33333333 - (ns_clock() - frameTopTime);
         nanosleep( &ts, &ts );
