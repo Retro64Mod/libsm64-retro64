@@ -294,12 +294,13 @@ s32 act_sleeping(struct MarioState *m) {
                 play_sound(SOUND_MARIO_SNORING2, m->marioObj->header.gfx.cameraToObject);
             }
 
-            if (is_anim_at_end(m)) {
+            // DISABLE DEEP SLEEP
+            /*if (is_anim_at_end(m)) {
                 m->actionTimer++;
                 if (m->actionTimer > 45) {
                     m->actionState++;
                 }
-            }
+            }*/
             break;
 
         case 1:

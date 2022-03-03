@@ -1,10 +1,16 @@
 default: lib
 
-CC      := cc
-CFLAGS  := -g -Wall -fPIC -DSM64_LIB_EXPORT -DGBI_FLOATS
-LDFLAGS := -lm -shared
+CC      := gcc
+CXX 	:= g++
+CFLAGS  := -g0 -Wall -fPIC -DSM64_LIB_EXPORT -DGBI_FLOATS -DVERSION_US -DNO_SEGMENTED_MEMORY
+LDFLAGS := -lm -shared -lpthread
+ENDFLAGS := -fPIC
+ifeq ($(OS),Windows_NT)
+LDFLAGS := $(LDFLAGS) -mwindows
+ENDFLAGS := -static -lole32 -lstdc++
+endif
 
-SRC_DIRS  := src src/decomp src/decomp/engine src/decomp/game src/decomp/mario src/decomp/tools
+SRC_DIRS  := src src/decomp src/decomp/engine src/decomp/include/PR src/decomp/game src/decomp/pc src/decomp/pc/audio src/decomp/mario src/decomp/tools src/decomp/audio src/decomp/model_luigi src/decomp/model_alex src/decomp/model_steve
 BUILD_DIR := build
 DIST_DIR  := dist
 ALL_DIRS  := $(addprefix $(BUILD_DIR)/,$(SRC_DIRS))
@@ -18,13 +24,15 @@ H_IMPORTED := $(C_IMPORTED:.c=.h)
 IMPORTED   := $(C_IMPORTED) $(H_IMPORTED)
 
 C_FILES   := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c)) $(C_IMPORTED)
-O_FILES   := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o))
+CXX_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.cpp))
+O_FILES   := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) $(foreach file,$(CXX_FILES),$(BUILD_DIR)/$(file:.cpp=.o))
 DEP_FILES := $(O_FILES:.o=.d)
 
 TEST_SRCS := test/main.c test/context.c test/level.c
 TEST_OBJS := $(foreach file,$(TEST_SRCS),$(BUILD_DIR)/$(file:.c=.o))
 
 ifeq ($(OS),Windows_NT)
+  TEST_FILE := $(DIST_DIR)/$(TEST_FILE)
   LIB_FILE := $(DIST_DIR)/sm64.dll
 endif
 
@@ -39,8 +47,12 @@ $(BUILD_DIR)/%.o: %.c $(IMPORTED)
 	@$(CC) $(CFLAGS) -MM -MP -MT $@ -MF $(BUILD_DIR)/$*.d $<
 	$(CC) -c $(CFLAGS) -o $@ $<
 
+$(BUILD_DIR)/%.o: %.cpp $(IMPORTED)
+	@$(CXX) $(CFLAGS) -MM -MP -MT $@ -MF $(BUILD_DIR)/$*.d $<
+	$(CXX) -c $(CFLAGS) -o $@ $<
+
 $(LIB_FILE): $(O_FILES)
-	$(CC) $(LDFLAGS) -o $@ $^
+	$(CC) $(LDFLAGS) -o $@ $^ $(ENDFLAGS)
 
 $(LIB_H_FILE): src/libsm64.h
 	cp -f $< $@
@@ -53,10 +65,18 @@ test/main.c: test/level.h
 
 $(BUILD_DIR)/test/%.o: test/%.c
 	@$(CC) $(CFLAGS) -MM -MP -MT $@ -MF $(BUILD_DIR)/test/$*.d $<
+ifeq ($(OS),Windows_NT)
+	$(CC) -c $(CFLAGS) -I/mingw64/include/SDL2 -I/mingw64/include/GL -o $@ $<
+else
 	$(CC) -c $(CFLAGS) -o $@ $<
+endif
 
 $(TEST_FILE): $(LIB_FILE) $(TEST_OBJS)
+ifeq ($(OS),Windows_NT)
+	$(CC) -o $@ $(TEST_OBJS) $(LIB_FILE) `sdl2-config --cflags --libs` -lglew32 -lglu32 -lopengl32 -lSDL2 -lSDL2main -lm
+else
 	$(CC) -o $@ $(TEST_OBJS) $(LIB_FILE) -lGLEW -lGL -lSDL2 -lSDL2main -lm
+endif
 
 
 lib: $(LIB_FILE) $(LIB_H_FILE)

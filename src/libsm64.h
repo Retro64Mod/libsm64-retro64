@@ -27,6 +27,7 @@ struct SM64Surface
 struct SM64MarioInputs
 {
     float camLookX, camLookZ;
+    float cameraPosition[3]; // used for sound calculations
     float stickX, stickY;
     uint8_t buttonA, buttonB, buttonZ;
 };
@@ -52,6 +53,7 @@ struct SM64MarioState
     int16_t health;
     uint32_t flags;
     uint32_t action;
+    uint32_t currentModel;
 };
 
 struct SM64MarioGeometryBuffers
@@ -69,26 +71,39 @@ enum
 {
     SM64_TEXTURE_WIDTH = 64 * 11,
     SM64_TEXTURE_HEIGHT = 64,
-    SM64_GEO_MAX_TRIANGLES = 1024,
+    SM64_GEO_MAX_TRIANGLES = 2048,
 };
 
-extern SM64_LIB_FN void sm64_global_init( uint8_t *rom, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction );
+extern SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequences_bin,uint8_t *sound_data_ctl,uint8_t *sound_data_tbl,int bank_set_len,int sequences_len,int ctl_len,int tbl_len, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction );
 extern SM64_LIB_FN void sm64_global_terminate( void );
 
 extern SM64_LIB_FN void sm64_static_surfaces_load( const struct SM64Surface *surfaceArray, uint32_t numSurfaces );
 
-extern SM64_LIB_FN int32_t sm64_mario_create( int16_t x, int16_t y, int16_t z );
+extern SM64_LIB_FN int32_t sm64_mChar_create( float x, float y, float z );
 extern SM64_LIB_FN struct AnimInfo* sm64_get_anim_info(int32_t marioId,int16_t rot[3]);
-extern SM64_LIB_FN void sm64_mario_animTick(int32_t marioId, uint32_t stateFlags,struct AnimInfo* info,struct SM64MarioGeometryBuffers *outBuffers,int16_t rot[3]);
-extern SM64_LIB_FN void sm64_mario_tick( int32_t marioId, const struct SM64MarioInputs *inputs, struct SM64MarioState *outState, struct SM64MarioGeometryBuffers *outBuffers );
-extern SM64_LIB_FN void sm64_mario_delete( int32_t marioId );
-extern SM64_LIB_FN void sm64_mario_teleport(int32_t marioId, float x, float y, float z);
-extern SM64_LIB_FN void sm64_mario_apply_damage( int32_t marioId, uint32_t damage,uint32_t interactionSubtype,float xSrc,float ySrc,float zSrc);
-extern SM64_LIB_FN void sm64_mario_set_state(int32_t marioId, uint32_t capType);
-extern SM64_LIB_FN void sm64_mario_set_water_level( int32_t marioId, signed int yLevel );
+extern SM64_LIB_FN void sm64_mChar_animTick(int32_t marioId, uint32_t stateFlags,struct AnimInfo* info,struct SM64MarioGeometryBuffers *outBuffers,int32_t model,int16_t rot[3]);
+extern SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs *inputs, struct SM64MarioState *outState, struct SM64MarioGeometryBuffers *outBuffers );
+extern SM64_LIB_FN void sm64_mChar_delete( int32_t marioId );
+extern SM64_LIB_FN void sm64_mChar_teleport(int32_t marioId, float x, float y, float z);
+extern SM64_LIB_FN void sm64_mChar_apply_damage( int32_t marioId, uint32_t damage,uint32_t interactionSubtype,float xSrc,float ySrc,float zSrc);
+extern SM64_LIB_FN void sm64_mChar_set_state(int32_t marioId, uint32_t capType);
+extern SM64_LIB_FN void sm64_mChar_set_water_level( int32_t marioId, signed int yLevel );
+extern SM64_LIB_FN void sm64_mChar_set_angle( int32_t marioId, float angle );
 
 extern SM64_LIB_FN uint32_t sm64_surface_object_create( const struct SM64SurfaceObject *surfaceObject );
 extern SM64_LIB_FN void sm64_surface_object_move( uint32_t objectId, const struct SM64ObjectTransform *transform );
 extern SM64_LIB_FN void sm64_surface_object_delete( uint32_t objectId );
 
+extern SM64_LIB_FN void sm64_seq_player_play_sequence(u8 player, u8 seqId, u16 arg2);
+extern SM64_LIB_FN void sm64_play_music(u8 player, u16 seqArgs, u16 fadeTimer);
+extern SM64_LIB_FN void sm64_stop_background_music(u16 seqId);
+extern SM64_LIB_FN void sm64_fadeout_background_music(u16 arg0, u16 fadeOut);
+extern SM64_LIB_FN u16 sm64_get_current_background_music();
+extern SM64_LIB_FN void sm64_play_sound(s32 soundBits, f32 *pos);
+extern SM64_LIB_FN void sm64_play_sound_global(s32 soundBits);
+extern SM64_LIB_FN int sm64_get_version();
+
+extern int getCurrentModel();
+void audio_tick();
+void audio_thread();
 #endif//LIB_SM64_H

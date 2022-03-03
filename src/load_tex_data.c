@@ -47,3 +47,52 @@ void load_mario_textures_from_rom( uint8_t *rom, uint8_t *outTexture )
 
     free( out_buf );
 }
+
+#include "decomp/model_luigi/geo.inc.h"
+#include "decomp/model_steve/geo.inc.h"
+#include "decomp/model_alex/geo.inc.h"
+
+int getUsedTextures(){
+    switch (getCurrentModel()){
+        case MODEL_MARIO:
+            return NUM_USED_TEXTURES;
+        case MODEL_LUIGI:
+            return LUGI_USED_TEXTURES;
+        case MODEL_STEVE:
+            return STEVE_USED_TEXTURES;
+        case MODEL_ALEX:
+            return ALEX_USED_TEXTURES;
+        default:
+            return 0;
+    }
+}
+
+int* getWidths(){
+    switch (getCurrentModel()){
+        case MODEL_MARIO:
+            return mario_tex_widths;
+        case MODEL_LUIGI:
+            return luigi_tex_widths;
+        case MODEL_STEVE:
+            return steve_tex_widths;
+        case MODEL_ALEX:
+            return alex_tex_widths;
+        default:
+            return NULL;
+    }
+}
+
+int* getHeights(){
+    switch (getCurrentModel()){
+        case MODEL_MARIO:
+            return mario_tex_heights;
+        case MODEL_LUIGI:
+            return luigi_tex_heights;
+        case MODEL_STEVE:
+            return steve_tex_heights;
+        case MODEL_ALEX:
+            return alex_tex_heights;
+        default:
+            return NULL;
+    }
+}

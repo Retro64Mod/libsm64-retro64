@@ -1781,7 +1781,7 @@ s32 execute_mario_action(UNUSED struct Object *o) {
 #endif
         }
 
-        play_infinite_stairs_music();
+        //play_infinite_stairs_music();
         gMarioState->marioObj->oInteractStatus = 0;
 #ifdef VERSION_SH
         func_sh_8025574C();
@@ -1837,7 +1837,8 @@ int init_mario(void) {
 
     vec3s_copy(gMarioState->faceAngle, gMarioSpawnInfo->startAngle);
     vec3s_set(gMarioState->angleVel, 0, 0, 0);
-    vec3s_to_vec3f(gMarioState->pos, gMarioSpawnInfo->startPos);
+    vec3f_copy(gMarioState->pos, gMarioSpawnInfo->startPos);
+    //vec3s_to_vec3f(gMarioState->pos, gMarioSpawnInfo->startPos);
     vec3f_set(gMarioState->vel, 0, 0, 0);
 
     gMarioState->floorHeight =
