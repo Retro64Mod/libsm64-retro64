@@ -1,17 +1,9 @@
-# libsm64 - Super Mario 64 as a library
+# libsm64-retro64 - Super Mario 64 as a library, for Retro64 Minecraft Mod
 
-The purpose of this project is to provide a clean interface to the movement and rendering
-code which was reversed from SM64 by the [SM64 decompilation project](https://github.com/n64decomp/sm64),
-so that Mario can be dropped in to existing game engines or other systems with minimal effort.
-This project produces a shared library file containing mostly code from the decompilation project,
-and loads an official SM64 ROM at runtime to get Mario's texture and animation data, so any project
-which makes use of this library must ask the user to provide a ROM for asset extraction.
+This is a fork of [libsm64](https://github.com/libsm64/libsm64) intended for use with the Retro64 Minecraft mod.
+Main changes include Audio support (from [sm64-port](https://github.com/sm64-port/sm64-port)), functions for affecting Mario (changing powerup, damage, teleport, water level, etc), extending the code to work with coordinates > 32768, and other misc. changes for the mod.
 
-## Bindings and plugins
-
-- [Rust bindings](https://github.com/nickmass/libsm64-rust)
-- [Unity plugin](https://github.com/libsm64/libsm64-unity)
-- [Blender add-on](https://github.com/libsm64/libsm64-blender)
+If you want to use this for a project, I suggest you look at the original (linked above) as this is intended for a very specific use-case, and is very hacked together & un-documented (especially audio support!)
 
 ## Building on Linux
 
