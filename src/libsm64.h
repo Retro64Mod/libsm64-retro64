@@ -101,6 +101,7 @@ extern SM64_LIB_FN void sm64_fadeout_background_music(u16 arg0, u16 fadeOut);
 extern SM64_LIB_FN u16 sm64_get_current_background_music();
 extern SM64_LIB_FN void sm64_play_sound(s32 soundBits, f32 *pos);
 extern SM64_LIB_FN void sm64_play_sound_global(s32 soundBits);
+extern SM64_LIB_FN int sm64_set_volume(float vol);
 extern SM64_LIB_FN int sm64_get_version();
 
 extern int getCurrentModel();

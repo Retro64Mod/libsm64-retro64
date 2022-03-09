@@ -472,6 +472,14 @@ SM64_LIB_FN void sm64_play_sound_global(s32 soundBits){
     play_sound(soundBits,gGlobalSoundSource);
 }
 
+SM64_LIB_FN int sm64_set_volume(float vol){
+    if (vol>1)
+        vol=1;
+    if (vol<0)
+        vol=0;
+    globalVolume=vol;
+}
+
 SM64_LIB_FN int sm64_get_version(){
     return LIB_VER; // used for compability checking with Retro64
 }
@@ -497,7 +505,9 @@ void audio_tick(){
         u32 num_audio_samples = audio_cnt < 2 ? 528 : 544;*/
         create_next_audio_buffer(audio_buffer + i * (num_audio_samples * 2), num_audio_samples);
     }
-    //printf("Audio samples before submitting: %d\n", audio_api->buffered());
+
+    // lower the volume of the audio by a factor of 2
+
     audio_api->play((u8 *)audio_buffer, 2 * num_audio_samples * 4);
 }
 
