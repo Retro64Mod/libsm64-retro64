@@ -102,7 +102,7 @@ u32 fake_determine_knockback_action(struct MarioState *m, s32 damage,float xSrc,
             mario_set_forward_vel(m, 28.0f);
         }
 
-        if (m->pos[1] >= m->interactObj->oPosY) {
+        if (m->pos[1] >= ySrc) {
             if (m->vel[1] < 20.0f) {
                 m->vel[1] = 20.0f;
             }
