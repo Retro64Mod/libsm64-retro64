@@ -20,7 +20,7 @@
 
 extern s32 gAudioErrorFlags;
 extern f32 gGlobalSoundSource[3];
-
+extern f32 globalVolume;
 // defined in data.c, used by the game
 //extern u32 gAudioRandom;
 

@@ -74,6 +74,8 @@ s32 gAudioErrorFlags = 0;
 #endif
 s32 sGameLoopTicked = 0;
 
+f32 globalVolume = 1.0f;
+
 // Dialog sounds
 // The US difference is the sound for DIALOG_037 ("I win! You lose! Ha ha ha ha!
 // You're no slouch, but I'm a better sledder! Better luck next time!"), spoken
@@ -1258,7 +1260,7 @@ static f32 get_sound_volume(u8 bank, u8 soundIndex, f32 volumeRange) {
     }
 
     // Rise quadratically from 1 - volumeRange to 1
-    return volumeRange * intensity * intensity + 1.0f - volumeRange;
+    return (volumeRange * intensity * intensity + 1.0f - volumeRange)*globalVolume;
 }
 
 /**
