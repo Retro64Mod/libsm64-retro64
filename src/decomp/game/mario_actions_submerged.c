@@ -265,7 +265,7 @@ static void update_swimming_speed(struct MarioState *m, f32 decelThreshold) {
 }
 
 static void update_swimming_yaw(struct MarioState *m) {
-    s16 targetYawVel = (s16)(10.0f * m->controller->stickY);
+    s16 targetYawVel = (s16)(-10.0f * m->controller->stickY);
 
     if (targetYawVel > 0) {
         if (m->angleVel[1] < 0) {
@@ -294,7 +294,7 @@ static void update_swimming_yaw(struct MarioState *m) {
 }
 
 static void update_swimming_pitch(struct MarioState *m) {
-    s16 targetPitch = (s16)(-252.0f * m->controller->stickX);
+    s16 targetPitch = (s16)(252.0f * m->controller->stickX);
 
     s16 pitchVel;
     if (m->faceAngle[0] < 0) {
