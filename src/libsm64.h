@@ -89,6 +89,7 @@ extern SM64_LIB_FN void sm64_mChar_apply_damage( int32_t marioId, uint32_t damag
 extern SM64_LIB_FN void sm64_mChar_set_state(int32_t marioId, uint32_t capType);
 extern SM64_LIB_FN void sm64_mChar_set_water_level( int32_t marioId, signed int yLevel );
 extern SM64_LIB_FN void sm64_mChar_set_angle( int32_t marioId, float angle );
+extern SM64_LIB_FN void sm64_mChar_heal( int32_t marioId, char healCounter );
 
 extern SM64_LIB_FN uint32_t sm64_surface_object_create( const struct SM64SurfaceObject *surfaceObject );
 extern SM64_LIB_FN void sm64_surface_object_move( uint32_t objectId, const struct SM64ObjectTransform *transform );

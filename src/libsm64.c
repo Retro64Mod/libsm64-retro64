@@ -43,6 +43,8 @@
 #include "decomp/audio/load_dat.h"
 
 static struct AllocOnlyPool *s_mario_geo_pool = NULL;
+
+static s16 lastWedges = 8;
 //static struct GraphNode *s_mario_graph_node = NULL;
 static int currentModel=0;
 static struct AudioAPI *audio_api;
@@ -322,6 +324,12 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
     outState->flags = gMarioState->flags;
     outState->action = gMarioState->action;
 
+    s16 numHealthWedges = gMarioState->health > 0 ? gMarioState->health >> 8 : 0;
+    if (numHealthWedges > lastWedges) {
+            play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
+        }
+        lastWedges = numHealthWedges;
+
 }
 
 SM64_LIB_FN void sm64_mChar_delete( int32_t marioId )
@@ -405,6 +413,17 @@ SM64_LIB_FN void sm64_mChar_set_water_level( int32_t marioId, signed int yLevel 
 
     global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
     gMarioState->waterLevel = yLevel;
+}
+
+SM64_LIB_FN void sm64_mChar_heal( int32_t marioId, char healCounter ){
+    if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
+    {
+        DEBUG_PRINT("Tried to heal non-existant Mario with ID: %u", marioId);
+        return;
+    }
+
+    global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
+    gMarioState->healCounter += healCounter;
 }
 
 SM64_LIB_FN void sm64_mChar_set_angle( int32_t marioId, float angle ){
