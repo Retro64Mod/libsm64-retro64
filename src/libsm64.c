@@ -418,6 +418,18 @@ SM64_LIB_FN void sm64_mChar_set_action( int32_t marioId, uint32_t actionId ){
     set_mario_action( gMarioState, actionId, 0);
 }
 
+SM64_LIB_FN void sm64_mChar_set_action_state( int32_t marioId, u16 actionState ){
+    if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
+    {
+        DEBUG_PRINT("Tried to set action-state of non-existant Mario with ID: %u", marioId);
+        return;
+    }
+
+    global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
+
+    gMarioState->actionState = actionState;
+}
+
 SM64_LIB_FN void sm64_mChar_set_water_level( int32_t marioId, signed int yLevel ){
     if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
     {
