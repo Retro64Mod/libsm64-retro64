@@ -85,9 +85,11 @@ extern SM64_LIB_FN void sm64_mChar_animTick(int32_t marioId, uint32_t stateFlags
 extern SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs *inputs, struct SM64MarioState *outState, struct SM64MarioGeometryBuffers *outBuffers );
 extern SM64_LIB_FN void sm64_mChar_delete( int32_t marioId );
 extern SM64_LIB_FN void sm64_mChar_teleport(int32_t marioId, float x, float y, float z);
+extern SM64_LIB_FN void sm64_mChar_set_velocity( int32_t marioId, float x, float y, float z );
 extern SM64_LIB_FN void sm64_mChar_apply_damage( int32_t marioId, uint32_t damage,uint32_t interactionSubtype,float xSrc,float ySrc,float zSrc);
 extern SM64_LIB_FN void sm64_mChar_set_state(int32_t marioId, uint32_t capType);
 extern SM64_LIB_FN void sm64_mChar_set_water_level( int32_t marioId, signed int yLevel );
+extern SM64_LIB_FN void sm64_mChar_set_gas_level( int32_t marioId, signed int yLevel );
 extern SM64_LIB_FN void sm64_mChar_set_angle( int32_t marioId, float angle );
 extern SM64_LIB_FN void sm64_mChar_heal( int32_t marioId, char healCounter );
 

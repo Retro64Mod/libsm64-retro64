@@ -367,6 +367,20 @@ SM64_LIB_FN void sm64_mChar_teleport( int32_t marioId, float x, float y, float z
     gMarioState->marioObj->header.gfx.pos[2]=z;
 }
 
+SM64_LIB_FN void sm64_mChar_set_velocity( int32_t marioId, float x, float y, float z )
+{
+    if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
+    {
+        DEBUG_PRINT("Tried to change position of non-existant Mario with ID: %u", marioId);
+        return;
+    }
+    global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
+
+    gMarioState->vel[0]=x;
+    gMarioState->vel[1]=y;
+    gMarioState->vel[2]=z;
+}
+
 SM64_LIB_FN void sm64_mChar_apply_damage( int32_t marioId, uint32_t damage,uint32_t interactionSubtype,float xSrc,float ySrc,float zSrc)
 {
     if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
@@ -413,6 +427,17 @@ SM64_LIB_FN void sm64_mChar_set_water_level( int32_t marioId, signed int yLevel 
 
     global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
     gMarioState->waterLevel = yLevel;
+}
+
+SM64_LIB_FN void sm64_mChar_set_gas_level( int32_t marioId, signed int yLevel ){
+    if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
+    {
+        DEBUG_PRINT("Tried to set gas level of non-existant Mario with ID: %u", marioId);
+        return;
+    }
+
+    global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
+    gMarioState->gasLevel = yLevel;
 }
 
 SM64_LIB_FN void sm64_mChar_heal( int32_t marioId, char healCounter ){
