@@ -10,6 +10,7 @@
 #include "../game/level_update.h"
 #include "../game/camera.h"
 #include "../include/seq_ids.h"
+#include "../../libsm64.h"
 #define SOUND_BANK_COUNT 10
 #define gCurrLevelNum 0
 #define gCurrAreaIndex 1
@@ -2212,6 +2213,8 @@ void get_currently_playing_sound(u8 bank, u8 *numPlayingSounds, u8 *numSoundsInB
  * Called from threads: thread5_game_loop
  */
 void stop_sound(u32 soundBits, f32 *pos) {
+    if (!hasAudio)
+        return;
     u8 bank = (soundBits & SOUNDARGS_MASK_BANK) >> SOUNDARGS_SHIFT_BANK;
     u8 soundIndex = sSoundBanks[bank][0].next;
 
