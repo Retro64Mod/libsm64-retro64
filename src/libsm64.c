@@ -51,6 +51,7 @@ static struct AudioAPI *audio_api;
 
 static bool s_init_global = false;
 static bool s_init_one_mario = false;
+bool hasAudio;
 struct MarioInstance
 {
     struct GlobalState *globalState;
@@ -99,7 +100,7 @@ int getCurrentModel(){
 pthread_t gSoundThread;
 SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequences_bin,uint8_t *sound_data_ctl,uint8_t *sound_data_tbl,int bank_set_len,int sequences_len,int ctl_len,int tbl_len, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction )
 {
-    bool hasAudio=false;
+    hasAudio=false;
     if (bank_set_len != 0 & sequences_len != 0 & ctl_len != 0 & tbl_len != 0)
     {
         hasAudio=true;
