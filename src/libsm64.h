@@ -71,7 +71,7 @@ enum
 {
     SM64_TEXTURE_WIDTH = 64 * 11,
     SM64_TEXTURE_HEIGHT = 64,
-    SM64_GEO_MAX_TRIANGLES = 1300,
+    SM64_GEO_MAX_TRIANGLES = 2040,
 };
 
 extern SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequences_bin,uint8_t *sound_data_ctl,uint8_t *sound_data_tbl,int bank_set_len,int sequences_len,int ctl_len,int tbl_len, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction );

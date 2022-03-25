@@ -52,6 +52,7 @@ void load_mario_textures_from_rom( uint8_t *rom, uint8_t *outTexture )
 #include "decomp/model_steve/geo.inc.h"
 #include "decomp/model_alex/geo.inc.h"
 #include "decomp/model_necoarc/geo.inc.h"
+#include "decomp/model_vibri/geo.inc.h"
 
 int getUsedTextures(){
     switch (getCurrentModel()){
@@ -65,6 +66,8 @@ int getUsedTextures(){
             return ALEX_USED_TEXTURES;
         case MODEL_NECOARC:
             return NECOARC_USED_TEXTURES;
+        case MODEL_VIBRI:
+            return VIBRI_USED_TEXTURES;
         default:
             return 0;
     }
@@ -82,6 +85,8 @@ int* getWidths(){
             return alex_tex_widths;
         case MODEL_NECOARC:
             return necoarc_tex_widths;
+        case MODEL_VIBRI:
+            return vibri_tex_widths;
         default:
             return NULL;
     }
@@ -99,6 +104,8 @@ int* getHeights(){
             return alex_tex_heights;
         case MODEL_NECOARC:
             return necoarc_tex_heights;
+        case MODEL_VIBRI:
+            return vibri_tex_heights;
         default:
             return NULL;
     }
