@@ -5,9 +5,10 @@ enum MarioModels{
     MODEL_LUIGI,
     MODEL_STEVE,
     MODEL_ALEX,
+    MODEL_NECOARC,
 };
 
-#define ModelsUsed 4
+#define ModelsUsed 5
 
 void initModels(struct AllocOnlyPool *pool);
 struct GraphNode* getModel(int model);
