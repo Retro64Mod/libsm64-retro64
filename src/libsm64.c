@@ -2,7 +2,7 @@
     #define SM64_LIB_EXPORT
 #endif
 
-#define LIB_VER 2
+#define LIB_VER 3
 
 #include "libsm64.h"
 
