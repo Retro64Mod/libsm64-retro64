@@ -18,7 +18,6 @@
 #define gGlobalTimer         (g_state->mgGlobalTimer)
 #define gSpecialTripleJump   (g_state->mgSpecialTripleJump)
 #define gCurrLevelNum        (g_state->mgCurrLevelNum)
-#define gCameraMovementFlags (g_state->mgCameraMovementFlags)
 #define gAudioRandom         (g_state->mgAudioRandom)
 #define gShowDebugText       (g_state->mgShowDebugText)
 #define gDebugLevelSelect    (g_state->mgDebugLevelSelect)
@@ -44,7 +43,6 @@ static void *virtual_to_segmented(u32 segment, const void *addr) { return (void*
 //static void func_80320A4C(u8 bankIndex, u8 arg1) {}
 static void raise_background_noise(s32 a) {}
 static void lower_background_noise(s32 a) {}
-static void set_camera_mode(struct Camera *c, s16 mode, s16 frames) {}
 static void print_text_fmt_int(s32 x, s32 y, const char *str, s32 n) {}
 static s16 level_trigger_warp(struct MarioState *m, s32 warpOp) { return 0; }
 static void play_cap_music(u16 seqArgs) {}
@@ -56,7 +54,6 @@ static u32 save_file_get_flags(void) { return 0; }
 static void save_file_set_flags(u32 flags) {}
 static void save_file_clear_flags(u32 flags) {}
 static void spawn_wind_particles(s16 pitch, s16 yaw) {}
-static void set_camera_shake_from_hit(s16 shake) {}
 static void load_level_init_text(u32 arg) {}
 static void spawn_default_star(f32 sp20, f32 sp24, f32 sp28) {}
 static void play_shell_music(void) {}
