@@ -1527,13 +1527,13 @@ void update_mario_health(struct MarioState *m) {
  */
 void update_mario_info_for_cam(struct MarioState *m) {
     m->marioBodyState->action = m->action;
-//  m->statusForCamera->action = m->action;
+    m->statusForCamera->action = m->action;
 
-//  vec3s_copy(m->statusForCamera->faceAngle, m->faceAngle);
+    vec3s_copy(m->statusForCamera->faceAngle, m->faceAngle);
 
-//  if (!(m->flags & MARIO_UNKNOWN_25)) {
-//      vec3f_copy(m->statusForCamera->pos, m->pos);
-//  }
+    if (!(m->flags & MARIO_UNKNOWN_25)) {
+        vec3f_copy(m->statusForCamera->pos, m->pos);
+    }
 }
 
 /**
@@ -1897,7 +1897,7 @@ void init_mario_from_save_file(void) {
     gMarioState->flags = 0;
     gMarioState->action = 0;
     gMarioState->spawnInfo = gMarioSpawnInfo;
-//  gMarioState->statusForCamera = &gPlayerCameraState;
+    gMarioState->statusForCamera = &gPlayerCameraState;
     gMarioState->marioBodyState = &g_state->mgBodyStates[0];
     gMarioState->controller = &gController;
     gMarioState->animation = &D_80339D10;

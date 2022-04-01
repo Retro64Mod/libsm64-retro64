@@ -41,6 +41,7 @@
 #include "decomp/audio/external.h"
 
 #include "decomp/audio/load_dat.h"
+#include "decomp/game/camera.h"
 
 static struct AllocOnlyPool *s_mario_geo_pool = NULL;
 
@@ -57,6 +58,7 @@ struct MarioInstance
     struct GlobalState *globalState;
 };
 struct ObjPool s_mario_instance_pool = { 0, 0 };
+struct ObjPool s_camera_pool = { 0, 0 };
 
 static void update_button( bool on, u16 button )
 {
@@ -97,6 +99,21 @@ int getCurrentModel(){
     return currentModel;
 }
 
+char* readFile(char* fileName){
+    FILE *file = fopen(fileName, "rb");
+    if(file == NULL){
+        return NULL;
+    }
+    fseek(file, 0, SEEK_END);
+    long size = ftell(file);
+    rewind(file);
+    char *buffer = malloc(size + 1);
+    fread(buffer, 1, size, file);
+    buffer[size] = '\0';
+    fclose(file);
+    return buffer;
+}
+
 pthread_t gSoundThread;
 SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequences_bin,uint8_t *sound_data_ctl,uint8_t *sound_data_tbl,int bank_set_len,int sequences_len,int ctl_len,int tbl_len, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction )
 {
@@ -112,7 +129,13 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
         memcpy(gMusicData,sequences_bin,sequences_len);
         memcpy(gSoundDataADSR,sound_data_ctl,ctl_len);
         memcpy(gSoundDataRaw,sound_data_tbl,tbl_len);
-    }
+    }/*else{ // debug
+        hasAudio=true;
+        gBankSetsData = readFile("snd\\bank_sets");
+        gMusicData = readFile("snd\\sequences.bin");
+        gSoundDataADSR = readFile("snd\\sound_data.ctl");
+        gSoundDataRaw = readFile("snd\\sound_data.tbl");
+    }*/
 
     if( s_init_global )
         sm64_global_terminate();
@@ -236,6 +259,17 @@ SM64_LIB_FN int32_t sm64_mChar_create( float x, float y, float z )
     set_mario_action( gMarioState, ACT_SPAWN_SPIN_AIRBORNE, 0);
     find_floor( x, y, z, &gMarioState->floor );
 
+    if (gCurGraphNodeCamera==NULL){
+        // allocate camera node
+        gCurGraphNodeCamera = malloc(sizeof(struct GraphNodeCamera));
+        //gCurGraphNodeCamera->pos = gMarioState->marioObj->header.gfx.pos;
+        //gCurGraphNodeCamera->focus=gMarioState->marioObj->header.gfx.pos;
+        create_camera(gCurGraphNodeCamera,s_camera_pool);
+        init_camera(gCurGraphNodeCamera->config.camera);
+        gCurGraphNodeCamera->config.camera->mode = CAM_MODE_MARIO_ACTIVE;
+        gCurrentArea->camera = gCurGraphNodeCamera->config.camera;
+    }
+
     return marioIndex;
 }
 
@@ -301,6 +335,10 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
     update_button( inputs->buttonA, A_BUTTON );
     update_button( inputs->buttonB, B_BUTTON );
     update_button( inputs->buttonZ, Z_TRIG );
+    update_button( inputs->buttonU, U_CBUTTONS );
+    update_button( inputs->buttonD, D_CBUTTONS );
+    update_button( inputs->buttonL, L_CBUTTONS );
+    update_button( inputs->buttonR, R_CBUTTONS );
 
     gMarioState->area->camera->yaw = atan2s( inputs->camLookZ, inputs->camLookX );
 
@@ -312,6 +350,11 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
     bhv_mario_update();
     update_mario_platform(); // TODO platform grabbed here and used next tick could be a use-after-free
 
+
+    
+    update_lakitu(gCurGraphNodeCamera->config.camera);
+    update_camera(gCurGraphNodeCamera->config.camera);
+    update_graph_node_camera(gCurGraphNodeCamera);
     gfx_adapter_bind_output_buffers( outBuffers );
 
     geo_process_root_hack_single_node( getModel(currentModel) );
@@ -331,6 +374,18 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
         }
         lastWedges = numHealthWedges;
 
+}
+
+SM64_LIB_FN float* sm64_campos(){
+    if (gCurGraphNodeCamera==NULL)
+        return NULL;
+    return gCurGraphNodeCamera->config.camera->pos;
+}
+
+SM64_LIB_FN float* sm64_camfocus(){
+    if (gCurGraphNodeCamera==NULL)
+        return NULL;
+    return gCurGraphNodeCamera->config.camera->focus;
 }
 
 SM64_LIB_FN void sm64_mChar_delete( int32_t marioId )

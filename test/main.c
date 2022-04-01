@@ -339,14 +339,14 @@ void render_state_init( RenderState *renderState, uint8_t *mCharTexture )
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, SM64_TEXTURE_WIDTH, SM64_TEXTURE_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, mCharTexture);
 }
 
-void render_draw( RenderState *renderState, const vec3 camPos, const struct SM64MarioState *mCharState, struct SM64MarioGeometryBuffers *mCharGeo )
+void render_draw( RenderState *renderState, const vec3 camPos,const vec3 camFocus, const struct SM64MarioState *mCharState, struct SM64MarioGeometryBuffers *mCharGeo )
 {
     update_mChar_mesh( &renderState->mChar, mCharGeo );
 
     mat4 model, view, projection;
     glm_perspective( 45.0f, (float)WINDOW_WIDTH / (float)WINDOW_HEIGHT, 100.0f, 20000.0f, projection );
     glm_translate( view, (float*)camPos );
-    glm_lookat( (float*)camPos, (float*)mCharState->position, (vec3){0,1,0}, view );
+    glm_lookat( (float*)camPos, (float*)camFocus, (vec3){0,1,0}, view );
     glm_mat4_identity( model );
 
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
@@ -436,6 +436,7 @@ int main( int argc, char *argv[] )
     RenderState renderState;
     renderState.mChar.index = NULL;
     vec3 cameraPos = { 0, 0, 0 };
+    vec3 cameraFocus = { 0, 0, 0 };
     float cameraRot = 0.0f;
 
     context_init( "libsm64", WINDOW_WIDTH, WINDOW_HEIGHT );
@@ -465,13 +466,24 @@ int main( int argc, char *argv[] )
         float x0_axis = read_axis( SDL_GameControllerGetAxis( controller, SDL_CONTROLLER_AXIS_RIGHTX )) + kbAxis[2];
 
         cameraRot += 0.1f * x0_axis;
-        cameraPos[0] = mCharState.position[0] + 1000.0f * cosf( cameraRot );
-        cameraPos[1] = mCharState.position[1] + 200.0f;
-        cameraPos[2] = mCharState.position[2] + 1000.0f * sinf( cameraRot );
+        float* pos = sm64_campos();
+        if (pos!=NULL){
+            float* focus = sm64_camfocus();
+            cameraPos[0] = pos[0];//mCharState.position[0] + 1000.0f * cosf( cameraRot );
+            cameraPos[1] = pos[1];//mCharState.position[1] + 200.0f;
+            cameraPos[2] = pos[2];//mCharState.position[2] + 1000.0f * sinf( cameraRot );
+            cameraFocus[0] = focus[0];
+            cameraFocus[1] = focus[1];
+            cameraFocus[2] = focus[2];
+        }
 
         mCharInputs.buttonA = SDL_GameControllerGetButton( controller, 0 ) || isKeyDown(SDL_SCANCODE_SPACE);
         mCharInputs.buttonB = SDL_GameControllerGetButton( controller, 2 ) || isKeyDown(SDL_SCANCODE_Z);
         mCharInputs.buttonZ = SDL_GameControllerGetButton( controller, 9 ) || isKeyDown(SDL_SCANCODE_LSHIFT);
+        mCharInputs.buttonU = isKeyDown(SDL_SCANCODE_UP);
+        mCharInputs.buttonD = isKeyDown(SDL_SCANCODE_DOWN);
+        mCharInputs.buttonL = isKeyDown(SDL_SCANCODE_LEFT);
+        mCharInputs.buttonR = isKeyDown(SDL_SCANCODE_RIGHT);
         mCharInputs.camLookX = mCharState.position[0] - cameraPos[0];
         mCharInputs.camLookZ = mCharState.position[2] - cameraPos[2];
         mCharInputs.stickX = x_axis;
@@ -481,7 +493,7 @@ int main( int argc, char *argv[] )
 
         sm64_mChar_tick( mCharId, &mCharInputs, &mCharState, &mCharGeometry );
 
-        render_draw( &renderState, cameraPos, &mCharState, &mCharGeometry );
+        render_draw( &renderState, cameraPos,cameraFocus, &mCharState, &mCharGeometry );
 
         ts.tv_nsec = 33333333 - (ns_clock() - frameTopTime);
         nanosleep( &ts, &ts );

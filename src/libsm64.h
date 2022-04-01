@@ -29,7 +29,7 @@ struct SM64MarioInputs
     float camLookX, camLookZ;
     float cameraPosition[3]; // used for sound calculations
     float stickX, stickY;
-    uint8_t buttonA, buttonB, buttonZ;
+    uint8_t buttonA, buttonB, buttonZ,buttonL,buttonR,buttonU,buttonD;
 };
 
 struct SM64ObjectTransform
@@ -108,6 +108,8 @@ extern SM64_LIB_FN void sm64_play_sound(s32 soundBits, f32 *pos);
 extern SM64_LIB_FN void sm64_play_sound_global(s32 soundBits);
 extern SM64_LIB_FN int sm64_set_volume(float vol);
 extern SM64_LIB_FN int sm64_get_version();
+extern SM64_LIB_FN float* sm64_campos();
+extern SM64_LIB_FN float* sm64_camfocus();
 extern bool hasAudio;
 extern int getCurrentModel();
 void audio_tick();
