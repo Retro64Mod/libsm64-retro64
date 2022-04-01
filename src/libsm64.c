@@ -262,8 +262,8 @@ SM64_LIB_FN int32_t sm64_mChar_create( float x, float y, float z )
     if (gCurGraphNodeCamera==NULL){
         // allocate camera node
         gCurGraphNodeCamera = malloc(sizeof(struct GraphNodeCamera));
-        //gCurGraphNodeCamera->pos = gMarioState->marioObj->header.gfx.pos;
-        //gCurGraphNodeCamera->focus=gMarioState->marioObj->header.gfx.pos;
+        vec3f_copy(gCurGraphNodeCamera->pos,gMarioState->marioObj->header.gfx.pos);
+        vec3f_copy(gCurGraphNodeCamera->focus,gMarioState->marioObj->header.gfx.pos);
         create_camera(gCurGraphNodeCamera,s_camera_pool);
         init_camera(gCurGraphNodeCamera->config.camera);
         gCurGraphNodeCamera->config.camera->mode = CAM_MODE_MARIO_ACTIVE;
@@ -367,12 +367,8 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
     outState->faceAngle = (float)gMarioState->faceAngle[1] / 32768.0f * 3.14159f;
     outState->flags = gMarioState->flags;
     outState->action = gMarioState->action;
-    outState->camPos[0]=gCurGraphNodeCamera->config.camera->pos[0];
-    outState->camPos[1]=gCurGraphNodeCamera->config.camera->pos[1];
-    outState->camPos[2]=gCurGraphNodeCamera->config.camera->pos[2];
-    outState->camFocus[0]=gCurGraphNodeCamera->config.camera->focus[0];
-    outState->camFocus[1]=gCurGraphNodeCamera->config.camera->focus[1];
-    outState->camFocus[2]=gCurGraphNodeCamera->config.camera->focus[2];
+    vec3f_copy(outState->camPos,gCurGraphNodeCamera->config.camera->pos);
+    vec3f_copy(outState->camFocus,gCurGraphNodeCamera->config.camera->focus);
 
     s16 numHealthWedges = gMarioState->health > 0 ? gMarioState->health >> 8 : 0;
     if (numHealthWedges > lastWedges) {
