@@ -367,6 +367,12 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
     outState->faceAngle = (float)gMarioState->faceAngle[1] / 32768.0f * 3.14159f;
     outState->flags = gMarioState->flags;
     outState->action = gMarioState->action;
+    outState->camPos[0]=gCurGraphNodeCamera->config.camera->pos[0];
+    outState->camPos[1]=gCurGraphNodeCamera->config.camera->pos[1];
+    outState->camPos[2]=gCurGraphNodeCamera->config.camera->pos[2];
+    outState->camFocus[0]=gCurGraphNodeCamera->config.camera->focus[0];
+    outState->camFocus[1]=gCurGraphNodeCamera->config.camera->focus[1];
+    outState->camFocus[2]=gCurGraphNodeCamera->config.camera->focus[2];
 
     s16 numHealthWedges = gMarioState->health > 0 ? gMarioState->health >> 8 : 0;
     if (numHealthWedges > lastWedges) {
@@ -374,18 +380,6 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
         }
         lastWedges = numHealthWedges;
 
-}
-
-SM64_LIB_FN float* sm64_campos(){
-    if (gCurGraphNodeCamera==NULL)
-        return NULL;
-    return gCurGraphNodeCamera->config.camera->pos;
-}
-
-SM64_LIB_FN float* sm64_camfocus(){
-    if (gCurGraphNodeCamera==NULL)
-        return NULL;
-    return gCurGraphNodeCamera->config.camera->focus;
 }
 
 SM64_LIB_FN void sm64_mChar_delete( int32_t marioId )

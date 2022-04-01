@@ -466,16 +466,6 @@ int main( int argc, char *argv[] )
         float x0_axis = read_axis( SDL_GameControllerGetAxis( controller, SDL_CONTROLLER_AXIS_RIGHTX )) + kbAxis[2];
 
         cameraRot += 0.1f * x0_axis;
-        float* pos = sm64_campos();
-        if (pos!=NULL){
-            float* focus = sm64_camfocus();
-            cameraPos[0] = pos[0];//mCharState.position[0] + 1000.0f * cosf( cameraRot );
-            cameraPos[1] = pos[1];//mCharState.position[1] + 200.0f;
-            cameraPos[2] = pos[2];//mCharState.position[2] + 1000.0f * sinf( cameraRot );
-            cameraFocus[0] = focus[0];
-            cameraFocus[1] = focus[1];
-            cameraFocus[2] = focus[2];
-        }
 
         mCharInputs.buttonA = SDL_GameControllerGetButton( controller, 0 ) || isKeyDown(SDL_SCANCODE_SPACE);
         mCharInputs.buttonB = SDL_GameControllerGetButton( controller, 2 ) || isKeyDown(SDL_SCANCODE_Z);
@@ -493,7 +483,7 @@ int main( int argc, char *argv[] )
 
         sm64_mChar_tick( mCharId, &mCharInputs, &mCharState, &mCharGeometry );
 
-        render_draw( &renderState, cameraPos,cameraFocus, &mCharState, &mCharGeometry );
+        render_draw( &renderState, mCharState.camPos,mCharState.camFocus, &mCharState, &mCharGeometry );
 
         ts.tv_nsec = 33333333 - (ns_clock() - frameTopTime);
         nanosleep( &ts, &ts );

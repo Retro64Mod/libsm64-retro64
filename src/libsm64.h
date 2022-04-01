@@ -49,6 +49,8 @@ struct SM64MarioState
 {
     float position[3];
     float velocity[3];
+    float camPos[3];
+    float camFocus[3];
     float faceAngle;
     int16_t health;
     uint32_t flags;
@@ -108,8 +110,6 @@ extern SM64_LIB_FN void sm64_play_sound(s32 soundBits, f32 *pos);
 extern SM64_LIB_FN void sm64_play_sound_global(s32 soundBits);
 extern SM64_LIB_FN int sm64_set_volume(float vol);
 extern SM64_LIB_FN int sm64_get_version();
-extern SM64_LIB_FN float* sm64_campos();
-extern SM64_LIB_FN float* sm64_camfocus();
 extern bool hasAudio;
 extern int getCurrentModel();
 void audio_tick();
