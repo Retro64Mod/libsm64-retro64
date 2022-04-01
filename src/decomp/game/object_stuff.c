@@ -134,7 +134,7 @@ static struct Object *create_object(void) {
     return obj;
 }
 
-static void geo_obj_init(struct GraphNodeObject *graphNode, void *sharedChild, Vec3f pos, Vec3s angle) {
+/*static void geo_obj_init(struct GraphNodeObject *graphNode, void *sharedChild, Vec3f pos, Vec3s angle) {
     vec3f_set(graphNode->scale, 1.0f, 1.0f, 1.0f);
     vec3f_copy(graphNode->pos, pos);
     vec3s_copy(graphNode->angle, angle);
@@ -148,7 +148,7 @@ static void geo_obj_init(struct GraphNodeObject *graphNode, void *sharedChild, V
     graphNode->node.flags &= ~GRAPH_RENDER_INVISIBLE;
     graphNode->node.flags |= GRAPH_RENDER_HAS_ANIMATION;
     graphNode->node.flags &= ~GRAPH_RENDER_BILLBOARD;
-}
+}*/
 
 static struct Object *spawn_object_at_origin(void) {
     struct Object *obj;

@@ -5066,7 +5066,7 @@ void start_cutscene(struct Camera *c, u8 cutscene) {
 s32 determine_dance_cutscene(UNUSED struct Camera *c) {
     u8 cutscene = 0;
     u8 cutsceneIndex = 0;
-    u8 starIndex = (gLastCompletedStarNum - 1) / 2;
+    //u8 starIndex = (gLastCompletedStarNum - 1) / 2;
     /*u8 courseIndex = gCurrCourseNum;
 
     if (starIndex > 3) {
@@ -5078,13 +5078,13 @@ s32 determine_dance_cutscene(UNUSED struct Camera *c) {
     //cutsceneIndex = sDanceCutsceneIndexTable[courseIndex][starIndex];
     cutsceneIndex = sDanceCutsceneIndexTable[0][0];
 
-    if (gLastCompletedStarNum & 1) {
+    /*if (gLastCompletedStarNum & 1) {
         // Odd stars take the lower four bytes
         cutsceneIndex &= 0xF;
     } else {
         // Even stars use the upper four bytes
         cutsceneIndex = cutsceneIndex >> 4;
-    }
+    }*/
     cutscene = sDanceCutsceneTable[cutsceneIndex];
     return cutscene;
 }
@@ -6947,7 +6947,7 @@ void stop_cutscene_and_retrieve_stored_info(struct Camera *c) {
 
 void cap_switch_save(s16 dummy) {
     UNUSED s16 unused = dummy;
-    save_file_do_save(gCurrSaveFileNum - 1);
+    //save_file_do_save(gCurrSaveFileNum - 1);
 }
 
 void init_spline_point(struct CutsceneSplinePoint *splinePoint, s8 index, u8 speed, Vec3s point) {
@@ -7049,8 +7049,8 @@ void reset_pan_distance(UNUSED struct Camera *c) {
 /**
  * Easter egg: the player 2 controller can move the camera's focus in the ending and credits.
  */
-/*void player2_rotate_cam(struct Camera *c, s16 minPitch, s16 maxPitch, s16 minYaw, s16 maxYaw) {
-    f32 distCamToFocus;
+void player2_rotate_cam(struct Camera *c, s16 minPitch, s16 maxPitch, s16 minYaw, s16 maxYaw) {
+    /*f32 distCamToFocus;
     s16 pitch, yaw, pitchCap;
 
     // Change the camera rotation to match the 2nd player's stick
@@ -7090,8 +7090,8 @@ void reset_pan_distance(UNUSED struct Camera *c) {
     pitch += sCreditsPlayer2Pitch;
     yaw += sCreditsPlayer2Yaw;
     vec3f_set_dist_and_angle(c->pos, sPlayer2FocusOffset, distCamToFocus, pitch, yaw);
-    vec3f_sub(sPlayer2FocusOffset, c->focus);
-}*/
+    vec3f_sub(sPlayer2FocusOffset, c->focus);*/
+}
 
 /**
  * Store camera info for the cannon opening cutscene

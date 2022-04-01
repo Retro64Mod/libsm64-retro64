@@ -59,5 +59,9 @@ static void spawn_default_star(f32 sp20, f32 sp24, f32 sp28) {}
 static void play_shell_music(void) {}
 static void stop_shell_music(void) {}
 static u16 level_control_timer(s32 timerOp) { return 0; }
+static int get_dialog_id() { return 0; }
+static void set_hud_camera_status(s16 status){}
+static void create_dialog_box(s16 dialog){}
+static void create_dialog_box_with_response(s16 dialog){}
 
 #pragma GCC diagnostic pop
