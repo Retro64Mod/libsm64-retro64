@@ -38,6 +38,8 @@
 #include "fpsLimitHelper.h"
 #include "decomp/pc/audio/audio_null.h"
 #include "decomp/pc/audio/audio_wasapi.h"
+#include "decomp/pc/audio/audio_pulse.h"
+#include "decomp/pc/audio/audio_alsa.h"
 #include "decomp/audio/external.h"
 
 #include "decomp/audio/load_dat.h"
