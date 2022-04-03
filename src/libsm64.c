@@ -155,7 +155,6 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
         sound_reset(0);
         // start audio thread
         pthread_create(&gSoundThread, NULL, audio_thread, NULL);
-        play_puzzle_jingle();
     }else{
         DEBUG_PRINT("No audio support");
     }
