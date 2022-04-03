@@ -9,3 +9,4 @@ run-test
 compile_commands.json
 /.cache/
 .vscode/*
+audioData.bin

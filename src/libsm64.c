@@ -98,6 +98,7 @@ int getCurrentModel(){
 }
 
 pthread_t gSoundThread;
+
 SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequences_bin,uint8_t *sound_data_ctl,uint8_t *sound_data_tbl,int bank_set_len,int sequences_len,int ctl_len,int tbl_len, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction )
 {
     hasAudio=false;
@@ -154,10 +155,23 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
         sound_reset(0);
         // start audio thread
         pthread_create(&gSoundThread, NULL, audio_thread, NULL);
-        //play_music(SEQ_PLAYER_LEVEL, SEQUENCE_ARGS(15, 0x05), 0);
+        play_puzzle_jingle();
     }else{
         DEBUG_PRINT("No audio support");
     }
+}
+
+SM64_LIB_FN void sm64_global_init_audioBin(uint8_t *rom,char* audioData, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction){
+    // file format: audioDataTblSize,soundDataCtlSize,bankSetsSize,sequencesSize,soundDataTBL,soundDataCtl,bankSets,sequences
+    int audioDataTblSize = *(int*)audioData;
+    int soundDataCtlSize = *(int*)(audioData+4);
+    int bankSetsSize = *(int*)(audioData+8);
+    int sequencesSize = *(int*)(audioData+12);
+    char* soundDataTBL = audioData+16;
+    char* soundDataCTL = audioData+16+audioDataTblSize;
+    char* bankSets = audioData+16+audioDataTblSize+soundDataCtlSize;
+    char* sequences = audioData+16+audioDataTblSize+soundDataCtlSize+bankSetsSize;
+    sm64_global_init(rom,bankSets,sequences,soundDataCTL,soundDataTBL,bankSetsSize,sequencesSize,soundDataCtlSize,audioDataTblSize,outTexture,debugPrintFunction);
 }
 
 SM64_LIB_FN void sm64_global_terminate( void )
