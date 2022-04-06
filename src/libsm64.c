@@ -43,6 +43,7 @@
 #include "decomp/audio/external.h"
 
 #include "decomp/audio/load_dat.h"
+#include "decomp/tools/libsfx.h"
 
 static struct AllocOnlyPool *s_mario_geo_pool = NULL;
 
@@ -160,6 +161,10 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     }else{
         DEBUG_PRINT("No audio support");
     }
+
+    /// test
+    sound_bank_header sbh = read_sound_bank(rom,5748512);
+    sound_data_header sdh = read_sound_data(rom,5846368);
 }
 
 SM64_LIB_FN void sm64_global_init_audioBin(uint8_t *rom,char* audioData, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction){
