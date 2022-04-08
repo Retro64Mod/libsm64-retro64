@@ -28,28 +28,47 @@ struct seqFile* parse_seqfile(unsigned char* seq){ /* Read SeqFile data */
     return seqFile;
 }
 
-struct Sound parse_sound(unsigned char* sound){
-    struct Sound* snd = (struct Sound*)sound;
+struct Sound* parse_sound(unsigned char* sound){
+    struct Sound* snd = malloc(sizeof(struct Sound));
     snd->sample_addr=read_u32_be(sound);
     snd->tuning = (float)read_f32_be(sound+4);
     // if sample_addr is 0 then the sound is null
+    return snd;
 }
 
-struct Drum parse_drum(unsigned char* drum){ /* Read Drum data */
-    struct Drum* drumData = (struct Drum*)drum;
-    // first 4 bytes don't need reading
-    parse_sound(&drumData->snd);
-    drumData->env_addr=read_u32_be(drum+sizeof(struct Sound));
-    
+struct Drum* parse_drum(unsigned char* drum){ /* Read Drum data */
+    struct Drum* drumData = malloc(sizeof(struct Drum));
+    drumData->release_rate = drum[0];
+    drumData->pan = drum[1];
+    drumData->loaded = drum[2];
+    drumData->pad = drum[3];
+    drumData->snd=*parse_sound(drum+4);
+    drumData->env_addr=read_u32_be(drum+sizeof(struct Sound)+4);
+    return drumData;
 }
 
-struct Instrument parse_instrument(unsigned char* instrument){
-    struct Instrument* inst = (struct Instrument*)instrument;
-    // first 4 bytes don't need reading
+struct Envelope* parse_envelope(unsigned char* env){
+    struct Envelope* envData = malloc(sizeof(struct Envelope));
+    for (int i = 0; i < 6; i++){
+        envData->delay_args[i].delay = read_u16_be(env + i * 4);
+        envData->delay_args[i].arg = read_u16_be(env + i * 4 + 2);
+        if (1 <= (-envData->delay_args[i].delay) % 2 * 16 <= 3)
+            break;
+    }
+    return envData;
+}
+
+struct Instrument* parse_instrument(unsigned char* instrument){
+    struct Instrument* inst = malloc(sizeof(struct Instrument));
+    inst->loaded = instrument[0];
+    inst->normal_range_lo = instrument[1];
+    inst->normal_range_hi = instrument[2];
+    inst->release_rate = instrument[3];
     inst->env_addr=read_u32_be(instrument+4);
-    parse_sound(&inst->sound_lo);
-    parse_sound(&inst->sound_med);
-    parse_sound(&inst->sound_hi);
+    inst->sound_lo=*parse_sound(instrument+8);
+    inst->sound_med=*parse_sound(instrument+16);
+    inst->sound_hi=*parse_sound(instrument+24);
+    return inst;
 }
 
 struct CTL* parse_ctl_data(unsigned char* ctlData){
@@ -66,7 +85,8 @@ struct CTL* parse_ctl_data(unsigned char* ctlData){
     int drumTablePtr = read_u32_be(ctlData + 16);
     for (int i = 0; i < ctl->numDrums; i++){
         ctl->drum_pointers[i] = read_u32_be(ctlData + drumTablePtr+16 + i * 4);
-        struct Drum d = parse_drum(ctlData+ctl->drum_pointers[i]+16);
+        struct Drum* d = parse_drum(ctlData+ctl->drum_pointers[i]+16);
+        d->env_addr=parse_envelope(ctlData+((int)d->env_addr)+16);
     }
     // parse instrument data
     ctl->instrument_pointers = (int*)malloc(ctl->numInstruments * sizeof(int));
@@ -75,7 +95,8 @@ struct CTL* parse_ctl_data(unsigned char* ctlData){
         ctl->instrument_pointers[i] = read_u32_be(ctlData + instTablePtr + i * 4);
         if (ctl->instrument_pointers[i] == 0)
             continue;
-        struct Instrument inst = parse_instrument(ctlData+ctl->instrument_pointers[i]+16);
+        struct Instrument* inst = parse_instrument(ctlData+ctl->instrument_pointers[i]+16);
+        inst->env_addr=parse_envelope(ctlData+((int)inst->env_addr)+16);
     }
     // 
 

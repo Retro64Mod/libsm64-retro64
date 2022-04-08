@@ -3,9 +3,43 @@
 #define TYPE_CTL 1
 #define TYPE_TBL 2
 
+struct Loop
+{
+    unsigned int start;
+    unsigned int end;
+    int count;
+    unsigned int pad;
+    short state[16];
+};
+
+
+struct Book
+{
+    int order; // must be 2
+    int npredictors; // must be 2
+    short table[64]; // 16 * order * npredictors
+};
+
 struct Sound{
     unsigned int sample_addr;
     float tuning;
+};
+
+struct Sample{
+    unsigned int zero;
+    unsigned int addr;
+    struct Loop* loop; // must not be null
+    struct Book* book; // must not be null
+    unsigned int sample_size;
+};
+
+struct delay_arg{
+    unsigned short delay;
+    unsigned short arg;
+};
+
+struct Envelope{
+    struct delay_arg delay_args[6]; // array of [(delay,arg)]
 };
 
 struct Drum{
@@ -14,7 +48,7 @@ struct Drum{
     unsigned char loaded;
     unsigned char pad;
     struct Sound snd;
-    unsigned int env_addr;
+    struct Envelope* env_addr;
 };
 
 struct Instrument{
@@ -22,7 +56,7 @@ struct Instrument{
     unsigned char normal_range_lo;
     unsigned char normal_range_hi;
     unsigned char release_rate;
-    unsigned int env_addr;
+    struct Envelope* env_addr;
     struct Sound sound_lo;
     struct Sound sound_med;
     struct Sound sound_hi;
