@@ -104,19 +104,12 @@ pthread_t gSoundThread;
 
 SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequences_bin,uint8_t *sound_data_ctl,uint8_t *sound_data_tbl,int bank_set_len,int sequences_len,int ctl_len,int tbl_len, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction )
 {
-    hasAudio=false;
-    if (bank_set_len != 0 & sequences_len != 0 & ctl_len != 0 & tbl_len != 0)
-    {
+        
         hasAudio=true;
-        gBankSetsData=malloc(bank_set_len);
-        gMusicData=malloc(sequences_len);
-        gSoundDataADSR=malloc(ctl_len);
-        gSoundDataRaw=malloc(tbl_len);
-        memcpy(gBankSetsData,bank_sets,bank_set_len);
-        memcpy(gMusicData,sequences_bin,sequences_len);
-        memcpy(gSoundDataADSR,sound_data_ctl,ctl_len);
-        memcpy(gSoundDataRaw,sound_data_tbl,tbl_len);
-    }
+        gSoundDataADSR= parse_seqfile(rom+5748512);
+        gSoundDataRaw= parse_seqfile(rom+5846368);
+        gMusicData=parse_seqfile(rom+8063072);
+        gBankSetsData=rom+0x7CC621;
 
     if( s_init_global )
         sm64_global_terminate();
@@ -165,7 +158,7 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     /// test
     //sound_bank_header sbh = read_sound_bank(rom,5748512);
     //sound_data_header sdh = read_sound_data(rom,5846368);
-    ALSeqFile* asq = parse_seqfile(rom+5748512);
+    
 }
 
 SM64_LIB_FN void sm64_global_init_audioBin(uint8_t *rom,char* audioData, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction){

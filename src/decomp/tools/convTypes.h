@@ -2,6 +2,7 @@
 
 #define TYPE_CTL 1
 #define TYPE_TBL 2
+#define TYPE_SEQ 3
 
 struct Loop
 {
@@ -62,6 +63,10 @@ struct Instrument{
     struct Sound sound_hi;
 };
 
+struct TBL{
+    unsigned char* data;
+};
+
 struct CTL
 {
     unsigned int numInstruments;
@@ -78,7 +83,7 @@ struct seqObject{
 };
 
 struct seqFile{
-    unsigned int revision;
-    unsigned int seqCount;
+    unsigned short revision;
+    unsigned short seqCount;
     struct seqObject seqArray[1];
 };

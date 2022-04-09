@@ -15,15 +15,26 @@ struct seqFile* parse_seqfile(unsigned char* seq){ /* Read SeqFile data */
     seqFile->seqCount = bankCount;
     for (int i = 0; i < bankCount; i++){ // read bank offsets and sizes
         unsigned char* ptr = seq + 4 + i * 8;
-        seqFile->seqArray[i].offset = read_u32_be(ptr);
+        seqFile->seqArray[i].offset = (intptr_t)read_u32_be(ptr);
         seqFile->seqArray[i].len = read_u32_be((seq + 4 + i * 8 + 4));
     }
 
-    // test
-    for (int i = 0; i < bankCount; i++){
-        parse_ctl_data(seq+(seqFile->seqArray[i].offset));
+    if (revision == TYPE_CTL){
+        for (int i = 0; i < bankCount; i++){
+            struct CTL* ptr = parse_ctl_data(seq+(seqFile->seqArray[i].offset));
+            seqFile->seqArray[i].offset = ptr;
+        }
+    }else if (revision == TYPE_TBL){
+        for (int i = 0; i < bankCount; i++){
+            struct TBL* ptr = parse_tbl_data(seq+(seqFile->seqArray[i].offset));
+            seqFile->seqArray[i].offset = ptr;
+        }
+    }else if (revision == TYPE_SEQ){
+        for (int i = 0; i < bankCount; i++){
+            struct seqObject* ptr = parse_seq_data(seq+(seqFile->seqArray[i].offset));
+            seqFile->seqArray[i].offset = ptr;
+        }
     }
-    // test
 
     return seqFile;
 }
@@ -71,6 +82,14 @@ struct Instrument* parse_instrument(unsigned char* instrument){
     return inst;
 }
 
+struct TBL* parse_tbl_data(unsigned char* tbl){
+
+}
+
+struct SEQ* parse_seq_data(unsigned char* seq){
+
+}
+
 struct CTL* parse_ctl_data(unsigned char* ctlData){
     
     struct CTL* ctl = (struct CTL*)malloc(sizeof(struct CTL));
@@ -87,6 +106,7 @@ struct CTL* parse_ctl_data(unsigned char* ctlData){
         ctl->drum_pointers[i] = read_u32_be(ctlData + drumTablePtr+16 + i * 4);
         struct Drum* d = parse_drum(ctlData+ctl->drum_pointers[i]+16);
         d->env_addr=parse_envelope(ctlData+((int)d->env_addr)+16);
+        ctl->drum_pointers[i] = (int)d;
     }
     // parse instrument data
     ctl->instrument_pointers = (int*)malloc(ctl->numInstruments * sizeof(int));
@@ -97,6 +117,7 @@ struct CTL* parse_ctl_data(unsigned char* ctlData){
             continue;
         struct Instrument* inst = parse_instrument(ctlData+ctl->instrument_pointers[i]+16);
         inst->env_addr=parse_envelope(ctlData+((int)inst->env_addr)+16);
+        ctl->instrument_pointers[i] = (int)inst;
     }
     // 
 
