@@ -103,6 +103,9 @@ pthread_t gSoundThread;
 
 SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequences_bin,uint8_t *sound_data_ctl,uint8_t *sound_data_tbl,int bank_set_len,int sequences_len,int ctl_len,int tbl_len, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction )
 {
+    uint8_t * rom2 = malloc(0x800000);
+    memcpy(rom2,rom,0x800000);
+    rom = rom2;
     gSoundDataADSR= parse_seqfile(rom+5748512);
     gSoundDataRaw= parse_seqfile(rom+5846368);
     gMusicData=parse_seqfile(rom+8063072);

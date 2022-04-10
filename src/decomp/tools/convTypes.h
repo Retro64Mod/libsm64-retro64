@@ -67,6 +67,10 @@ struct TBL{
     unsigned char* data;
 };
 
+struct SEQ{
+    unsigned char* data;
+};
+
 struct CTL
 {
     unsigned int numInstruments;

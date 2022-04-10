@@ -26,13 +26,11 @@ struct seqFile* parse_seqfile(unsigned char* seq){ /* Read SeqFile data */
         }
     }else if (revision == TYPE_TBL){
         for (int i = 0; i < bankCount; i++){
-            struct TBL* ptr = parse_tbl_data(seq+(seqFile->seqArray[i].offset));
-            seqFile->seqArray[i].offset = ptr;
+            seqFile->seqArray[i].offset = seq+(seqFile->seqArray[i].offset);
         }
     }else if (revision == TYPE_SEQ){
         for (int i = 0; i < bankCount; i++){
-            struct seqObject* ptr = parse_seq_data(seq+(seqFile->seqArray[i].offset));
-            seqFile->seqArray[i].offset = ptr;
+            seqFile->seqArray[i].offset = seq+(seqFile->seqArray[i].offset);
         }
     }
 
@@ -83,11 +81,15 @@ struct Instrument* parse_instrument(unsigned char* instrument){
 }
 
 struct TBL* parse_tbl_data(unsigned char* tbl){
-
+    struct TBL* tblData = malloc(sizeof(struct TBL));
+    tblData->data = tbl;
+    return tblData;
 }
 
 struct SEQ* parse_seq_data(unsigned char* seq){
-
+    struct SEQ* seqData = malloc(sizeof(struct SEQ));
+    seqData->data = 0x0;
+    return seqData;
 }
 
 struct CTL* parse_ctl_data(unsigned char* ctlData){
