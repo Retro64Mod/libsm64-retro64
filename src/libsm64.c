@@ -54,7 +54,6 @@ static struct AudioAPI *audio_api;
 
 static bool s_init_global = false;
 static bool s_init_one_mario = false;
-bool hasAudio;
 struct MarioInstance
 {
     struct GlobalState *globalState;
@@ -104,12 +103,13 @@ pthread_t gSoundThread;
 
 SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequences_bin,uint8_t *sound_data_ctl,uint8_t *sound_data_tbl,int bank_set_len,int sequences_len,int ctl_len,int tbl_len, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction )
 {
-        
-        hasAudio=true;
-        gSoundDataADSR= parse_seqfile(rom+5748512);
-        gSoundDataRaw= parse_seqfile(rom+5846368);
-        gMusicData=parse_seqfile(rom+8063072);
-        gBankSetsData=rom+0x7CC621;
+    gSoundDataADSR= parse_seqfile(rom+5748512);
+    gSoundDataRaw= parse_seqfile(rom+5846368);
+    gMusicData=parse_seqfile(rom+8063072);
+    gBankSetsData=rom+0x7CC621;
+    // shift the next 90 elements after gBankSetsData+0x45 forward by 1
+    memmove(gBankSetsData+0x45,gBankSetsData+0x45-1,0x90);
+    gBankSetsData[0x45]=0x00;
 
     if( s_init_global )
         sm64_global_terminate();
@@ -120,44 +120,35 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     load_mario_anims_from_rom( rom );
 
     memory_init();
-//#define HAVE_WASAPI 1
-    if (hasAudio){
     #if HAVE_WASAPI
-        if (audio_api == NULL && audio_wasapi.init()) {
-            audio_api = &audio_wasapi;
-        }
+    if (audio_api == NULL && audio_wasapi.init()) {
+        audio_api = &audio_wasapi;
+    }
     #endif
     #if HAVE_PULSE_AUDIO
-        if (audio_api == NULL && audio_pulse.init()) {
-            audio_api = &audio_pulse;
-        }
+    if (audio_api == NULL && audio_pulse.init()) {
+        audio_api = &audio_pulse;
+    }
     #endif
     #if HAVE_ALSA
-        if (audio_api == NULL && audio_alsa.init()) {
-            audio_api = &audio_alsa;
-        }
+    if (audio_api == NULL && audio_alsa.init()) {
+        audio_api = &audio_alsa;
+    }
     #endif
     #ifdef TARGET_WEB
-        if (audio_api == NULL && audio_sdl.init()) {
-            audio_api = &audio_sdl;
-        }
-    #endif
-        if (audio_api == NULL) {
-            audio_api = &audio_null;
-        }
-        
-        audio_init();
-        sound_init();
-        sound_reset(0);
-        // start audio thread
-        pthread_create(&gSoundThread, NULL, audio_thread, NULL);
-    }else{
-        DEBUG_PRINT("No audio support");
+    if (audio_api == NULL && audio_sdl.init()) {
+        audio_api = &audio_sdl;
     }
-
-    /// test
-    //sound_bank_header sbh = read_sound_bank(rom,5748512);
-    //sound_data_header sdh = read_sound_data(rom,5846368);
+    #endif
+    if (audio_api == NULL) {
+        audio_api = &audio_null;
+    }
+        
+    audio_init();
+    sound_init();
+    sound_reset(0);
+    // start audio thread
+    pthread_create(&gSoundThread, NULL, audio_thread, NULL);
     
 }
 

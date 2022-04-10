@@ -109,7 +109,6 @@ extern SM64_LIB_FN void sm64_play_sound(s32 soundBits, f32 *pos);
 extern SM64_LIB_FN void sm64_play_sound_global(s32 soundBits);
 extern SM64_LIB_FN int sm64_set_volume(float vol);
 extern SM64_LIB_FN int sm64_get_version();
-extern bool hasAudio;
 extern int getCurrentModel();
 void audio_tick();
 void audio_thread();

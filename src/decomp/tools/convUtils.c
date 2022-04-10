@@ -10,7 +10,7 @@
 struct seqFile* parse_seqfile(unsigned char* seq){ /* Read SeqFile data */
     short revision = read_u16_be(seq);
     short bankCount = read_u16_be(seq + 2);
-    struct seqFile* seqFile = (struct seqFile*)malloc(sizeof(seqFile) + (bankCount - 1) * sizeof(struct seqObject));
+    struct seqFile* seqFile = (struct seqFile*)malloc(sizeof(struct seqFile) + (bankCount - 1) * sizeof(struct seqObject));
     seqFile->revision = revision;
     seqFile->seqCount = bankCount;
     for (int i = 0; i < bankCount; i++){ // read bank offsets and sizes

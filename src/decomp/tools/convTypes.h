@@ -22,13 +22,13 @@ struct Book
 };
 
 struct Sound{
-    unsigned int sample_addr;
+    uintptr_t sample_addr;
     float tuning;
 };
 
 struct Sample{
     unsigned int zero;
-    unsigned int addr;
+    uintptr_t addr;
     struct Loop* loop; // must not be null
     struct Book* book; // must not be null
     unsigned int sample_size;
@@ -73,12 +73,12 @@ struct CTL
     unsigned int numDrums;
     unsigned int shared;
     unsigned int iso_date;
-    int* drum_pointers;
-    int* instrument_pointers;
+    uintptr_t* drum_pointers;
+    uintptr_t* instrument_pointers;
 };
 
 struct seqObject{
-    unsigned int offset;
+    uintptr_t offset;
     unsigned int len;
 };
 
