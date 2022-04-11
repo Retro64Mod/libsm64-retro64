@@ -74,6 +74,8 @@ struct Sample* parse_sample(unsigned char* sample,unsigned char* ctl){
 
     samp->loop=parse_loop(ctl+((uintptr_t)samp->loop));
     samp->book=parse_book(ctl+((uintptr_t)samp->book));
+
+    ((char*)samp)[1]=1; // sample->loaded=1;
     return samp;
 }
 
@@ -145,24 +147,25 @@ struct CTL* parse_ctl_data(unsigned char* ctlData){
     ctl->iso_date = read_u32_be(ctlData + 12);
     #pragma endregion
     // header parsed, now read data
-    ctl->drum_pointers= (int*)malloc(ctl->numDrums * sizeof(int));
+    ctl->drum_pointers= (struct Drum**)malloc(sizeof(struct Drum*)*ctl->numDrums);
     int drumTablePtr = read_u32_be(ctlData + 16);
     for (int i = 0; i < ctl->numDrums; i++){
-        ctl->drum_pointers[i] = read_u32_be(ctlData + drumTablePtr+16 + i * 4);
-        struct Drum* d = parse_drum(ctlData+ctl->drum_pointers[i]+16,ctlData+16);
-        d->env_addr=parse_envelope(ctlData+((int)d->env_addr)+16);
-        ctl->drum_pointers[i] = (int)d;
+        uint32_t data = read_u32_be(ctlData + drumTablePtr+16 + i * 4);
+        
+        struct Drum* d = parse_drum(ctlData+data+16,ctlData+16);
+        d->env_addr=parse_envelope(ctlData+((uintptr_t)d->env_addr)+16);
+        ctl->drum_pointers[i] = d;
     }
     // parse instrument data
-    ctl->instrument_pointers = (int*)malloc(ctl->numInstruments * sizeof(int));
+    ctl->instrument_pointers = (struct Instrument**)malloc(sizeof(struct Instrument*)*ctl->numInstruments);
     int instTablePtr = 16+4;
     for (int i = 0; i < ctl->numInstruments; i++){
-        ctl->instrument_pointers[i] = read_u32_be(ctlData + instTablePtr + i * 4);
-        if (ctl->instrument_pointers[i] == 0)
+        uint32_t data = read_u32_be(ctlData + instTablePtr + i * 4);
+        if (data == 0)
             continue;
-        struct Instrument* inst = parse_instrument(ctlData+ctl->instrument_pointers[i]+16,ctlData+16);
-        inst->env_addr=parse_envelope(ctlData+((int)inst->env_addr)+16);
-        ctl->instrument_pointers[i] = (int)inst;
+        struct Instrument* inst = parse_instrument(ctlData+data+16,ctlData+16);
+        inst->env_addr=parse_envelope(ctlData+((uintptr_t)inst->env_addr)+16);
+        ctl->instrument_pointers[i] = inst;
     }
     // 
 

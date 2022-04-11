@@ -77,8 +77,8 @@ struct CTL
     unsigned int numDrums;
     unsigned int shared;
     unsigned int iso_date;
-    uintptr_t* drum_pointers;
-    uintptr_t* instrument_pointers;
+    struct Drum** drum_pointers;
+    struct Instrument** instrument_pointers;
 };
 
 struct seqObject{
