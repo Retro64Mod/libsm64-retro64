@@ -2,14 +2,15 @@ default: lib
 
 CC      := gcc
 CXX 	:= g++
-CFLAGS  := -g0 -Wall -fPIC -DSM64_LIB_EXPORT -DGBI_FLOATS -DVERSION_US -DNO_SEGMENTED_MEMORY
+CFLAGS  := -I/opt/homebrew/include -I/usr/local/include -I. -g0 -Wall -fPIC -DSM64_LIB_EXPORT -DGBI_FLOATS -DVERSION_US -Wno-error=implicit-function-declaration -DNO_SEGMENTED_MEMORY
 LDFLAGS := -lm -shared -lpthread
 ENDFLAGS := -fPIC
 ifeq ($(OS),Windows_NT)
 LDFLAGS := $(LDFLAGS) -mwindows
 ENDFLAGS := -static -lole32 -lstdc++
 else
-LDFLAGS := $(LDFLAGS) -lasound -lpulse # Add alsa and pulseaudio libraries for linux audio
+#Note: Audio does not seem to be working with these flags on macosx, however it does compile with these flags.
+LDFLAGS := $(LDFLAGS) `sdl2-config --libs` -L/usr/lib -lSDL2 # Add alsa and pulseaudio libraries for linux audio
 endif
 
 SRC_DIRS  := src src/decomp src/decomp/engine src/decomp/include/PR src/decomp/game src/decomp/pc src/decomp/pc/audio src/decomp/mario src/decomp/tools src/decomp/audio src/decomp/model_luigi src/decomp/model_alex src/decomp/model_steve src/decomp/model_necoarc src/decomp/model_vibri
