@@ -21,17 +21,17 @@ struct Book
     short table[64]; // 16 * order * npredictors
 };
 
-struct Sound{
-    uintptr_t sample_addr;
-    float tuning;
-};
-
 struct Sample{
     unsigned int zero;
     uintptr_t addr;
     struct Loop* loop; // must not be null
     struct Book* book; // must not be null
     unsigned int sample_size;
+};
+
+struct Sound{
+    struct Sample* sample_addr;
+    float tuning;
 };
 
 struct delay_arg{
