@@ -20,21 +20,68 @@ struct seqFile* parse_seqfile(unsigned char* seq){ /* Read SeqFile data */
     }
 
     if (revision == TYPE_CTL){
+        // CTL file, contains instrument and drum data, this is really the only one that needs to be parsed, the rest only needs a header change
         for (int i = 0; i < bankCount; i++){
             struct CTL* ptr = parse_ctl_data(seq+(seqFile->seqArray[i].offset));
             seqFile->seqArray[i].offset = ptr;
         }
     }else if (revision == TYPE_TBL){
+        // TBL file, contains raw audio data
         for (int i = 0; i < bankCount; i++){
             seqFile->seqArray[i].offset = seq+(seqFile->seqArray[i].offset);
         }
     }else if (revision == TYPE_SEQ){
+        // SEQ file, contains music files (*.m64)
         for (int i = 0; i < bankCount; i++){
             seqFile->seqArray[i].offset = seq+(seqFile->seqArray[i].offset);
         }
     }
 
     return seqFile;
+}
+
+void update_sample_ptr(struct Sample* snd,struct seqFile* tbl,int bank){
+    DEBUG_PRINT("have to update sample with offset %i for bank %i",snd->addr,bank);
+    snd->addr = /*tbl->seqArray[bank].offset +*/ snd->addr;
+}
+
+void update_CTL_sample_pointers(struct seqFile* ctl,struct seqFile* tbl){
+    DEBUG_PRINT("Updating CTL sample pointers\n");
+    if (ctl->revision != TYPE_CTL){
+        DEBUG_PRINT("CTL file is not a CTL file\n");
+        return;
+    }
+    if (tbl->revision != TYPE_TBL){
+        DEBUG_PRINT("TBL file is not a TBL file\n");
+        return;
+    }
+    for (int i = 0; i < ctl->seqCount; i++){
+        struct CTL* ptr = (struct CTL*)ctl->seqArray[i].offset;
+        // find all samples in the CTL file
+        for (int j = 0; j < ptr->numInstruments; j++){
+            struct Instrument* inst = ptr->instrument_pointers[j];
+            if (inst==0x0)
+                continue; // null instrument.
+            if (inst->sound_hi.sample_addr!=0x0){
+                update_sample_ptr(inst->sound_hi.sample_addr,tbl,j);
+            }
+            if (inst->sound_med.sample_addr!=0x0){
+                update_sample_ptr(inst->sound_med.sample_addr,tbl,j);
+            }
+            if (inst->sound_lo.sample_addr!=0x0){
+                update_sample_ptr(inst->sound_lo.sample_addr,tbl,j);
+            }
+        }
+        for (int j = 0; j < ptr->numDrums; j++){
+            struct Drum* drum = ptr->drum_pointers[j];
+            if (drum==0x0)
+                continue; // null drum.
+            if (drum->snd.sample_addr!=0x0){
+                update_sample_ptr(drum->snd.sample_addr,tbl,j);
+            }
+        }
+
+    }
 }
 
 struct Loop* parse_loop(unsigned char* loop){
@@ -74,8 +121,6 @@ struct Sample* parse_sample(unsigned char* sample,unsigned char* ctl){
 
     samp->loop=parse_loop(ctl+((uintptr_t)samp->loop));
     samp->book=parse_book(ctl+((uintptr_t)samp->book));
-
-    ((char*)samp)[1]=1; // sample->loaded=1;
     return samp;
 }
 
@@ -94,7 +139,7 @@ struct Drum* parse_drum(unsigned char* drum,unsigned char* ctl){ /* Read Drum da
     struct Drum* drumData = malloc(sizeof(struct Drum));
     drumData->release_rate = drum[0];
     drumData->pan = drum[1];
-    drumData->loaded = 1;//drum[2];
+    drumData->loaded = drum[2];
     drumData->pad = drum[3];
     drumData->snd=*parse_sound(drum+4,ctl);
     drumData->env_addr=read_u32_be(drum+sizeof(struct Sound)+4);
@@ -114,7 +159,7 @@ struct Envelope* parse_envelope(unsigned char* env){
 
 struct Instrument* parse_instrument(unsigned char* instrument,unsigned char* ctl){
     struct Instrument* inst = malloc(sizeof(struct Instrument));
-    inst->loaded = 1;//instrument[0];
+    inst->loaded = instrument[0];
     inst->normal_range_lo = instrument[1];
     inst->normal_range_hi = instrument[2];
     inst->release_rate = instrument[3];

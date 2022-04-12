@@ -106,13 +106,14 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     uint8_t * rom2 = malloc(0x800000);
     memcpy(rom2,rom,0x800000);
     rom = rom2;
-    gSoundDataADSR= parse_seqfile(rom+5748512);
-    gSoundDataRaw= parse_seqfile(rom+5846368);
-    gMusicData=parse_seqfile(rom+8063072);
-    gBankSetsData=rom+0x7CC621;
+    gSoundDataADSR= parse_seqfile(rom+5748512); // CTL
+    gSoundDataRaw= parse_seqfile(rom+5846368); // TBL
+    gMusicData=parse_seqfile(rom+8063072); // SEQ
+    gBankSetsData=rom+0x7CC621; // BIN
     // shift the next 90 elements after gBankSetsData+0x45 forward by 1
     memmove(gBankSetsData+0x45,gBankSetsData+0x45-1,0x90);
     gBankSetsData[0x45]=0x00;
+    update_CTL_sample_pointers(gSoundDataADSR,gSoundDataRaw);
 
     if( s_init_global )
         sm64_global_terminate();
@@ -150,6 +151,7 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     audio_init();
     sound_init();
     sound_reset(0);
+
     // start audio thread
     pthread_create(&gSoundThread, NULL, audio_thread, NULL);
     
