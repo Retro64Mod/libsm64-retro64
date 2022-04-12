@@ -7,6 +7,16 @@
 #include "convUtils.h"
 #include "convTypes.h"
 #include "../../debug_print.h"
+
+/**
+ * This code is based on the only documentation that exists (that I know of) for the SM64 CTL/TBL format.
+ * https://github.com/n64decomp/sm64/blob/1372ae1bb7cbedc03df366393188f4f05dcfc422/tools/disassemble_sound.py
+ * It is currently not working for reasons unknown. Possible areas to look at are update_CTL_sample_pointers, update_sample_ptr, and general pointers
+ * This also requires PATCH macros to be disabled in load.c as this replaces all offsets with pointers
+ * 
+ * Also worth noting is that currently memory is allocated for some objects more than once instead of re-using pointers to existing structures.
+ */
+
 struct seqFile* parse_seqfile(unsigned char* seq){ /* Read SeqFile data */
     short revision = read_u16_be(seq);
     short bankCount = read_u16_be(seq + 2);
@@ -42,10 +52,10 @@ struct seqFile* parse_seqfile(unsigned char* seq){ /* Read SeqFile data */
 
 void update_sample_ptr(struct Sample* snd,struct seqFile* tbl,int bank){
     DEBUG_PRINT("have to update sample with offset %i for bank %i",snd->addr,bank);
-    snd->addr = /*tbl->seqArray[bank].offset +*/ snd->addr;
+    snd->addr = tbl->seqArray[bank].offset + snd->addr; // i'm not sure this is correct.
 }
 
-void update_CTL_sample_pointers(struct seqFile* ctl,struct seqFile* tbl){
+void update_CTL_sample_pointers(struct seqFile* ctl,struct seqFile* tbl){ // Update sample pointers to TBL data(?)
     DEBUG_PRINT("Updating CTL sample pointers\n");
     if (ctl->revision != TYPE_CTL){
         DEBUG_PRINT("CTL file is not a CTL file\n");
