@@ -412,6 +412,11 @@ float* getKbAxis(){
     return axis;
 }
 
+void logm(char* msg){
+    printf("%s\n", msg);
+    fflush(stdout);
+}
+
 int main( int argc, char *argv[] )
 {
     size_t romSize;
@@ -427,7 +432,7 @@ int main( int argc, char *argv[] )
     uint8_t *texture = malloc( 4 * SM64_TEXTURE_WIDTH * SM64_TEXTURE_HEIGHT );
 
     sm64_global_terminate();
-    sm64_global_init( rom, 0,0,0,0,0,0,0,0, texture, NULL );
+    sm64_global_init( rom, 0,0,0,0,0,0,0,0, texture, &logm );
     sm64_static_surfaces_load( surfaces, surfaces_count );
     uint32_t mCharId = sm64_mChar_create( 0, 1000, 0 );
 
