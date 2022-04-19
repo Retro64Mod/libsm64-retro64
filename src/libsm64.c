@@ -44,6 +44,7 @@
 
 #include "decomp/audio/load_dat.h"
 #include "decomp/tools/convUtils.h"
+#include "decomp/mario/geo.inc.h"
 
 static struct AllocOnlyPool *s_mario_geo_pool = NULL;
 
@@ -114,7 +115,7 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     memmove(gBankSetsData+0x45,gBankSetsData+0x45-1,0x90);
     gBankSetsData[0x45]=0x00;
     update_CTL_sample_pointers(gSoundDataADSR,gSoundDataRaw);
-
+    initMarioGeo(rom);
     if( s_init_global )
         sm64_global_terminate();
     s_init_global = true;
@@ -212,7 +213,6 @@ SM64_LIB_FN int32_t sm64_mChar_create( float x, float y, float z )
         s_init_one_mario = true;
         s_mario_geo_pool = alloc_only_pool_init();
         initModels(s_mario_geo_pool);
-        //s_mario_graph_node = getModel(MODEL_LUIGI);
     }
 
     gCurrSaveFileNum = 1;

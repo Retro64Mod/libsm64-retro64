@@ -12,6 +12,9 @@
   #define SIZE_T_FORMAT "%zu"
 #endif
 
+#define FIRST_NIBBLE(x) ((x) >> 4)
+#define SECOND_NIBBLE(x) ((x) & 0xF)
+
 #define KB 1024
 #define MB (1024 * KB)
 
