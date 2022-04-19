@@ -18,7 +18,7 @@
 
 
 
-#include "../mario/model.inc.h"
+#include "../include/PR/gbi.h"
 
 
 // PATCH
