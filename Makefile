@@ -8,6 +8,8 @@ ENDFLAGS := -fPIC
 ifeq ($(OS),Windows_NT)
 LDFLAGS := $(LDFLAGS) -mwindows
 ENDFLAGS := -static -lole32 -lstdc++
+else
+LDFLAGS := $(LDFLAGS) -lasound -lpulse # Add alsa and pulseaudio libraries for linux audio
 endif
 
 SRC_DIRS  := src src/decomp src/decomp/engine src/decomp/include/PR src/decomp/game src/decomp/pc src/decomp/pc/audio src/decomp/mario src/decomp/tools src/decomp/audio src/decomp/model_luigi src/decomp/model_alex src/decomp/model_steve src/decomp/model_necoarc src/decomp/model_vibri
@@ -19,7 +21,6 @@ LIB_FILE   := $(DIST_DIR)/libsm64.so
 LIB_H_FILE := $(DIST_DIR)/include/libsm64.h
 TEST_FILE  := run-test
 
-C_IMPORTED := src/decomp/mario/geo.inc.c src/decomp/mario/model.inc.c
 H_IMPORTED := $(C_IMPORTED:.c=.h)
 IMPORTED   := $(C_IMPORTED) $(H_IMPORTED)
 
@@ -37,11 +38,6 @@ ifeq ($(OS),Windows_NT)
 endif
 
 DUMMY != mkdir -p $(ALL_DIRS) build/test src/decomp/mario $(DIST_DIR)/include 
-
-
-$(filter-out src/decomp/mario/geo.inc.c,$(IMPORTED)): src/decomp/mario/geo.inc.c
-src/decomp/mario/geo.inc.c: ./import-mario-geo.py
-	./import-mario-geo.py
 
 $(BUILD_DIR)/%.o: %.c $(IMPORTED)
 	@$(CC) $(CFLAGS) -MM -MP -MT $@ -MF $(BUILD_DIR)/$*.d $<
@@ -87,6 +83,6 @@ run: test
 	./$(TEST_FILE)
 
 clean:
-	rm -rf $(BUILD_DIR) $(DIST_DIR) src/decomp/mario test/level.? $(TEST_FILE)
+	rm -rf $(BUILD_DIR) $(DIST_DIR) test/level.? $(TEST_FILE)
 
 -include $(DEP_FILES)

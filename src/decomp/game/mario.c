@@ -1480,7 +1480,7 @@ void update_mario_health(struct MarioState *m) {
                     // When Mario is near the water surface, recover health (unless in snow),
                     // when in snow terrains lose 3 health.
                     // If using the debug level select, do not lose any HP to water.
-                    if ((m->pos[1] >= (m->waterLevel - 140)) && !terrainIsSnow) {
+                    if ((m->pos[1] >= (m->waterLevel - 120)) && !terrainIsSnow) {
                         m->health += 0x1A;
                     } else if (!gDebugLevelSelect) {
                         m->health -= (terrainIsSnow ? 3 : 1);

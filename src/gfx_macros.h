@@ -98,7 +98,19 @@ typedef struct {
 
 #define gsSPLight(l, n) \
     GFXCMD_Light, \
-    (int64_t)l, n
+    (int64_t)l, (int64_t)n
+
+#define gsSPTexture(s, t, level, tile, on) \
+    GFXCMD_Texture, \
+    s, t, on
+
+#define gsDPSetTextureImage(f, s, w, i) \
+    GFXCMD_SetTextureImage, \
+    i
+
+#define gsDPSetTileSize(t, uls, ult, lrs, lrt) \
+    GFXCMD_SetTileSize, \
+    uls, ult, lrs, lrt
 
 #define gsSPTexture(s, t, level, tile, on) \
     GFXCMD_Texture, \

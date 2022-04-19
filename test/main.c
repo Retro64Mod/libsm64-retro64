@@ -412,6 +412,11 @@ float* getKbAxis(){
     return axis;
 }
 
+void logm(char* msg){
+    printf("%s\n", msg);
+    fflush(stdout);
+}
+
 int main( int argc, char *argv[] )
 {
     size_t romSize;
