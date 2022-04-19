@@ -350,7 +350,8 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
     update_button( inputs->buttonL, L_CBUTTONS );
     update_button( inputs->buttonR, R_CBUTTONS );
 
-    gMarioState->area->camera->yaw = atan2s( inputs->camLookZ, inputs->camLookX );
+
+
 
     gController.stickX = -64.0f * inputs->stickX;
     gController.stickY = 64.0f * inputs->stickY;
@@ -366,6 +367,13 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
     update_camera(gCurGraphNodeCamera->config.camera);
     update_graph_node_camera(gCurGraphNodeCamera);
     gfx_adapter_bind_output_buffers( outBuffers );
+
+    float camLookX = inputs->camLookX;
+    float camLookZ = inputs->camLookZ;
+    // if using custom camera
+    camLookX=gMarioState->pos[0]-gCamera->pos[0];
+    camLookZ=gMarioState->pos[2]-gCamera->pos[2];
+    gMarioState->area->camera->yaw=atan2s( camLookZ, camLookX );
 
     geo_process_root_hack_single_node( getModel(currentModel) );
 
