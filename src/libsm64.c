@@ -52,7 +52,7 @@ static s16 lastWedges = 8;
 //static struct GraphNode *s_mario_graph_node = NULL;
 static int currentModel=0;
 static struct AudioAPI *audio_api;
-
+static s16 camStatus=0;
 static bool s_init_global = false;
 static bool s_init_one_mario = false;
 bool hasAudio;
@@ -100,6 +100,10 @@ static void free_area( struct Area *area )
 
 int getCurrentModel(){
     return currentModel;
+}
+
+void set_hud_camera_status(s16 status){
+    camStatus=status;
 }
 
 char* readFile(char* fileName){
@@ -387,6 +391,7 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
     outState->action = gMarioState->action;
     vec3f_copy(outState->camPos,gCurGraphNodeCamera->config.camera->pos);
     vec3f_copy(outState->camFocus,gCurGraphNodeCamera->config.camera->focus);
+    outState->cameraStatus=camStatus;
 
     s16 numHealthWedges = gMarioState->health > 0 ? gMarioState->health >> 8 : 0;
     if (numHealthWedges > lastWedges) {

@@ -51,6 +51,7 @@ struct SM64MarioState
     float velocity[3];
     float camPos[3];
     float camFocus[3];
+    int16_t cameraStatus;
     float faceAngle;
     int16_t health;
     uint32_t flags;
