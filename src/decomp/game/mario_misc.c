@@ -415,8 +415,8 @@ Gfx *geo_mario_head_rotation(s32 callContext, struct GraphNode *node, UNUSED Mat
       struct Camera *camera = gCurGraphNodeCamera->config.camera;
 
       if (camera->mode == CAMERA_MODE_C_UP) {
-          rotNode->rotation[0] = 0; // gPlayerCameraState->headRotation[1]; // PATCH
-          rotNode->rotation[2] = 0; // gPlayerCameraState->headRotation[0];
+          rotNode->rotation[0] = gPlayerCameraState->headRotation[1]; // PATCH
+          rotNode->rotation[2] = gPlayerCameraState->headRotation[0];
       } else if (action & ACT_FLAG_WATER_OR_TEXT) {
           rotNode->rotation[0] = bodyState->headAngle[1];
           rotNode->rotation[1] = bodyState->headAngle[2];
