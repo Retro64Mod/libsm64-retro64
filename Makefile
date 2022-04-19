@@ -21,7 +21,6 @@ LIB_FILE   := $(DIST_DIR)/libsm64.so
 LIB_H_FILE := $(DIST_DIR)/include/libsm64.h
 TEST_FILE  := run-test
 
-C_IMPORTED := src/decomp/mario/geo.inc.c
 H_IMPORTED := $(C_IMPORTED:.c=.h)
 IMPORTED   := $(C_IMPORTED) $(H_IMPORTED)
 
