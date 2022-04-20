@@ -259,7 +259,7 @@ SM64_LIB_FN struct AnimInfo* sm64_get_anim_info(int32_t marioId,int16_t rot[3]){
     if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
     {
         DEBUG_PRINT("Tried to get anim for non-existant Mario with ID: %u", marioId);
-        return;
+        return NULL;
     }
     global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
     (rot)[0]=gMarioState->marioObj->header.gfx.angle[0];

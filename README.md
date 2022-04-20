@@ -16,9 +16,16 @@ If you want to use this for a project, I suggest you look at the original (linke
 - [Follow steps 1-4 for setting up MSYS2 MinGW 64 here](https://github.com/sm64-port/sm64-port#windows), but replace the repository URL with `https://github.com/Retro64Mod/libsm64-retro64.git`
 - Run `make` to build
 
+## Building on macOS (test program not supported)
+- Open up terminal and clone the macOS repository with `git clone https://github.com/EmeraldLoc/libsm64-retro64/ -b macOS`
+- Cd to libsm64-retro64 with `cd libsm64-retro64`
+- Install homebrew at https://brew.sh
+- Run `brew install make mingw-w64 gcc sdl2 pkg-config glew glfw libusb audiofile coreutils`
+- Run `gmake -j`
+
 ## Make targets (all platforms)
 
 - `make lib`: (Default) Build the `dist` directory, containing the shared object or DLL and public-facing header.
-- `make test`: Builds the library `dist` directory as well as the test program.
+- `make test`: Builds the library `dist` directory as well as the test program. (does not run on macOS)
 - `make run`: Build and run the SDL+OpenGL test program.
 
