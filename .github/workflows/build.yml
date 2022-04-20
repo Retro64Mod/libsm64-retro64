@@ -37,16 +37,16 @@ jobs:
       run:
         shell: msys2 {0}
     steps:
-      - uses: actions/checkout@v2
-      - uses: msys2/setup-msys2@v2
-        with:
-          msystem: MINGW64
-          update: true
-          install: git make mingw-w64-x86_64-gcc
-      - name: make
-        run: |
-          make
-      - uses: actions/upload-artifact@v1
+    - uses: actions/checkout@v2
+    - uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        update: true
+        install: git make mingw-w64-x86_64-gcc
+    - name: make
+      run: |
+        make
+    - uses: actions/upload-artifact@v1
       with:
         name: sm64
         path: dist/sm64.dll
