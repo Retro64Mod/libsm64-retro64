@@ -280,7 +280,7 @@ SM64_LIB_FN int32_t sm64_mChar_create( float x, float y, float z )
         vec3f_copy(gCurGraphNodeCamera->focus,gMarioState->marioObj->header.gfx.pos);
         create_camera(gCurGraphNodeCamera,s_camera_pool);
         init_camera(gCurGraphNodeCamera->config.camera);
-        gCurGraphNodeCamera->config.camera->mode = CAM_MODE_MARIO_ACTIVE;
+        gCurGraphNodeCamera->config.camera->mode = CAMERA_MODE_FREE_ROAM;
         gCurrentArea->camera = gCurGraphNodeCamera->config.camera;
     }
 
