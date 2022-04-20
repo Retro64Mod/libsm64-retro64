@@ -17,7 +17,7 @@ jobs:
       run: make
     - uses: actions/upload-artifact@v1
       with:
-        name: libsm64
+        name: libsm64-linux
         path: dist/libsm64.so
   build-macos:
     runs-on: macos-10.15
@@ -29,7 +29,7 @@ jobs:
       run: gmake -j
     - uses: actions/upload-artifact@v1
       with:
-        name: libsm64
+        name: libsm64-mac_os
         path: dist/libsm64.dylib
   build-windows:
     runs-on: windows-latest
@@ -48,5 +48,5 @@ jobs:
         make
     - uses: actions/upload-artifact@v1
       with:
-        name: sm64
+        name: sm64-windows
         path: dist/sm64.dll
