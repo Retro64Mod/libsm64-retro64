@@ -40,6 +40,11 @@ TEST_OBJS := $(foreach file,$(TEST_SRCS),$(BUILD_DIR)/$(file:.c=.o))
 ifeq ($(OS),Windows_NT)
   TEST_FILE := $(DIST_DIR)/$(TEST_FILE)
   LIB_FILE := $(DIST_DIR)/sm64.dll
+else
+  ifeq ($(OS),Darwin)
+    TEST_FILE := $(DIST_DIR)/$(TEST_FILE)
+    LIB_FILE := $(DIST_DIR)/libsm64.dylib
+  endif
 endif
 
 DUMMY != mkdir -p $(ALL_DIRS) build/test src/decomp/mario $(DIST_DIR)/include 
