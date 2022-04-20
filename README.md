@@ -17,7 +17,7 @@ If you want to use this for a project, I suggest you look at the original (linke
 - Run `make` to build
 
 ## Building on macOS (test program not supported)
-- Open up terminal and clone the macOS repository with `git clone https://github.com/EmeraldLoc/libsm64-retro64/ -b macOS`
+- Open up terminal and clone the macOS repository with `git clone https://github.com/Retro64Mod/libsm64-retro64`
 - Cd to libsm64-retro64 with `cd libsm64-retro64`
 - Install homebrew at https://brew.sh
 - Run `brew install make mingw-w64 gcc sdl2 pkg-config glew glfw libusb audiofile coreutils`
