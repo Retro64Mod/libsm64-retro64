@@ -128,7 +128,7 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     load_mario_anims_from_rom( rom );
 
     memory_init();
-//#define HAVE_WASAPI 1
+
     if (hasAudio){
     #if HAVE_WASAPI
         if (audio_api == NULL && audio_wasapi.init()) {
