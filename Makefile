@@ -9,8 +9,10 @@ ifeq ($(OS),Windows_NT)
 LDFLAGS := $(LDFLAGS) -mwindows
 ENDFLAGS := -static -lole32 -lstdc++
 else
-#Note: Audio does not seem to be working with these flags on macosx, however it does compile with these flags.
 LDFLAGS := $(LDFLAGS) `sdl2-config --libs` -L/usr/lib -lSDL2 # Add alsa and pulseaudio libraries for linux audio
+ifneq ($(shell uname),Darwin) # Audio does not seem to be working with these flags on macosx
+LDFLAGS := $(LDFLAGS) -lasound -lpulse
+endif
 endif
 
 SRC_DIRS  := src src/decomp src/decomp/engine src/decomp/include/PR src/decomp/game src/decomp/pc src/decomp/pc/audio src/decomp/mario src/decomp/tools src/decomp/audio src/decomp/model_luigi src/decomp/model_alex src/decomp/model_steve src/decomp/model_necoarc src/decomp/model_vibri
