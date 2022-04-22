@@ -30,14 +30,17 @@ void printCTL(ALBank* bank,int tabs){
     printTabs(tabs);
     printf("CTL: inst count: %i, samplerate %i, flags %i\n",bank->instCount,bank->sampleRate,bank->flags);
     for (int i = 0; i < bank->instCount; i++){
-        printInst(bank->instArray[i],tabs+1);
+        //printInst(bank->instArray[i],tabs+1);
     }
 }
 
 void printBank(ALBankFile* bank){
     printf("Bank revision %i, count %i\n",bank->revision,bank->bankCount);
     if (bank->revision==TYPE_CTL){
-        printCTL(bank,1);
+        for (int i = 0;i<bank->bankCount;i++){
+            printCTL(bank->bankArray[i],1);
+            fflush(stdout);
+        }
     }
 }
 

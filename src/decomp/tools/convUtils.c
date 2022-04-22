@@ -193,8 +193,9 @@ struct SEQ* parse_seq_data(unsigned char* seq){
 }
 
 struct CTL* parse_ctl_data(unsigned char* ctlData){
-    
-    struct CTL* ctl = (struct CTL*)malloc(sizeof(struct CTL));
+    int instruments=read_u32_be(ctlData);
+    instruments--;
+    struct CTL* ctl = (struct CTL*)malloc(sizeof(struct CTL)+(sizeof(struct Instrument*)*instruments));
     #pragma region Parse CTL header
     ctl->numInstruments = read_u32_be(ctlData);
     ctl->numDrums = read_u32_be(ctlData + 4);
@@ -212,7 +213,6 @@ struct CTL* parse_ctl_data(unsigned char* ctlData){
         ctl->drum_pointers[i] = d;
     }
     // parse instrument data
-    ctl->instrument_pointers = (struct Instrument**)malloc(sizeof(struct Instrument*)*ctl->numInstruments);
     int instTablePtr = 16+4;
     for (int i = 0; i < ctl->numInstruments; i++){
         uint32_t data = read_u32_be(ctlData + instTablePtr + i * 4);

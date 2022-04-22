@@ -73,12 +73,12 @@ struct SEQ{
 
 struct CTL
 {
-    unsigned int numInstruments;
+    s16 numInstruments;
     unsigned int numDrums;
     unsigned int shared;
     unsigned int iso_date;
     struct Drum** drum_pointers;
-    struct Instrument** instrument_pointers;
+    struct Instrument* instrument_pointers[1];
 };
 
 struct seqObject{
