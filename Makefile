@@ -26,12 +26,9 @@ H_IMPORTED := $(C_IMPORTED:.c=.h)
 IMPORTED   := $(C_IMPORTED) $(H_IMPORTED)
 
 C_FILES   := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c)) $(C_IMPORTED)
-ifeq ($(OS),Windows_NT)
 CXX_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.cpp))
 O_FILES   := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o)) $(foreach file,$(CXX_FILES),$(BUILD_DIR)/$(file:.cpp=.o))
-else
-O_FILES   := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.o))
-endif
+
 DEP_FILES := $(O_FILES:.o=.d)
 
 TEST_SRCS := test/main.c test/context.c test/level.c
