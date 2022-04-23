@@ -4,6 +4,9 @@
 #include "../game/behavior_actions.h" // literally only for geo_move_mario_part_from_parent
 #include "utils.h"
 #include "convUtils.h"
+#include <string.h>
+#include <stdlib.h>
+#include <string.h>
 #define NO_GEO_PLS
 #include "displaylist_parser.h"
 #undef NO_GEO_PLS
@@ -14,7 +17,7 @@
 
 #define GEO_DEBUG_PRINT //DEBUG_PRINT
 
-uintptr_t convertPtr_follow(unsigned char* rom,unsigned int oldPtr){
+GeoLayout* convertPtr_follow(unsigned char* rom,unsigned int oldPtr){
     // first byte is the LevelBank, the rest are offset
     // [BB] [OO OO OO]
     // LevelBank 17 is at 0x1279B0 in the ROM data
@@ -254,7 +257,7 @@ _Bool parse_command(unsigned char* rom,unsigned char* data,GeoLayout* buf,uint8_
         *cmd_length=0x8;
         GEO_DEBUG_PRINT("Translate Node & load DL/GL: %i, %i, %i, %i, %i",branch_flag,layer,x_translation,y_translation,z_translation);
         if (branch_flag==0x8){
-            cmd_length=0xC;
+            *cmd_length=0xC;
             paste_macro3(buf, GEO_TRANSLATE_WITH_DL(layer, x_translation, y_translation, z_translation, convertDLPtr(rom,segmented_address)));
             return false;
         }
@@ -276,7 +279,7 @@ _Bool parse_command(unsigned char* rom,unsigned char* data,GeoLayout* buf,uint8_
         *cmd_length=0x8;
         GEO_DEBUG_PRINT("Rotate Node: %i, %i, %i, %i, %i",branch_flag,layer,x_rotation,y_rotation,z_rotation);
         if (branch_flag==0x8){
-            cmd_length=0xC;
+            *cmd_length=0xC;
             paste_macro3(buf, GEO_ROTATION_NODE_WITH_DL(layer, x_rotation, y_rotation, z_rotation, convertDLPtr(rom,segmented_address)));
             return false;
         }
@@ -313,7 +316,7 @@ _Bool parse_command(unsigned char* rom,unsigned char* data,GeoLayout* buf,uint8_
         *cmd_length=0x8;
         GEO_DEBUG_PRINT("Billboard Model and Translate: %i, %i, %i, %i, %i",branch_flag,layer,x_translation,y_translation,z_translation);
         if (branch_flag==0x8){
-            cmd_length=0xC;
+            *cmd_length=0xC;
             paste_macro3(buf, GEO_BILLBOARD_WITH_PARAMS_AND_DL(layer, x_translation, y_translation, z_translation, convertDLPtr(rom,segmented_address)));
             return false;
         }

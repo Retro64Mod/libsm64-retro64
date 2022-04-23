@@ -5,7 +5,8 @@
 #include <stdarg.h>
 #include "convUtils.h"
 #include <stdio.h>
-
+#include <stdlib.h>
+#include <string.h>
 // References:
 // https://hack64.net/wiki/doku.php?id=super_mario_64:fast3d_display_list_commands
 // https://hack64.net/wiki/doku.php?id=super_mario_64:rom_memory_map
@@ -21,7 +22,8 @@ void paste_gfx_macro(Gfx* buf,int argnum,...){
     va_start(args,argnum);
     Gfx* gfx=buf;
     for (int i = 0;i<argnum;i++){
-        memcpy(gfx,args+i*(sizeof(Gfx*)),sizeof(Gfx));
+        Gfx* cmd = va_arg(args,Gfx*);
+        memcpy(gfx,&cmd,sizeof(Gfx*));
         gfx++;
     }
     va_end(args);
@@ -36,7 +38,7 @@ void load_mario_data_from_rom( uint8_t *rom){
     uint8_t *out_buf = malloc( head.dest_size );
     mio0_decode( in_buf, out_buf, NULL );
 
-    mario_data = (char*)out_buf;
+    mario_data = (unsigned char*)out_buf;
     DL_DEBUG_PRINT("Mario data loaded. Size: %d", head.dest_size);
 }
 
@@ -48,7 +50,7 @@ Gfx* convertDLPtrMD(unsigned char* mario_data,unsigned int ptr){
     return parsed;
 }
 
-Gfx* convertDLPtr(unsigned char* rom,unsigned char* ptr) {
+Gfx* convertDLPtr(unsigned char* rom,unsigned int ptr) {
     if (ptr==0)
         return 0;
     if (mario_data==0) {
@@ -87,7 +89,6 @@ bool parseGFXCommand(unsigned char* mario_data,unsigned char* rawData,unsigned c
     unsigned int H;
     unsigned int B;
     unsigned int N;
-    unsigned int L;
     uintptr_t Taa;
     uintptr_t Tbb;
     uintptr_t Tcc;
@@ -142,7 +143,7 @@ bool parseGFXCommand(unsigned char* mario_data,unsigned char* rawData,unsigned c
             */
             N = FIRST_NIBBLE(rawData[1]);
             I = SECOND_NIBBLE(rawData[1]);
-            L = read_u16_be(rawData+2);
+            //L = read_u16_be(rawData+2);
             S = read_u32_be(rawData+4);
             DL_DEBUG_PRINT("gsSPVertex(%X,%X,%X)",N,I,S);
             *cmd_length=4;
