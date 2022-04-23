@@ -2,16 +2,21 @@ default: lib
 
 CC      := gcc
 CXX 	:= g++
-CFLAGS  := -I/opt/homebrew/include -I/usr/local/include -I. -g0 -Wall -fPIC -DSM64_LIB_EXPORT -DGBI_FLOATS -DVERSION_US -Wno-error=implicit-function-declaration -DNO_SEGMENTED_MEMORY
+CFLAGS  := -g0 -Wall -fPIC -DSM64_LIB_EXPORT -DGBI_FLOATS -DVERSION_US -DNO_SEGMENTED_MEMORY
 LDFLAGS := -lm -shared -lpthread
 ENDFLAGS := -fPIC
+
+ifeq ($(shell uname),Darwin)
+CFLAGS := $(CFLAGS) -I/opt/homebrew/include -I/usr/local/include -I. -Wno-error=implicit-function-declaration
+endif
+
 ifeq ($(OS),Windows_NT)
 LDFLAGS := $(LDFLAGS) -mwindows
 ENDFLAGS := -static -lole32 -lstdc++
 else
 LDFLAGS := $(LDFLAGS) `sdl2-config --libs` -L/usr/lib -lSDL2 # Add alsa and pulseaudio libraries for linux audio
 ifneq ($(shell uname),Darwin) # Audio does not seem to be working with these flags on macosx
-LDFLAGS := $(LDFLAGS) -lasound -lpulse
+ENDFLAGS := $(LDFLAGS) -lasound -lpulse
 endif
 endif
 
