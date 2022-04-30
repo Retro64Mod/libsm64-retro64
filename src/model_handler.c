@@ -32,6 +32,8 @@ void initModels(struct AllocOnlyPool *pool){
 }
 
 struct GraphNode* getModel(int model){
+    if (model==-1)
+        return goomba_test;
     if (model<0 || model>=ModelsUsed){
         model=0;
     }

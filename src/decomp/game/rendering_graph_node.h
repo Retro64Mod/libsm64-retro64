@@ -29,5 +29,6 @@ extern struct GraphNodeHeldObject *gCurGraphNodeHeldObject;
 void geo_process_node_and_siblings(struct GraphNode *firstNode);
 //void geo_process_root(struct GraphNodeRoot *node, Vp *b, Vp *c, s32 clearColor);
 void geo_process_root_hack_single_node(struct GraphNode *node);
+void geo_process_root_hack_single_node_obj(struct GraphNode *node);
 
 #endif // RENDERING_GRAPH_NODE_H

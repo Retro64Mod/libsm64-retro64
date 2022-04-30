@@ -655,13 +655,12 @@ Gfx *geo_mirror_mario_backface_culling(s32 callContext, struct GraphNode *node, 
 
 
 //////////
-
+#define GEO_CONTEXT_RENDER 1
 Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node) {
     struct Object *obj;
     struct GraphNodeSwitchCase *switchCase;
-
-    //if (callContext == GEO_CONTEXT_RENDER) {
-        obj = (struct Object *) gCurGraphNodeObject; // TODO: change global type to Object pointer
+    if (callContext == GEO_CONTEXT_RENDER) {
+        obj = (struct Object *) g_state->mgCurrentObject; // TODO: change global type to Object pointer
         if (obj==NULL) return NULL;
         // move to a local var because GraphNodes are passed in all geo functions.
         // cast the pointer.
@@ -679,7 +678,7 @@ Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node) {
 
         // assign the case number for execution.
         switchCase->selectedCase = obj->oAnimState;
-    //}
+    }
 
     return NULL;
 }

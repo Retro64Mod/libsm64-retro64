@@ -1165,3 +1165,49 @@ void geo_process_root_hack_single_node(struct GraphNode *node)
 
     alloc_only_pool_free(gDisplayListHeap);
 }
+
+void geo_process_root_hack_single_node_obj(struct GraphNode *node)
+{
+    gDisplayListHead = NULL; // Currently unused, but referenced
+
+    display_list_pool_reset();
+
+    Mtx *initialMatrix;
+
+    gDisplayListHeap = alloc_only_pool_init();
+    initialMatrix = alloc_display_list(sizeof(*initialMatrix));
+    gMatStackIndex = 0;
+    gCurAnimType = 0;
+
+    mtxf_identity(gMatStack[gMatStackIndex]);
+    mtxf_to_mtx(initialMatrix, gMatStack[gMatStackIndex]);
+    gMatStackFixed[gMatStackIndex] = initialMatrix;
+    gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(gMatStackFixed[gMatStackIndex]),
+                G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
+
+    // Hacked in from geo_proces_object since we only have Mario
+    //geo_process_object( node );
+    if (gCurrentObject->header.gfx.throwMatrix != NULL) {
+        mtxf_mul(gMatStack[gMatStackIndex + 1], *gCurrentObject->header.gfx.throwMatrix, gMatStack[gMatStackIndex]);
+        mtxf_scale_vec3f( gMatStack[gMatStackIndex + 1], gMatStack[gMatStackIndex + 1], gCurrentObject->header.gfx.scale );
+        gCurrentObject->header.gfx.throwMatrix = &gMatStack[++gMatStackIndex];
+    }
+    else {
+        Mat4 identity, scale, rotTran;
+        mtxf_identity( identity );
+        mtxf_scale_vec3f( scale, identity, gCurrentObject->header.gfx.scale );
+        mtxf_rotate_zxy_and_translate( rotTran, gCurrentObject->header.gfx.pos, gCurrentObject->header.gfx.angle );
+        mtxf_mul( gMatStack[++gMatStackIndex], scale, rotTran );
+    }
+    geo_set_animation_globals(&gCurrentObject->header.gfx.animInfo, 1);
+
+    gCurGraphNodeRoot = (struct GraphNodeRoot *)node;
+    if (node->children != NULL) {
+        geo_process_node_and_siblings(node->children);
+    }
+    gCurGraphNodeRoot = NULL;
+
+    gCurrentObject->header.gfx.throwMatrix = NULL;
+
+    alloc_only_pool_free(gDisplayListHeap);
+}
