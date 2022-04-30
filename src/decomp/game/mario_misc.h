@@ -25,4 +25,5 @@ Gfx *geo_switch_mario_hand_grab_pos(s32 callContext, struct GraphNode *b, Mat4 *
 Gfx *geo_render_mirror_mario(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c);
 Gfx *geo_mirror_mario_backface_culling(s32 callContext, struct GraphNode *node, UNUSED Mat4 *c);
 
+Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node);
 #endif // MARIO_MISC_H

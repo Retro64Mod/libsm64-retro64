@@ -15,8 +15,7 @@
 #include "../include/sm64.h"
 #include "../shim.h"
 #include "../../gfx_adapter.h"
-
-
+#include "../engine/graph_node.h"
 
 #include "../include/PR/gbi.h"
 
@@ -474,7 +473,7 @@ static void geo_process_billboard(struct GraphNodeBillboard *node) {
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
     gMatStackIndex++;
-    vec3s_to_vec3f(translation, node->translation);
+    /*vec3s_to_vec3f(translation, node->translation);
     mtxf_billboard(gMatStack[gMatStackIndex], gMatStack[gMatStackIndex - 1], translation,
                    gCurGraphNodeCamera->roll);
     if (gCurGraphNodeHeldObject != NULL) {
@@ -492,7 +491,7 @@ static void geo_process_billboard(struct GraphNodeBillboard *node) {
     }
     if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
-    }
+    }*/
     gMatStackIndex--;
 }
 
@@ -1071,55 +1070,55 @@ void geo_process_node_and_siblings(struct GraphNode *firstNode) {
  * The root node itself sets up the viewport, then all its children are processed
  * to set up the projection and draw display lists.
  */
-// void geo_process_root(struct GraphNodeRoot *node, Vp *b, Vp *c, s32 clearColor) {
-//     UNUSED s32 unused;
-// 
-//     if (node->node.flags & GRAPH_RENDER_ACTIVE) {
-//         Mtx *initialMatrix;
-//         Vp *viewport = alloc_display_list(sizeof(*viewport));
-// 
-// #ifdef USE_SYSTEM_MALLOC
-//         gDisplayListHeap = alloc_only_pool_init();
-// #else
-//         gDisplayListHeap = alloc_only_pool_init(main_pool_available() - sizeof(struct AllocOnlyPool),
-//                                                 MEMORY_POOL_LEFT);
-// #endif
-//         initialMatrix = alloc_display_list(sizeof(*initialMatrix));
-//         gMatStackIndex = 0;
-//         gCurAnimType = 0;
-//         vec3s_set(viewport->vp.vtrans, node->x * 4, node->y * 4, 511);
-//         vec3s_set(viewport->vp.vscale, node->width * 4, node->height * 4, 511);
-// 
-// //      if (b != NULL) {
-// //          clear_frame_buffer(clearColor);
-// //          make_viewport_clip_rect(b);
-// //          *viewport = *b;
-// //      }
-// //      else if (c != NULL) {
-// //          clear_frame_buffer(clearColor);
-// //          make_viewport_clip_rect(c);
-// //      }
-// 
-//         mtxf_identity(gMatStack[gMatStackIndex]);
-//         mtxf_to_mtx(initialMatrix, gMatStack[gMatStackIndex]);
-//         gMatStackFixed[gMatStackIndex] = initialMatrix;
-//         gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(viewport));
-//         gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(gMatStackFixed[gMatStackIndex]),
-//                   G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
-//         gCurGraphNodeRoot = node;
-//         if (node->node.children != NULL) {
-//             geo_process_node_and_siblings(node->node.children);
-//         }
-//         gCurGraphNodeRoot = NULL;
-// //        if (gShowDebugText) {
-// //#ifndef USE_SYSTEM_MALLOC
-// //            print_text_fmt_int(180, 36, "MEM %d",
-// //                               gDisplayListHeap->totalSpace - gDisplayListHeap->usedSpace);
-// //#endif
-// //        }
-//         main_pool_free(gDisplayListHeap);
-//     }
-// }
+ void geo_process_root(struct GraphNodeRoot *node, Vp *b, Vp *c, s32 clearColor) {
+     UNUSED s32 unused;
+ 
+     if (node->node.flags & GRAPH_RENDER_ACTIVE) {
+         Mtx *initialMatrix;
+         Vp *viewport = alloc_display_list(sizeof(*viewport));
+ 
+ #ifdef USE_SYSTEM_MALLOC
+         gDisplayListHeap = alloc_only_pool_init();
+ #else
+         gDisplayListHeap = alloc_only_pool_init(main_pool_available() - sizeof(struct AllocOnlyPool),
+                                                 MEMORY_POOL_LEFT);
+ #endif
+         initialMatrix = alloc_display_list(sizeof(*initialMatrix));
+         gMatStackIndex = 0;
+         gCurAnimType = 0;
+         vec3s_set(viewport->vp.vtrans, node->x * 4, node->y * 4, 511);
+         vec3s_set(viewport->vp.vscale, node->width * 4, node->height * 4, 511);
+ 
+       /*if (b != NULL) {
+           clear_frame_buffer(clearColor);
+           make_viewport_clip_rect(b);
+           *viewport = *b;
+       }
+       else if (c != NULL) {
+           clear_frame_buffer(clearColor);
+           make_viewport_clip_rect(c);
+       }*/
+ 
+         mtxf_identity(gMatStack[gMatStackIndex]);
+         mtxf_to_mtx(initialMatrix, gMatStack[gMatStackIndex]);
+         gMatStackFixed[gMatStackIndex] = initialMatrix;
+         gSPViewport(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(viewport));
+         gSPMatrix(gDisplayListHead++, VIRTUAL_TO_PHYSICAL(gMatStackFixed[gMatStackIndex]),
+                   G_MTX_MODELVIEW | G_MTX_LOAD | G_MTX_NOPUSH);
+         gCurGraphNodeRoot = node;
+         if (node->node.children != NULL) {
+             geo_process_node_and_siblings(node->node.children);
+         }
+         gCurGraphNodeRoot = NULL;
+         if (gShowDebugText) {
+ #ifndef USE_SYSTEM_MALLOC
+             print_text_fmt_int(180, 36, "MEM %d",
+                                gDisplayListHeap->totalSpace - gDisplayListHeap->usedSpace);
+ #endif
+         }
+         alloc_only_pool_free(gDisplayListHeap);
+     }
+ }
 
 void geo_process_root_hack_single_node(struct GraphNode *node)
 {
