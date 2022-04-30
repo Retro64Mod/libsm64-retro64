@@ -473,9 +473,9 @@ static void geo_process_billboard(struct GraphNodeBillboard *node) {
     Mtx *mtx = alloc_display_list(sizeof(*mtx));
 
     gMatStackIndex++;
-    /*vec3s_to_vec3f(translation, node->translation);
+    vec3s_to_vec3f(translation, node->translation);
     mtxf_billboard(gMatStack[gMatStackIndex], gMatStack[gMatStackIndex - 1], translation,
-                   gCurGraphNodeCamera->roll);
+                   /*gCurGraphNodeCamera->roll*/0);
     if (gCurGraphNodeHeldObject != NULL) {
         mtxf_scale_vec3f(gMatStack[gMatStackIndex], gMatStack[gMatStackIndex],
                          gCurGraphNodeHeldObject->objNode->header.gfx.scale);
@@ -491,7 +491,7 @@ static void geo_process_billboard(struct GraphNodeBillboard *node) {
     }
     if (node->node.children != NULL) {
         geo_process_node_and_siblings(node->node.children);
-    }*/
+    }
     gMatStackIndex--;
 }
 

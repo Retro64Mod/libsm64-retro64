@@ -661,7 +661,6 @@ Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node) {
     struct GraphNodeSwitchCase *switchCase;
     if (callContext == GEO_CONTEXT_RENDER) {
         obj = (struct Object *) g_state->mgCurrentObject; // TODO: change global type to Object pointer
-        if (obj==NULL) return NULL;
         // move to a local var because GraphNodes are passed in all geo functions.
         // cast the pointer.
         switchCase = (struct GraphNodeSwitchCase *) node;
