@@ -137,6 +137,7 @@ void handleErrors(){
 #else
 #include <signal.h>
 #include <execinfo.h>
+#include <unistd.h>
 void handler(int sig) {
   void *array[10];
   size_t size;
