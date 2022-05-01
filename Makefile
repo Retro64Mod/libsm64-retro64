@@ -3,7 +3,7 @@ default: lib
 CC      := gcc
 CXX 	:= g++
 CFLAGS  := -g0 -Wall -fPIC -DSM64_LIB_EXPORT -DGBI_FLOATS -DVERSION_US -DNO_SEGMENTED_MEMORY
-LDFLAGS := -lm -shared -lpthread
+LDFLAGS := -lm -shared -lpthread -Xlinker -Map=dist/debug.map
 ENDFLAGS := -fPIC
 
 ifeq ($(shell uname),Darwin)
@@ -12,7 +12,7 @@ endif
 
 ifeq ($(OS),Windows_NT)
 LDFLAGS := $(LDFLAGS) -mwindows
-ENDFLAGS := -static -lole32 -lstdc++
+ENDFLAGS := -static -lole32 -lstdc++ -limagehlp
 else
 LDFLAGS := $(LDFLAGS) `sdl2-config --libs` -L/usr/lib -lSDL2 # Add alsa and pulseaudio libraries for linux audio
 ifneq ($(shell uname),Darwin) # Audio does not seem to be working with these flags on macosx
