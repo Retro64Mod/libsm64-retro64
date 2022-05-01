@@ -15,10 +15,12 @@ jobs:
       run: sudo apt-get update -y && sudo apt-get install -y build-essential git python3 libsdl2-dev libpulse-dev
     - name: make
       run: make
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       with:
         name: libsm64-linux
-        path: dist/libsm64.so
+        path: |
+          dist/libsm64.so
+          dist/debug.map
   build-macos:
     runs-on: macos-10.15
     steps:
@@ -27,7 +29,7 @@ jobs:
       run: brew install make mingw-w64 gcc sdl2 pkg-config glew glfw libusb audiofile coreutils
     - name: make
       run: gmake -j
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       with:
         name: libsm64-mac_os
         path: dist/libsm64.dylib
@@ -46,7 +48,9 @@ jobs:
     - name: make
       run: |
         make
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v3
       with:
         name: sm64-windows
-        path: dist/sm64.dll
+        path: |
+          dist/sm64.dll
+          dist/debug.map
