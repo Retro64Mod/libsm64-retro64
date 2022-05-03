@@ -163,6 +163,7 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     }else{
         DEBUG_PRINT("No audio support");
     }
+    initActor(0,0,0,0,1);
 }
 
 SM64_LIB_FN void sm64_global_init_audioBin(uint8_t *rom,char* audioData, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction){
@@ -298,42 +299,6 @@ SM64_LIB_FN void sm64_mChar_animTick(int32_t marioId, uint32_t stateFlags,struct
 }
 
 int ginst=-1;
-#include "decomp/model_goomba/anims/table.inc.c"
-void goomba_testr(){
-    if (ginst==-1){
-        ginst = obj_pool_alloc_index( &s_mario_instance_pool, sizeof( struct GlobalState ));
-
-        s_mario_instance_pool.objects[ginst] = global_state_create();
-        global_state_bind( s_mario_instance_pool.objects[ginst] );
-        g_state->mgCurrentObject=NULL;
-    }else{
-        global_state_bind( s_mario_instance_pool.objects[ ginst ] );
-    }
-    
-    if (g_state->mgCurrentObject==NULL){
-        g_state->mgCurrentObject=malloc(sizeof(struct Object));
-        gCurrentObject->header.gfx.animInfo.animAccel=0x10000;
-        gCurrentObject->header.gfx.animInfo.animFrameAccelAssist=1;
-        gCurrentObject->header.gfx.animInfo.animID=0;
-        gCurrentObject->header.gfx.animInfo.animFrame=0;
-        gCurrentObject->header.gfx.animInfo.curAnim=goomba_seg8_anims_0801DA4C[0];
-        gCurrentObject->header.gfx.throwMatrix=NULL;
-
-        gCurrentObject->header.gfx.scale[0]=1;
-        gCurrentObject->header.gfx.scale[1]=1;
-        gCurrentObject->header.gfx.scale[2]=1;
-
-        gCurrentObject->header.gfx.pos[0]=-1442;
-        gCurrentObject->header.gfx.pos[1]=0;
-        gCurrentObject->header.gfx.pos[2]=-444;
-
-        gCurrentObject->header.gfx.angle[0]=0;
-        gCurrentObject->header.gfx.angle[1]=0;
-        gCurrentObject->header.gfx.angle[2]=0;
-    }
-    gAreaUpdateCounter++;
-    geo_process_root_hack_single_node_obj( getModel(-1) );
-}
 
 SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs *inputs, struct SM64MarioState *outState, struct SM64MarioGeometryBuffers *outBuffers )
 {
@@ -386,7 +351,7 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
             play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
         }
         lastWedges = numHealthWedges;
-    goomba_testr();
+    tickActor(0);
 }
 
 

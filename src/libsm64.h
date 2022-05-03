@@ -113,4 +113,10 @@ extern bool hasAudio;
 extern int getCurrentModel();
 void audio_tick();
 void audio_thread();
+
+// actorMgr.c
+#define ACTOR_TYPE_GOOMBA=1
+extern SM64_LIB_FN int initActor(int actorType,int x,int y,int z,int scale);
+extern SM64_LIB_FN void tickActor(int actorID);
+
 #endif//LIB_SM64_H
