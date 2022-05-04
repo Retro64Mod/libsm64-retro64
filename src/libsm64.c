@@ -351,7 +351,7 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
             play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
         }
         lastWedges = numHealthWedges;
-    tickActor(0);
+    tickActor(0,outBuffers);
 }
 
 

@@ -57,14 +57,16 @@ SM64_LIB_FN int initActor(int actorType,int x,int y,int z,int scale){
     return id;
 }
 
-SM64_LIB_FN void tickActor(int actorID){
+SM64_LIB_FN void tickActor(int actorID,struct SM64MarioGeometryBuffers *outBuffers){
     if( actorID >= s_actor_instance_pool.size || s_actor_instance_pool.objects[actorID] == NULL )
     {
         DEBUG_PRINT("Tried to tick non-existant Actor with ID: %u", actorID);
         return NULL;
     }
     global_state_bind( s_actor_instance_pool.objects[ actorID ] );
+    gfx_adapter_bind_output_buffers( outBuffers );
+    
+    geo_process_root_hack_single_node_obj( getModel(-1) );
 
     gAreaUpdateCounter++;
-    geo_process_root_hack_single_node_obj( getModel(-1) );
 }
