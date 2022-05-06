@@ -45,6 +45,9 @@
 #include "decomp/audio/load_dat.h"
 #include "decomp/mario/geo.inc.h"
 
+#include "decomp/game/object_helpers.h"
+#include "decomp/game/behavior_actions.h"
+
 static struct AllocOnlyPool *s_mario_geo_pool = NULL;
 
 static s16 lastWedges = 8;
@@ -163,6 +166,9 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     }else{
         DEBUG_PRINT("No audio support");
     }
+
+    init_free_object_list();
+    
 }
 
 SM64_LIB_FN void sm64_global_init_audioBin(uint8_t *rom,char* audioData, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction){
@@ -220,6 +226,9 @@ SM64_LIB_FN int32_t sm64_mChar_create( float x, float y, float z )
         s_init_one_mario = true;
         s_mario_geo_pool = alloc_only_pool_init();
         initModels(s_mario_geo_pool);
+
+        // test
+        spawn_object_at_origin(NULL,0,NULL,bhv_goomba_update);
     }
 
     gCurrSaveFileNum = 1;

@@ -90,11 +90,6 @@ extern struct ObjectNode gFreeObjectList;
 extern const BehaviorScript *gCurBhvCommand;
 extern s16 gPrevFrameObjectCount;
 
-extern s32 gSurfaceNodesAllocated;
-extern s32 gSurfacesAllocated;
-extern s32 gNumStaticSurfaceNodes;
-extern s32 gNumStaticSurfaces;
-
 extern struct MemoryPool *gObjectMemoryPool;
 
 extern s16 gCheckingSurfaceCollisionsForCamera;

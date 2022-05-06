@@ -1,13 +1,13 @@
 default: lib
 
-CC      := gcc -w
+CC      := gcc
 CXX 	:= g++
 CFLAGS  := -g -Wall -fPIC -DSM64_LIB_EXPORT -DGBI_FLOATS -DVERSION_US -DNO_SEGMENTED_MEMORY
 LDFLAGS := -lm -shared -lpthread
 ENDFLAGS := -fPIC
 
 ifeq ($(shell uname),Darwin)
-CFLAGS := $(CFLAGS) -I/opt/homebrew/include -I/usr/local/include -I. -Wno-error=implicit-function-declaration
+CFLAGS := $(CFLAGS) -I/opt/homebrew/include -I/usr/local/include -I.
 else
 LDFLAGS := $(LDFLAGS) -Xlinker -Map=dist/debug.map # export map file on linux and windows, macos throws "unknown option: -Map=dist/debug.map"
 endif
