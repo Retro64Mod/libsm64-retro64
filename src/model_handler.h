@@ -13,3 +13,4 @@ enum MarioModels{
 
 void initModels(struct AllocOnlyPool *pool);
 struct GraphNode* getModel(int model);
+extern struct GraphNode **gLoadedGraphNodes;

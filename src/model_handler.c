@@ -6,7 +6,7 @@
 #include "decomp/model_vibri/geo.inc.h"
 // models done
 #include "decomp/model_goomba/geo.inc.h"
-#include "decomp/common0.h"
+#include "decomp/game/actors/common0.h"
 #include "decomp/engine/geo_layout.h"
 #include "model_handler.h"
 #include "load_tex_data.h"
@@ -15,6 +15,9 @@ static void* modelPointers[ModelsUsed]={0x0};
 
 static struct GraphNode* model_nodes[ModelsUsed]={0x0};
 struct GraphNode* goomba_test;
+
+struct GraphNode *D_8033A160[0x100];
+struct GraphNode **gLoadedGraphNodes = D_8033A160;
 
 void initModels(struct AllocOnlyPool *pool){
     modelPointers[MODEL_MARIO] = (void*)mario_geo_ptr;

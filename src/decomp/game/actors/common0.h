@@ -1,14 +1,14 @@
 #ifndef COMMON0_H
 #define COMMON0_H
 
-#include "include/types.h"
-#include "include/sm64.h"
-#include "include/types.h"
-#include "include/geo_commands.h"
-#include "game/rendering_graph_node.h"
-#include "shim.h"
-#include "game/object_stuff.h"
-#include "game/behavior_actions.h"
+#include "../../include/types.h"
+#include "../../include/sm64.h"
+#include "../../include/types.h"
+#include "../../include/geo_commands.h"
+#include "../rendering_graph_node.h"
+#include "../../shim.h"
+#include "../object_stuff.h"
+#include "../behavior_actions.h"
 
 // amp
 extern const GeoLayout dAmpGeo[];
