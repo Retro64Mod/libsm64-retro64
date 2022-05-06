@@ -126,7 +126,7 @@ void check_collision_in_list(struct Object *a, struct Object *b, struct Object *
     }
 }
 
-void check_player_object_collision(void) {
+void check_player_object_collision(void) { // TODO: rewrite this to handle new "object list"
     struct Object *sp1C = (struct Object *) &gObjectLists[OBJ_LIST_PLAYER];
     struct Object *sp18 = (struct Object *) sp1C->header.next;
 
