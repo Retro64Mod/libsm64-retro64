@@ -68,7 +68,7 @@ static struct Object *try_allocate_object(void) {
     return (struct Object *) nextObj;
 }
 
-static struct Object *allocate_object(void) {
+struct Object *allocate_object(void) {
     s32 i;
     struct Object *obj = try_allocate_object();
 
@@ -126,11 +126,23 @@ static struct Object *allocate_object(void) {
     return obj;
 }
 
-static struct Object *create_object(void) {
+struct Object *create_object(void) {
     struct Object *obj;
     obj = allocate_object();
     obj->curBhvCommand = NULL;
     obj->behavior = NULL;
+    return obj;
+}
+
+struct Object *create_object_bhv(const BehaviorScript *bhvScript) {
+    struct Object *obj;
+    const BehaviorScript *behavior = bhvScript;
+
+    obj = allocate_object();
+
+    obj->curBhvCommand = bhvScript;
+    obj->behavior = behavior;
+
     return obj;
 }
 

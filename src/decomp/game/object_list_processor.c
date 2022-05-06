@@ -408,72 +408,72 @@ void unload_objects_from_area(UNUSED s32 unused, s32 areaIndex) {
  * Spawn objects given a list of SpawnInfos. Called when loading an area.
  */
 void spawn_objects_from_info(UNUSED s32 unused, struct SpawnInfo *spawnInfo) {
-    gObjectLists = gObjectListArray;
-    gTimeStopState = 0;
+//     gObjectLists = gObjectListArray;
+//     gTimeStopState = 0;
 
-    gWDWWaterLevelChanging = FALSE;
-    gMarioOnMerryGoRound = FALSE;
+//     gWDWWaterLevelChanging = FALSE;
+//     gMarioOnMerryGoRound = FALSE;
 
-    //! (Spawning Displacement) On the Japanese version, Mario's platform object
-    //  isn't cleared when transitioning between areas. This can cause Mario to
-    //  receive displacement after spawning.
-#ifndef VERSION_JP
-    //Lclear_mario_platform();
-#endif
+//     //! (Spawning Displacement) On the Japanese version, Mario's platform object
+//     //  isn't cleared when transitioning between areas. This can cause Mario to
+//     //  receive displacement after spawning.
+// #ifndef VERSION_JP
+//     //Lclear_mario_platform();
+// #endif
 
-    // if (gCurrAreaIndex == 2) {
-    //     gCCMEnteredSlide |= 1;
-    // }
+//     // if (gCurrAreaIndex == 2) {
+//     //     gCCMEnteredSlide |= 1;
+//     // }
 
-    while (spawnInfo != NULL) {
-        struct Object *object;
-        UNUSED u8 filler[4];
-        const BehaviorScript *script;
-        UNUSED s16 arg16 = (s16)(spawnInfo->behaviorArg & 0xFFFF);
+//     while (spawnInfo != NULL) {
+//         struct Object *object;
+//         UNUSED u8 filler[4];
+//         const BehaviorScript *script;
+//         UNUSED s16 arg16 = (s16)(spawnInfo->behaviorArg & 0xFFFF);
 
-        script = segmented_to_virtual(spawnInfo->behaviorScript);
+//         script = segmented_to_virtual(spawnInfo->behaviorScript);
 
-        // If the object was previously killed/collected, don't respawn it
-        if ((spawnInfo->behaviorArg & (RESPAWN_INFO_DONT_RESPAWN << 8))
-            != (RESPAWN_INFO_DONT_RESPAWN << 8)) {
-            object = create_object(script);
+//         // If the object was previously killed/collected, don't respawn it
+//         if ((spawnInfo->behaviorArg & (RESPAWN_INFO_DONT_RESPAWN << 8))
+//             != (RESPAWN_INFO_DONT_RESPAWN << 8)) {
+//             object = create_object_bhv(script);
 
-            // Behavior parameters are often treated as four separate bytes, but
-            // are stored as an s32.
-            object->oBehParams = spawnInfo->behaviorArg;
-            // The second byte of the behavior parameters is copied over to a special field
-            // as it is the most frequently used by objects.
-            object->oBehParams2ndByte = ((spawnInfo->behaviorArg) >> 16) & 0xFF;
+//             // Behavior parameters are often treated as four separate bytes, but
+//             // are stored as an s32.
+//             object->oBehParams = spawnInfo->behaviorArg;
+//             // The second byte of the behavior parameters is copied over to a special field
+//             // as it is the most frequently used by objects.
+//             object->oBehParams2ndByte = ((spawnInfo->behaviorArg) >> 16) & 0xFF;
 
-            object->behavior = script;
-            object->unused1 = 0;
+//             object->behavior = script;
+//             object->unused1 = 0;
 
-            // Record death/collection in the SpawnInfo
-            object->respawnInfoType = RESPAWN_INFO_TYPE_32;
-            object->respawnInfo = &spawnInfo->behaviorArg;
+//             // Record death/collection in the SpawnInfo
+//             object->respawnInfoType = RESPAWN_INFO_TYPE_32;
+//             object->respawnInfo = &spawnInfo->behaviorArg;
 
-            if (spawnInfo->behaviorArg & 0x01) {
-                gMarioObject = object;
-                geo_make_first_child(&object->header.gfx.node);
-            }
+//             if (spawnInfo->behaviorArg & 0x01) {
+//                 gMarioObject = object;
+//                 geo_make_first_child(&object->header.gfx.node);
+//             }
 
-            geo_obj_init_spawninfo(&object->header.gfx, spawnInfo);
+//             geo_obj_init_spawninfo(&object->header.gfx, spawnInfo);
 
-            object->oPosX = spawnInfo->startPos[0];
-            object->oPosY = spawnInfo->startPos[1];
-            object->oPosZ = spawnInfo->startPos[2];
+//             object->oPosX = spawnInfo->startPos[0];
+//             object->oPosY = spawnInfo->startPos[1];
+//             object->oPosZ = spawnInfo->startPos[2];
 
-            object->oFaceAnglePitch = spawnInfo->startAngle[0];
-            object->oFaceAngleYaw = spawnInfo->startAngle[1];
-            object->oFaceAngleRoll = spawnInfo->startAngle[2];
+//             object->oFaceAnglePitch = spawnInfo->startAngle[0];
+//             object->oFaceAngleYaw = spawnInfo->startAngle[1];
+//             object->oFaceAngleRoll = spawnInfo->startAngle[2];
 
-            object->oMoveAnglePitch = spawnInfo->startAngle[0];
-            object->oMoveAngleYaw = spawnInfo->startAngle[1];
-            object->oMoveAngleRoll = spawnInfo->startAngle[2];
-        }
+//             object->oMoveAnglePitch = spawnInfo->startAngle[0];
+//             object->oMoveAngleYaw = spawnInfo->startAngle[1];
+//             object->oMoveAngleRoll = spawnInfo->startAngle[2];
+//         }
 
-        spawnInfo = spawnInfo->next;
-    }
+//         spawnInfo = spawnInfo->next;
+//     }
 }
 
 void stub_obj_list_processor_1(void) {

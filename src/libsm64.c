@@ -47,6 +47,7 @@
 
 #include "decomp/game/object_helpers.h"
 #include "decomp/game/behavior_actions.h"
+#include "decomp/include/behavior_data.h"
 
 static struct AllocOnlyPool *s_mario_geo_pool = NULL;
 
@@ -227,8 +228,6 @@ SM64_LIB_FN int32_t sm64_mChar_create( float x, float y, float z )
         s_mario_geo_pool = alloc_only_pool_init();
         initModels(s_mario_geo_pool);
 
-        // test
-        spawn_object_at_origin(NULL,0,NULL,bhv_goomba_update);
     }
 
     gCurrSaveFileNum = 1;
@@ -306,8 +305,8 @@ SM64_LIB_FN void sm64_mChar_animTick(int32_t marioId, uint32_t stateFlags,struct
     gAreaUpdateCounter++;
 }
 
-int ginst=-1;
-
+struct Object* objt=NULL;
+#include "decomp/include/object_fields.h"
 SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs *inputs, struct SM64MarioState *outState, struct SM64MarioGeometryBuffers *outBuffers )
 {
     
@@ -360,6 +359,16 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
         }
         lastWedges = numHealthWedges;
     //tickActor(0,outBuffers);
+    if (objt==NULL){
+        // test
+        objt = spawn_object_at_origin(gMarioState->marioObj,0,1,bhvGoomba);
+        objt->oPosX=-1442;
+        objt->oPosY=0;
+        objt->oPosZ=-444;
+    }
+    gCurrentObject = objt;
+    cur_obj_update();
+    geo_process_root_hack_single_node_obj( getModel(-1) );
 }
 
 

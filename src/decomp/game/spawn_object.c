@@ -13,7 +13,7 @@
 #include "spawn_object.h"
 #include "../include/types.h"
 #include "../shim.h"
-
+#include "object_stuff.h"
 /**
  * An unused linked list struct that seems to have been replaced by ObjectNode.
  */
@@ -70,33 +70,6 @@ struct LinkedList *unused_try_allocate(struct LinkedList *destList,
     }
 
     return node;
-}
-
-/**
- * Attempt to allocate an object from freeList (singly linked) and append it
- * to the end of destList (doubly linked). Return the object, or NULL if
- * freeList is empty.
- */
-struct Object *try_allocate_object(struct ObjectNode *destList, struct ObjectNode *freeList) {
-    struct ObjectNode *nextObj;
-
-    if ((nextObj = freeList->next) != NULL) {
-        // Remove from free list
-        freeList->next = nextObj->next;
-
-        // Insert at end of destination list
-        nextObj->prev = destList->prev;
-        nextObj->next = destList;
-        destList->prev->next = nextObj;
-        destList->prev = nextObj;
-    } else {
-        return NULL;
-    }
-
-    geo_remove_child(&nextObj->gfx.node);
-    geo_add_child(&gObjParentGraphNode, &nextObj->gfx.node);
-
-    return (struct Object *) nextObj;
 }
 
 /**
@@ -202,99 +175,6 @@ void unload_object(struct Object *obj) {
 }
 
 /**
- * Attempt to allocate a new object slot into the given object list, freeing
- * an unimportant object if necessary. If this is not possible, hang using an
- * infinite loop.
- */
-struct Object *allocate_object(struct ObjectNode *objList) {
-    s32 i;
-    struct Object *obj = try_allocate_object(objList, &gFreeObjectList);
-
-    // The object list is full if the newly created pointer is NULL.
-    // If this happens, we first attempt to unload unimportant objects
-    // in order to finish allocating the object.
-    if (obj == NULL) {
-        // Look for an unimportant object to kick out.
-        struct Object *unimportantObj = find_unimportant_object();
-
-        // If no unimportant object exists, then the object pool is exhausted.
-        if (unimportantObj == NULL) {
-            // We've met with a terrible fate.
-            while (TRUE) {
-            }
-        } else {
-            // If an unimportant object does exist, unload it and take its slot.
-            unload_object(unimportantObj);
-            obj = try_allocate_object(objList, &gFreeObjectList);
-            if (gCurrentObject == obj) {
-                //! Uh oh, the unimportant object was in the middle of
-                //  updating! This could cause some interesting logic errors,
-                //  but I don't know of any unimportant objects that spawn
-                //  other objects.
-            }
-        }
-    }
-
-    // Initialize object fields
-
-    obj->activeFlags = ACTIVE_FLAG_ACTIVE | ACTIVE_FLAG_UNK8;
-    obj->parentObj = obj;
-    obj->prevObj = NULL;
-    obj->collidedObjInteractTypes = 0;
-    obj->numCollidedObjs = 0;
-
-#if IS_64_BIT
-    for (i = 0; i < 0x50; i++) {
-        obj->rawData.asS32[i] = 0;
-        obj->ptrData.asVoidPtr[i] = NULL;
-    }
-#else
-    // -O2 needs everything until = on the same line
-    for (i = 0; i < 0x50; i++) obj->rawData.asS32[i] = 0;
-#endif
-
-    obj->unused1 = 0;
-    obj->bhvStackIndex = 0;
-    obj->bhvDelayTimer = 0;
-
-    obj->hitboxRadius = 50.0f;
-    obj->hitboxHeight = 100.0f;
-    obj->hurtboxRadius = 0.0f;
-    obj->hurtboxHeight = 0.0f;
-    obj->hitboxDownOffset = 0.0f;
-    obj->unused2 = 0;
-
-    obj->platform = NULL;
-    obj->collisionData = NULL;
-    obj->oIntangibleTimer = -1;
-    obj->oDamageOrCoinValue = 0;
-    obj->oHealth = 2048;
-
-    obj->oCollisionDistance = 1000.0f;
-    //if (gCurrLevelNum == LEVEL_TTC) {
-        //obj->oDrawingDistance = 2000.0f;
-    //} else {
-        obj->oDrawingDistance = 4000.0f;
-    //}
-
-    mtxf_identity(obj->transform);
-
-    obj->respawnInfoType = RESPAWN_INFO_TYPE_NULL;
-    obj->respawnInfo = NULL;
-
-    obj->oDistanceToMario = 19000.0f;
-    obj->oRoom = -1;
-
-    obj->header.gfx.node.flags &= ~GRAPH_RENDER_INVISIBLE;
-    obj->header.gfx.pos[0] = -10000.0f;
-    obj->header.gfx.pos[1] = -10000.0f;
-    obj->header.gfx.pos[2] = -10000.0f;
-    obj->header.gfx.throwMatrix = NULL;
-
-    return obj;
-}
-
-/**
  * If the object is close to being on the floor, move it to be exactly on the floor.
  */
 static void snap_object_to_floor(struct Object *obj) {
@@ -306,51 +186,6 @@ static void snap_object_to_floor(struct Object *obj) {
         obj->oPosY = obj->oFloorHeight;
         obj->oMoveFlags |= OBJ_MOVE_ON_GROUND;
     }
-}
-
-/**
- * Spawn an object at the origin with the behavior script at virtual address bhvScript.
- */
-struct Object *create_object(const BehaviorScript *bhvScript) {
-    s32 objListIndex;
-    struct Object *obj;
-    struct ObjectNode *objList;
-    const BehaviorScript *behavior = bhvScript;
-
-    // If the first behavior script command is "begin <object list>", then
-    // extract the object list from it
-    if ((bhvScript[0] >> 24) == 0) {
-        objListIndex = (bhvScript[0] >> 16) & 0xFFFF;
-    } else {
-        objListIndex = OBJ_LIST_DEFAULT;
-    }
-
-    objList = &gObjectLists[objListIndex];
-    obj = allocate_object(objList);
-
-    obj->curBhvCommand = bhvScript;
-    obj->behavior = behavior;
-
-    if (objListIndex == OBJ_LIST_UNIMPORTANT) {
-        obj->activeFlags |= ACTIVE_FLAG_UNIMPORTANT;
-    }
-
-    //! They intended to snap certain objects to the floor when they spawn.
-    //  However, at this point the object's position is the origin. So this will
-    //  place the object at the floor beneath the origin. Typically this
-    //  doesn't matter since the caller of this function sets oPosX/Y/Z
-    //  themselves.
-    switch (objListIndex) {
-        case OBJ_LIST_GENACTOR:
-        case OBJ_LIST_PUSHABLE:
-        case OBJ_LIST_POLELIKE:
-            snap_object_to_floor(obj);
-            break;
-        default:
-            break;
-    }
-
-    return obj;
 }
 
 /**

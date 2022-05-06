@@ -33,6 +33,7 @@
 #include "../engine/graph_node.h"
 #include "../game/rendering_graph_node.h"
 #include "../../model_handler.h"
+#include "object_stuff.h"
 
 static Vec3f gVec3fZero = { 0.0f, 0.0f, 0.0f };
 static Vec3s gVec3sZero = { 0, 0, 0 };
@@ -498,7 +499,7 @@ struct Object *spawn_object_at_origin(struct Object *parent, UNUSED s32 unusedAr
     const BehaviorScript *behaviorAddr;
 
     behaviorAddr = segmented_to_virtual(behavior);
-    obj = create_object(behaviorAddr);
+    obj = create_object_bhv(behaviorAddr);
 
     obj->parentObj = parent;
     obj->header.gfx.areaIndex = parent->header.gfx.areaIndex;

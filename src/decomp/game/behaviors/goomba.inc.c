@@ -1,15 +1,3 @@
-// #include "../interaction.h"
-// #include "../../include/object_constants.h"
-// #include "../../include/audio_defines.h"
-// #include "../../include/model_ids.h"
-// #include "../obj_behaviors_2.h"
-// #include "../object_helpers.h"
-// #include "../../include/object_fields.h"
-// #include "../../include/behavior_data.h"
-// #include "../../shim.h"
-// #include "../behavior_actions.h"
-// #include "../../engine/math_util.h"
-// #define o gCurrentObject
 /**
  * Behavior for bhvGoomba and bhvGoombaTripletSpawner,
  * Goombas can either be spawned individually, or spawned by a triplet spawner.
