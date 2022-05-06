@@ -23,6 +23,8 @@
 #include "../include/object_fields.h"
 #include "../include/mario_geo_switch_case_ids.h"
 
+s32 configgroundpoundjump = true;
+
 
 s32 check_common_idle_cancels(struct MarioState *m) {
     mario_drop_held_object(m);
@@ -1054,6 +1056,14 @@ s32 act_ground_pound_land(struct MarioState *m) {
 
     if (m->input & INPUT_ABOVE_SLIDE) {
         return set_mario_action(m, ACT_BUTT_SLIDE, 0);
+    }
+
+    if ( configgroundpoundjump == true) {
+
+        if (m->input && INPUT_A_PRESSED) {
+            return set_mario_action(m, ACT_TRIPLE_JUMP, 0);
+        }
+
     }
 
     landing_step(m, MARIO_ANIM_GROUND_POUND_LANDING, ACT_BUTT_SLIDE_STOP);

@@ -19,7 +19,7 @@
 #include "../include/object_fields.h"
 #include "../include/mario_geo_switch_case_ids.h"
 
-s32 redive = false;
+s32 configredive = false;
 
 struct LandingAction {
     s16 numFrames;
@@ -1566,7 +1566,7 @@ s32 act_hold_stomach_slide(struct MarioState *m) {
 
 s32 act_dive_slide(struct MarioState *m) {
 
-    if (redive == false) {
+    if (configredive == false) {
                 if (!(m->input & INPUT_ABOVE_SLIDE) && (m->input & (INPUT_A_PRESSED | INPUT_B_PRESSED))) {
     #ifdef VERSION_SH
             queue_rumble_data(5, 80);
