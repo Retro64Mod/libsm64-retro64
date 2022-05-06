@@ -58,10 +58,13 @@ static void save_file_clear_flags(u32 flags) {}
 static void spawn_wind_particles(s16 pitch, s16 yaw) {}
 static void set_camera_shake_from_hit(s16 shake) {}
 static void load_level_init_text(u32 arg) {}
-//static void spawn_default_star(f32 sp20, f32 sp24, f32 sp28) {}
 static void play_shell_music(void) {}
 static void stop_shell_music(void) {}
 static u16 level_control_timer(s32 timerOp) { return 0; }
+
+static void print_debug_top_down_objectinfo(char* data, ...) {}
+static void spawn_mist_particles_variable(f32 a, f32 b,f32 c){}
+static void set_camera_shake_from_point(s32 shake,f32 x,f32 y,f32 z) {}
 
 #define FLOOR_LOWER_LIMIT_MISC -10000
 #pragma GCC diagnostic pop

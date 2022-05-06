@@ -163,7 +163,6 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     }else{
         DEBUG_PRINT("No audio support");
     }
-    initActor(0,0,0,0,1);
 }
 
 SM64_LIB_FN void sm64_global_init_audioBin(uint8_t *rom,char* audioData, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction){
@@ -351,7 +350,7 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
             play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
         }
         lastWedges = numHealthWedges;
-    tickActor(0,outBuffers);
+    //tickActor(0,outBuffers);
 }
 
 

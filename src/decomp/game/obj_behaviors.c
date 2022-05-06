@@ -403,7 +403,7 @@ void obj_splash(s32 waterY, s32 objY) {
 
     // Spawns waves if near surface of water and plays a noise if entering.
     if ((f32)(waterY + 30) > o->oPosY && o->oPosY > (f32)(waterY - 30)) {
-        spawn_object(o, MODEL_IDLE_WATER_WAVE, bhvObjectWaterWave);
+        // spawn_object(o, MODEL_IDLE_WATER_WAVE, bhvObjectWaterWave);
 
         if (o->oVelY < -20.0f) {
             cur_obj_play_sound_2(SOUND_OBJ_DIVING_INTO_WATER);
@@ -412,7 +412,7 @@ void obj_splash(s32 waterY, s32 objY) {
 
     // Spawns bubbles if underwater.
     if ((objY + 50) < waterY && (globalTimer & 0x1F) == 0) {
-        spawn_object(o, MODEL_WHITE_PARTICLE_SMALL, bhvObjectBubble);
+        // spawn_object(o, MODEL_WHITE_PARTICLE_SMALL, bhvObjectBubble);
     }
 }
 
@@ -625,10 +625,10 @@ void obj_spawn_yellow_coins(struct Object *obj, s8 nCoins) {
     s8 count;
 
     for (count = 0; count < nCoins; count++) {
-        coin = spawn_object(obj, MODEL_YELLOW_COIN, bhvMovingYellowCoin);
-        coin->oForwardVel = random_float() * 20;
-        coin->oVelY = random_float() * 40 + 20;
-        coin->oMoveAngleYaw = random_u16();
+        // coin = spawn_object(obj, MODEL_YELLOW_COIN, bhvMovingYellowCoin);
+        // coin->oForwardVel = random_float() * 20;
+        // coin->oVelY = random_float() * 40 + 20;
+        // coin->oMoveAngleYaw = random_u16();
     }
 }
 
@@ -684,28 +684,28 @@ s8 current_mario_room_check(s16 room) {
 /**
  * Triggers dialog when Mario is facing an object and controls it while in the dialog.
  */
-s16 trigger_obj_dialog_when_facing(s32 *inDialog, s16 dialogID, f32 dist, s32 actionArg) {
-    s16 dialogueResponse;
+// s16 trigger_obj_dialog_when_facing(s32 *inDialog, s16 dialogID, f32 dist, s32 actionArg) {
+//     s16 dialogueResponse;
 
-    if ((is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, (s32) dist) == TRUE
-         && obj_check_if_facing_toward_angle(o->oFaceAngleYaw, gMarioObject->header.gfx.angle[1] + 0x8000, 0x1000) == TRUE
-         && obj_check_if_facing_toward_angle(o->oMoveAngleYaw, o->oAngleToMario, 0x1000) == TRUE)
-        || (*inDialog == 1)) {
-        *inDialog = 1;
+//     if ((is_point_within_radius_of_mario(o->oPosX, o->oPosY, o->oPosZ, (s32) dist) == TRUE
+//          && obj_check_if_facing_toward_angle(o->oFaceAngleYaw, gMarioObject->header.gfx.angle[1] + 0x8000, 0x1000) == TRUE
+//          && obj_check_if_facing_toward_angle(o->oMoveAngleYaw, o->oAngleToMario, 0x1000) == TRUE)
+//         || (*inDialog == 1)) {
+//         *inDialog = 1;
 
-        if (set_mario_npc_dialog(actionArg) == 2) { //If Mario is speaking.
-            dialogueResponse = cutscene_object_with_dialog(CUTSCENE_DIALOG, o, dialogID);
-            if (dialogueResponse != 0) {
-                set_mario_npc_dialog(0);
-                *inDialog = 0;
-                return dialogueResponse;
-            }
-            return 0;
-        }
-    }
+//         if (set_mario_npc_dialog(actionArg) == 2) { //If Mario is speaking.
+//             dialogueResponse = cutscene_object_with_dialog(CUTSCENE_DIALOG, o, dialogID);
+//             if (dialogueResponse != 0) {
+//                 set_mario_npc_dialog(0);
+//                 *inDialog = 0;
+//                 return dialogueResponse;
+//             }
+//             return 0;
+//         }
+//     }
 
-    return 0;
-}
+//     return 0;
+// }
 
 /**
  *Checks if a floor is one that should cause an object to "die".
@@ -747,11 +747,11 @@ s8 obj_lava_death(void) {
 
     if ((o->oTimer % 8) == 0) {
         cur_obj_play_sound_2(SOUND_OBJ_BULLY_EXPLODE_2);
-        deathSmoke = spawn_object(o, MODEL_SMOKE, bhvBobombBullyDeathSmoke);
-        deathSmoke->oPosX += random_float() * 20.0f;
-        deathSmoke->oPosY += random_float() * 20.0f;
-        deathSmoke->oPosZ += random_float() * 20.0f;
-        deathSmoke->oForwardVel = random_float() * 10.0f;
+        // deathSmoke = spawn_object(o, MODEL_SMOKE, bhvBobombBullyDeathSmoke);
+        // deathSmoke->oPosX += random_float() * 20.0f;
+        // deathSmoke->oPosY += random_float() * 20.0f;
+        // deathSmoke->oPosZ += random_float() * 20.0f;
+        // deathSmoke->oForwardVel = random_float() * 10.0f;
     }
 
     return FALSE;
@@ -760,16 +760,16 @@ s8 obj_lava_death(void) {
 /**
  * Spawns an orange number object relatively, such as those that count up for secrets.
  */
-void spawn_orange_number(s8 behParam, s16 relX, s16 relY, s16 relZ) {
-    struct Object *orangeNumber;
+// void spawn_orange_number(s8 behParam, s16 relX, s16 relY, s16 relZ) {
+//     struct Object *orangeNumber;
 
-    if (behParam >= 10) {
-        return;
-    }
+//     if (behParam >= 10) {
+//         return;
+//     }
 
-    orangeNumber = spawn_object_relative(behParam, relX, relY, relZ, o, MODEL_NUMBER, bhvOrangeNumber);
-    orangeNumber->oPosY += 25.0f;
-}
+//     orangeNumber = spawn_object_relative(behParam, relX, relY, relZ, o, MODEL_NUMBER, bhvOrangeNumber);
+//     orangeNumber->oPosY += 25.0f;
+// }
 
 /**
  * Unused variables for debug_sequence_tracker.
@@ -857,3 +857,4 @@ s8 sDebugTimer = 0;
 // #include "behaviors/treasure_chest.inc.c"
 // #include "behaviors/mips.inc.c"
 // #include "behaviors/yoshi.inc.c"
+#include "behaviors/sound_spawner.inc.c"

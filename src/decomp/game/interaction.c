@@ -882,15 +882,15 @@ void pss_begin_slide(UNUSED struct MarioState *m) {
 }
 
 void pss_end_slide(struct MarioState *m) {
-    //! This flag isn't set on death or level entry, allowing double star spawn
-    if (sPssSlideStarted) {
-        u16 slideTime = level_control_timer(TIMER_CONTROL_STOP);
-        if (slideTime < 630) {
-            m->marioObj->oBehParams = (1 << 24);
-            spawn_default_star(-6358.0f, -4300.0f, 4700.0f);
-        }
-        sPssSlideStarted = FALSE;
-    }
+    // //! This flag isn't set on death or level entry, allowing double star spawn
+    // if (sPssSlideStarted) {
+    //     u16 slideTime = level_control_timer(TIMER_CONTROL_STOP);
+    //     if (slideTime < 630) {
+    //         m->marioObj->oBehParams = (1 << 24);
+    //         spawn_default_star(-6358.0f, -4300.0f, 4700.0f);
+    //     }
+    //     sPssSlideStarted = FALSE;
+    // }
 }
 
 void mario_handle_special_floors(struct MarioState *m) {

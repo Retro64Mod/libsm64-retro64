@@ -77,9 +77,7 @@ Gfx *geo_switch_area(s32 callContext, struct GraphNode *node, UNUSED void *conte
 Gfx *geo_switch_anim_state(s32 callContext, struct GraphNode *node);
 Gfx *geo_switch_area(s32 callContext, struct GraphNode *node);
 #endif
-void obj_update_pos_from_parent_transformation(Mat4 a0, struct Object *a1);
 void obj_apply_scale_to_matrix(struct Object *obj, Mat4 dst, Mat4 src);
-void create_transformation_from_matrices(Mat4 a0, Mat4 a1, Mat4 a2);
 void obj_set_held_state(struct Object *obj, const BehaviorScript *heldBehavior);
 f32 lateral_dist_between_objects(struct Object *obj1, struct Object *obj2);
 f32 dist_between_objects(struct Object *obj1, struct Object *obj2);
@@ -115,7 +113,6 @@ void obj_copy_graph_y_offset(struct Object *dst, struct Object *src);
 void obj_copy_pos_and_angle(struct Object *dst, struct Object *src);
 void obj_copy_pos(struct Object *dst, struct Object *src);
 void obj_copy_angle(struct Object *dst, struct Object *src);
-void obj_set_gfx_pos_from_pos(struct Object *obj);
 void linear_mtxf_mul_vec3f(Mat4 m, Vec3f dst, Vec3f v);
 void linear_mtxf_transpose_mul_vec3f(Mat4 m, Vec3f dst, Vec3f v);
 void obj_apply_scale_to_transform(struct Object *obj);

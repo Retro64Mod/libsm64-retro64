@@ -199,24 +199,24 @@ struct ParticleProperties {
  * A table mapping particle flags to various properties use when spawning a particle.
  */
 struct ParticleProperties sParticleTypes[] = {
-    { PARTICLE_DUST,                 ACTIVE_PARTICLE_DUST,                 MODEL_MIST,                 bhvMistParticleSpawner },
-    { PARTICLE_VERTICAL_STAR,        ACTIVE_PARTICLE_V_STAR,               MODEL_NONE,                 bhvVertStarParticleSpawner },
-    { PARTICLE_HORIZONTAL_STAR,      ACTIVE_PARTICLE_H_STAR,               MODEL_NONE,                 bhvHorStarParticleSpawner },
-    { PARTICLE_SPARKLES,             ACTIVE_PARTICLE_SPARKLES,             MODEL_SPARKLES,             bhvSparkleParticleSpawner },
-    { PARTICLE_BUBBLE,               ACTIVE_PARTICLE_BUBBLE,               MODEL_BUBBLE,               bhvBubbleParticleSpawner },
-    { PARTICLE_WATER_SPLASH,         ACTIVE_PARTICLE_WATER_SPLASH,         MODEL_WATER_SPLASH,         bhvWaterSplash },
-    { PARTICLE_IDLE_WATER_WAVE,      ACTIVE_PARTICLE_IDLE_WATER_WAVE,      MODEL_IDLE_WATER_WAVE,      bhvIdleWaterWave },
-    { PARTICLE_PLUNGE_BUBBLE,        ACTIVE_PARTICLE_PLUNGE_BUBBLE,        MODEL_WHITE_PARTICLE_SMALL, bhvPlungeBubble },
-    { PARTICLE_WAVE_TRAIL,           ACTIVE_PARTICLE_WAVE_TRAIL,           MODEL_WAVE_TRAIL,           bhvWaveTrail },
-    { PARTICLE_FIRE,                 ACTIVE_PARTICLE_FIRE,                 MODEL_RED_FLAME,            bhvFireParticleSpawner },
-    { PARTICLE_SHALLOW_WATER_WAVE,   ACTIVE_PARTICLE_SHALLOW_WATER_WAVE,   MODEL_NONE,                 bhvShallowWaterWave },
-    { PARTICLE_SHALLOW_WATER_SPLASH, ACTIVE_PARTICLE_SHALLOW_WATER_SPLASH, MODEL_NONE,                 bhvShallowWaterSplash },
-    { PARTICLE_LEAF,                 ACTIVE_PARTICLE_LEAF,                 MODEL_NONE,                 bhvLeafParticleSpawner },
-    { PARTICLE_SNOW,                 ACTIVE_PARTICLE_SNOW,                 MODEL_NONE,                 bhvSnowParticleSpawner },
-    { PARTICLE_BREATH,               ACTIVE_PARTICLE_BREATH,               MODEL_NONE,                 bhvBreathParticleSpawner },
-    { PARTICLE_DIRT,                 ACTIVE_PARTICLE_DIRT,                 MODEL_NONE,                 bhvDirtParticleSpawner },
-    { PARTICLE_MIST_CIRCLE,          ACTIVE_PARTICLE_MIST_CIRCLE,          MODEL_NONE,                 bhvMistCircParticleSpawner },
-    { PARTICLE_TRIANGLE,             ACTIVE_PARTICLE_TRIANGLE,             MODEL_NONE,                 bhvTriangleParticleSpawner },
+    // { PARTICLE_DUST,                 ACTIVE_PARTICLE_DUST,                 MODEL_MIST,                 bhvMistParticleSpawner },
+    // { PARTICLE_VERTICAL_STAR,        ACTIVE_PARTICLE_V_STAR,               MODEL_NONE,                 bhvVertStarParticleSpawner },
+    // { PARTICLE_HORIZONTAL_STAR,      ACTIVE_PARTICLE_H_STAR,               MODEL_NONE,                 bhvHorStarParticleSpawner },
+    // { PARTICLE_SPARKLES,             ACTIVE_PARTICLE_SPARKLES,             MODEL_SPARKLES,             bhvSparkleParticleSpawner },
+    // { PARTICLE_BUBBLE,               ACTIVE_PARTICLE_BUBBLE,               MODEL_BUBBLE,               bhvBubbleParticleSpawner },
+    // { PARTICLE_WATER_SPLASH,         ACTIVE_PARTICLE_WATER_SPLASH,         MODEL_WATER_SPLASH,         bhvWaterSplash },
+    // { PARTICLE_IDLE_WATER_WAVE,      ACTIVE_PARTICLE_IDLE_WATER_WAVE,      MODEL_IDLE_WATER_WAVE,      bhvIdleWaterWave },
+    // { PARTICLE_PLUNGE_BUBBLE,        ACTIVE_PARTICLE_PLUNGE_BUBBLE,        MODEL_WHITE_PARTICLE_SMALL, bhvPlungeBubble },
+    // { PARTICLE_WAVE_TRAIL,           ACTIVE_PARTICLE_WAVE_TRAIL,           MODEL_WAVE_TRAIL,           bhvWaveTrail },
+    // { PARTICLE_FIRE,                 ACTIVE_PARTICLE_FIRE,                 MODEL_RED_FLAME,            bhvFireParticleSpawner },
+    // { PARTICLE_SHALLOW_WATER_WAVE,   ACTIVE_PARTICLE_SHALLOW_WATER_WAVE,   MODEL_NONE,                 bhvShallowWaterWave },
+    // { PARTICLE_SHALLOW_WATER_SPLASH, ACTIVE_PARTICLE_SHALLOW_WATER_SPLASH, MODEL_NONE,                 bhvShallowWaterSplash },
+    // { PARTICLE_LEAF,                 ACTIVE_PARTICLE_LEAF,                 MODEL_NONE,                 bhvLeafParticleSpawner },
+    // { PARTICLE_SNOW,                 ACTIVE_PARTICLE_SNOW,                 MODEL_NONE,                 bhvSnowParticleSpawner },
+    // { PARTICLE_BREATH,               ACTIVE_PARTICLE_BREATH,               MODEL_NONE,                 bhvBreathParticleSpawner },
+    // { PARTICLE_DIRT,                 ACTIVE_PARTICLE_DIRT,                 MODEL_NONE,                 bhvDirtParticleSpawner },
+    // { PARTICLE_MIST_CIRCLE,          ACTIVE_PARTICLE_MIST_CIRCLE,          MODEL_NONE,                 bhvMistCircParticleSpawner },
+    // { PARTICLE_TRIANGLE,             ACTIVE_PARTICLE_TRIANGLE,             MODEL_NONE,                 bhvTriangleParticleSpawner },
     { 0, 0, MODEL_NONE, NULL },
 };
 
@@ -261,31 +261,6 @@ void spawn_particle(u32 activeParticleFlag, s16 model, const BehaviorScript *beh
         gCurrentObject->oActiveParticleFlags |= activeParticleFlag;
         particle = spawn_object_at_origin(gCurrentObject, 0, model, behavior);
         obj_copy_pos_and_angle(particle, gCurrentObject);
-    }
-}
-
-/**
- * Mario's primary behavior update function.
- */
-void bhv_mario_update(void) {
-    u32 particleFlags = 0;
-    s32 i;
-
-    particleFlags = execute_mario_action(gCurrentObject);
-    gCurrentObject->oMarioParticleFlags = particleFlags;
-
-    // Mario code updates MarioState's versions of position etc, so we need
-    // to sync it with the Mario object
-    copy_mario_state_to_object();
-
-    i = 0;
-    while (sParticleTypes[i].particleFlag != 0) {
-        if (particleFlags & sParticleTypes[i].particleFlag) {
-            spawn_particle(sParticleTypes[i].activeParticleFlag, sParticleTypes[i].model,
-                           sParticleTypes[i].behavior);
-        }
-
-        i++;
     }
 }
 
@@ -464,7 +439,7 @@ void spawn_objects_from_info(UNUSED s32 unused, struct SpawnInfo *spawnInfo) {
     //  isn't cleared when transitioning between areas. This can cause Mario to
     //  receive displacement after spawning.
 #ifndef VERSION_JP
-    clear_mario_platform();
+    //Lclear_mario_platform();
 #endif
 
     // if (gCurrAreaIndex == 2) {
@@ -529,35 +504,35 @@ void stub_obj_list_processor_1(void) {
  * Clear objects, dynamic surfaces, and some miscellaneous level data used by objects.
  */
 void clear_objects(void) {
-    s32 i;
+    // s32 i;
 
-    gTHIWaterDrained = 0;
-    gTimeStopState = 0;
-    gMarioObject = NULL;
-    gMarioCurrentRoom = 0;
+    // gTHIWaterDrained = 0;
+    // gTimeStopState = 0;
+    // gMarioObject = NULL;
+    // gMarioCurrentRoom = 0;
 
-    for (i = 0; i < 60; i++) {
-        gDoorAdjacentRooms[i][0] = 0;
-        gDoorAdjacentRooms[i][1] = 0;
-    }
+    // for (i = 0; i < 60; i++) {
+    //     gDoorAdjacentRooms[i][0] = 0;
+    //     gDoorAdjacentRooms[i][1] = 0;
+    // }
 
-    debug_unknown_level_select_check();
+    // // debug_unknown_level_select_check();
 
-    init_free_object_list();
-    clear_object_lists(gObjectListArray);
+    // init_free_object_list();
+    // clear_object_lists(gObjectListArray);
 
-    stub_behavior_script_2();
-    stub_obj_list_processor_1();
+    // stub_behavior_script_2();
+    // stub_obj_list_processor_1();
 
-    for (i = 0; i < OBJECT_POOL_CAPACITY; i++) {
-        gObjectPool[i].activeFlags = ACTIVE_FLAG_DEACTIVATED;
-        geo_reset_object_node(&gObjectPool[i].header.gfx);
-    }
+    // for (i = 0; i < OBJECT_POOL_CAPACITY; i++) {
+    //     gObjectPool[i].activeFlags = ACTIVE_FLAG_DEACTIVATED;
+    //     geo_reset_object_node(&gObjectPool[i].header.gfx);
+    // }
 
-    //gObjectMemoryPool = mem_pool_init(0x800, MEMORY_POOL_LEFT);
-    gObjectLists = gObjectListArray;
+    // //gObjectMemoryPool = mem_pool_init(0x800, MEMORY_POOL_LEFT);
+    // gObjectLists = gObjectListArray;
 
-    clear_dynamic_surfaces();
+    // clear_dynamic_surfaces();
 }
 
 /**

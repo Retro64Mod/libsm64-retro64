@@ -212,16 +212,6 @@ Gfx *geo_switch_area(s32 callContext, struct GraphNode *node) {
     return NULL;
 }
 
-void obj_update_pos_from_parent_transformation(Mat4 a0, struct Object *a1) {
-    f32 spC = a1->oParentRelativePosX;
-    f32 sp8 = a1->oParentRelativePosY;
-    f32 sp4 = a1->oParentRelativePosZ;
-
-    a1->oPosX = spC * a0[0][0] + sp8 * a0[1][0] + sp4 * a0[2][0] + a0[3][0];
-    a1->oPosY = spC * a0[0][1] + sp8 * a0[1][1] + sp4 * a0[2][1] + a0[3][1];
-    a1->oPosZ = spC * a0[0][2] + sp8 * a0[1][2] + sp4 * a0[2][2] + a0[3][2];
-}
-
 void obj_apply_scale_to_matrix(struct Object *obj, Mat4 dst, Mat4 src) {
     dst[0][0] = src[0][0] * obj->header.gfx.scale[0];
     dst[1][0] = src[1][0] * obj->header.gfx.scale[1];
@@ -242,35 +232,6 @@ void obj_apply_scale_to_matrix(struct Object *obj, Mat4 dst, Mat4 src) {
     dst[1][3] = src[1][3];
     dst[2][3] = src[2][3];
     dst[3][3] = src[3][3];
-}
-
-void create_transformation_from_matrices(Mat4 a0, Mat4 a1, Mat4 a2) {
-    f32 spC, sp8, sp4;
-
-    spC = a2[3][0] * a2[0][0] + a2[3][1] * a2[0][1] + a2[3][2] * a2[0][2];
-    sp8 = a2[3][0] * a2[1][0] + a2[3][1] * a2[1][1] + a2[3][2] * a2[1][2];
-    sp4 = a2[3][0] * a2[2][0] + a2[3][1] * a2[2][1] + a2[3][2] * a2[2][2];
-
-    a0[0][0] = a1[0][0] * a2[0][0] + a1[0][1] * a2[0][1] + a1[0][2] * a2[0][2];
-    a0[0][1] = a1[0][0] * a2[1][0] + a1[0][1] * a2[1][1] + a1[0][2] * a2[1][2];
-    a0[0][2] = a1[0][0] * a2[2][0] + a1[0][1] * a2[2][1] + a1[0][2] * a2[2][2];
-
-    a0[1][0] = a1[1][0] * a2[0][0] + a1[1][1] * a2[0][1] + a1[1][2] * a2[0][2];
-    a0[1][1] = a1[1][0] * a2[1][0] + a1[1][1] * a2[1][1] + a1[1][2] * a2[1][2];
-    a0[1][2] = a1[1][0] * a2[2][0] + a1[1][1] * a2[2][1] + a1[1][2] * a2[2][2];
-
-    a0[2][0] = a1[2][0] * a2[0][0] + a1[2][1] * a2[0][1] + a1[2][2] * a2[0][2];
-    a0[2][1] = a1[2][0] * a2[1][0] + a1[2][1] * a2[1][1] + a1[2][2] * a2[1][2];
-    a0[2][2] = a1[2][0] * a2[2][0] + a1[2][1] * a2[2][1] + a1[2][2] * a2[2][2];
-
-    a0[3][0] = a1[3][0] * a2[0][0] + a1[3][1] * a2[0][1] + a1[3][2] * a2[0][2] - spC;
-    a0[3][1] = a1[3][0] * a2[1][0] + a1[3][1] * a2[1][1] + a1[3][2] * a2[1][2] - sp8;
-    a0[3][2] = a1[3][0] * a2[2][0] + a1[3][1] * a2[2][1] + a1[3][2] * a2[2][2] - sp4;
-
-    a0[0][3] = 0;
-    a0[1][3] = 0;
-    a0[2][3] = 0;
-    a0[3][3] = 1.0f;
 }
 
 void obj_set_held_state(struct Object *obj, const BehaviorScript *heldBehavior) {
@@ -638,12 +599,6 @@ void obj_copy_angle(struct Object *dst, struct Object *src) {
     dst->oFaceAnglePitch = src->oFaceAnglePitch;
     dst->oFaceAngleYaw = src->oFaceAngleYaw;
     dst->oFaceAngleRoll = src->oFaceAngleRoll;
-}
-
-void obj_set_gfx_pos_from_pos(struct Object *obj) {
-    obj->header.gfx.pos[0] = obj->oPosX;
-    obj->header.gfx.pos[1] = obj->oPosY;
-    obj->header.gfx.pos[2] = obj->oPosZ;
 }
 
 void obj_init_animation(struct Object *obj, s32 animIndex) {
@@ -1065,12 +1020,12 @@ static void cur_obj_move_after_thrown_or_dropped(f32 forwardVel, f32 velY) {
 }
 
 void cur_obj_get_thrown_or_placed(f32 forwardVel, f32 velY, s32 thrownAction) {
-    if (o->behavior == segmented_to_virtual(bhvBowser)) {
-        // Interestingly, when bowser is thrown, he is offset slightly to
-        // Mario's right
-        cur_obj_set_pos_relative_to_parent(-41.684f, 85.859f, 321.577f);
-    } else {
-    }
+    // if (o->behavior == segmented_to_virtual(bhvBowser)) {
+    //     // Interestingly, when bowser is thrown, he is offset slightly to
+    //     // Mario's right
+    //     cur_obj_set_pos_relative_to_parent(-41.684f, 85.859f, 321.577f);
+    // } else {
+    // }
 
     cur_obj_become_tangible();
     cur_obj_enable_rendering();
@@ -1594,25 +1549,25 @@ static void obj_spawn_loot_coins(struct Object *obj, s32 numCoins, f32 sp30,
 }
 
 void obj_spawn_loot_blue_coins(struct Object *obj, s32 numCoins, f32 sp28, s16 posJitter) {
-    obj_spawn_loot_coins(obj, numCoins, sp28, bhvBlueCoinJumping, posJitter, MODEL_BLUE_COIN);
+    //obj_spawn_loot_coins(obj, numCoins, sp28, bhvBlueCoinJumping, posJitter, MODEL_BLUE_COIN);
 }
 
 void obj_spawn_loot_yellow_coins(struct Object *obj, s32 numCoins, f32 sp28) {
-    obj_spawn_loot_coins(obj, numCoins, sp28, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
+    //obj_spawn_loot_coins(obj, numCoins, sp28, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
 }
 
 void cur_obj_spawn_loot_coin_at_mario_pos(void) {
-    struct Object *coin;
-    if (o->oNumLootCoins <= 0) {
-        return;
-    }
+    // struct Object *coin;
+    // if (o->oNumLootCoins <= 0) {
+    //     return;
+    // }
 
-    o->oNumLootCoins--;
+    // o->oNumLootCoins--;
 
-    coin = spawn_object(o, MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned);
-    coin->oVelY = 30.0f;
+    // coin = spawn_object(o, MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned);
+    // coin->oVelY = 30.0f;
 
-    obj_copy_pos(coin, gMarioObject);
+    // obj_copy_pos(coin, gMarioObject);
 }
 
 f32 cur_obj_abs_y_dist_to_home(void) {
@@ -2061,38 +2016,38 @@ s16 cur_obj_reflect_move_angle_off_wall(void) {
 }
 
 void cur_obj_spawn_particles(struct SpawnParticlesInfo *info) {
-    struct Object *particle;
-    s32 i;
-    f32 scale;
-    s32 numParticles = info->count;
+    // struct Object *particle;
+    // s32 i;
+    // f32 scale;
+    // s32 numParticles = info->count;
 
-    // If there are a lot of objects already, limit the number of particles
-    if (gPrevFrameObjectCount > 150 && numParticles > 10) {
-        numParticles = 10;
-    }
+    // // If there are a lot of objects already, limit the number of particles
+    // if (gPrevFrameObjectCount > 150 && numParticles > 10) {
+    //     numParticles = 10;
+    // }
 
-    // We're close to running out of object slots, so don't spawn particles at
-    // all
-    if (gPrevFrameObjectCount > 210) {
-        numParticles = 0;
-    }
+    // // We're close to running out of object slots, so don't spawn particles at
+    // // all
+    // if (gPrevFrameObjectCount > 210) {
+    //     numParticles = 0;
+    // }
 
-    for (i = 0; i < numParticles; i++) {
-        scale = random_float() * (info->sizeRange * 0.1f) + info->sizeBase * 0.1f;
+    // for (i = 0; i < numParticles; i++) {
+    //     scale = random_float() * (info->sizeRange * 0.1f) + info->sizeBase * 0.1f;
 
-        particle = spawn_object(o, info->model, bhvWhitePuffExplosion);
+    //     particle = spawn_object(o, info->model, bhvWhitePuffExplosion);
 
-        particle->oBehParams2ndByte = info->behParam;
-        particle->oMoveAngleYaw = random_u16();
-        particle->oGravity = info->gravity;
-        particle->oDragStrength = info->dragStrength;
+    //     particle->oBehParams2ndByte = info->behParam;
+    //     particle->oMoveAngleYaw = random_u16();
+    //     particle->oGravity = info->gravity;
+    //     particle->oDragStrength = info->dragStrength;
 
-        particle->oPosY += info->offsetY;
-        particle->oForwardVel = random_float() * info->forwardVelRange + info->forwardVelBase;
-        particle->oVelY = random_float() * info->velYRange + info->velYBase;
+    //     particle->oPosY += info->offsetY;
+    //     particle->oForwardVel = random_float() * info->forwardVelRange + info->forwardVelBase;
+    //     particle->oVelY = random_float() * info->velYRange + info->velYBase;
 
-        obj_scale_xyz(particle, scale, scale, scale);
-    }
+    //     obj_scale_xyz(particle, scale, scale, scale);
+    // }
 }
 
 void obj_set_hitbox(struct Object *obj, struct ObjectHitbox *hitbox) {
@@ -2298,12 +2253,12 @@ void cur_obj_call_action_function(void (*actionFunctions[])(void)) {
 }
 
 static struct Object *spawn_star_with_no_lvl_exit(s32 sp20, s32 sp24) {
-    struct Object *sp1C = spawn_object(o, MODEL_STAR, bhvSpawnedStarNoLevelExit);
-    sp1C->oSparkleSpawnUnk1B0 = sp24;
-    sp1C->oBehParams = o->oBehParams;
-    sp1C->oBehParams2ndByte = sp20;
+    // struct Object *sp1C = spawn_object(o, MODEL_STAR, bhvSpawnedStarNoLevelExit);
+    // sp1C->oSparkleSpawnUnk1B0 = sp24;
+    // sp1C->oBehParams = o->oBehParams;
+    // sp1C->oBehParams2ndByte = sp20;
 
-    return sp1C;
+    // return sp1C;
 }
 
 // old unused initializer for 2d star spawn behavior.
@@ -2433,14 +2388,14 @@ s32 cur_obj_set_hitbox_and_die_if_attacked(struct ObjectHitbox *hitbox, s32 deat
 
 
 void obj_explode_and_spawn_coins(f32 sp18, s32 sp1C) {
-    spawn_mist_particles_variable(0, 0, sp18);
-    spawn_triangle_break_particles(30, 138, 3.0f, 4);
+    // spawn_mist_particles_variable(0, 0, sp18);
+    // spawn_triangle_break_particles(30, 138, 3.0f, 4);
     obj_mark_for_deletion(o);
 
     if (sp1C == 1) {
-        obj_spawn_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
+        // obj_spawn_loot_yellow_coins(o, o->oNumLootCoins, 20.0f);
     } else if (sp1C == 2) {
-        obj_spawn_loot_blue_coins(o, o->oNumLootCoins, 20.0f, 150);
+        // obj_spawn_loot_blue_coins(o, o->oNumLootCoins, 20.0f, 150);
     }
 }
 
@@ -2837,8 +2792,8 @@ s32 cur_obj_check_interacted(void) {
 }
 
 void cur_obj_spawn_loot_blue_coin(void) {
-    if (o->oNumLootCoins >= 5) {
-        spawn_object(o, MODEL_BLUE_COIN, bhvMrIBlueCoin);
-        o->oNumLootCoins -= 5;
-    }
+    // if (o->oNumLootCoins >= 5) {
+    //     spawn_object(o, MODEL_BLUE_COIN, bhvMrIBlueCoin);
+    //     o->oNumLootCoins -= 5;
+    // }
 }
