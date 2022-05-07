@@ -87,6 +87,9 @@ SM64_LIB_FN void tickActorAnim(int actorID,struct SM64MarioGeometryBuffers *outB
 
 enum ObjectList getActorObjList(int actorID){
     struct Object* obj = s_actor_instance_pool.objects[ actorID ];
+    if (obj==NULL) {
+        return -1;
+    }
     return (obj->behavior[0] >> 16) & 0xFFFF;
 }
 

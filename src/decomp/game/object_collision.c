@@ -108,7 +108,7 @@ void clear_object_collision(enum ObjectList objType) {
         pool = &s_mario_instance_pool;
     }
     for (int i = 0; i < pool->size; i++) {
-        struct Object* b = pool->objects[i];
+        struct Object* b = objType != -1 ? pool->objects[i] : (*((struct GlobalState **)s_mario_instance_pool.objects[ i ]))->mgMarioObject;
         if (b==NULL) continue;
         enum ObjectList actorType = getActorObjList(i);
         if (actorType == objType || objType == -1) {
