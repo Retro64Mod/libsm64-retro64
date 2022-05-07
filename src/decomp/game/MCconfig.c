@@ -1,5 +1,4 @@
-#include "types.h"
 #include "MCconfig.h"
 
-extern s32 configredive;
-extern s32 configgroundpoundjump;
+s32 configredive = FALSE;
+s32 configgroundpoundjump = FALSE;

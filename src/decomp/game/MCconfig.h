@@ -1,4 +1,4 @@
-#include "types.h"
+#include "../include/types.h"
 
-extern s32 configredive = false;
-extern s32 configgroundpoundjump = false;
+extern s32 configredive;
+extern s32 configgroundpoundjump;
