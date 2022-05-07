@@ -111,11 +111,11 @@ extern SM64_LIB_FN int sm64_set_volume(float vol);
 extern SM64_LIB_FN int sm64_get_version();
 extern bool hasAudio;
 extern int getCurrentModel();
+extern struct ObjPool s_mario_instance_pool;
 void audio_tick();
 void audio_thread();
 
 // actorMgr.c
-#define ACTOR_TYPE_GOOMBA=1
 extern SM64_LIB_FN int initActor(int actorType,int x,int y,int z,int scale);
 extern SM64_LIB_FN void tickActor(int actorID,struct SM64MarioGeometryBuffers *outBuffers);
 

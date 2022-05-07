@@ -45,10 +45,6 @@
 #include "decomp/audio/load_dat.h"
 #include "decomp/mario/geo.inc.h"
 
-#include "decomp/game/object_helpers.h"
-#include "decomp/game/behavior_actions.h"
-#include "decomp/include/behavior_data.h"
-
 static struct AllocOnlyPool *s_mario_geo_pool = NULL;
 
 static s16 lastWedges = 8;
@@ -260,7 +256,8 @@ SM64_LIB_FN int32_t sm64_mChar_create( float x, float y, float z )
 
     set_mario_action( gMarioState, ACT_SPAWN_SPIN_AIRBORNE, 0);
     find_floor( x, y, z, &gMarioState->floor );
-
+    obj_become_tangible( gMarioObject );
+initActor(0,0,0,0,0);
     return marioIndex;
 }
 
@@ -285,7 +282,7 @@ SM64_LIB_FN void sm64_mChar_animTick(int32_t marioId, uint32_t stateFlags,struct
     }
     
     global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
-
+    
     gMarioState->marioObj->header.gfx.angle[0]=rot[0];
     gMarioState->marioObj->header.gfx.angle[1]=rot[1];
     gMarioState->marioObj->header.gfx.angle[2]=rot[2];
@@ -305,8 +302,6 @@ SM64_LIB_FN void sm64_mChar_animTick(int32_t marioId, uint32_t stateFlags,struct
     gAreaUpdateCounter++;
 }
 
-struct Object* objt=NULL;
-#include "decomp/include/object_fields.h"
 SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs *inputs, struct SM64MarioState *outState, struct SM64MarioGeometryBuffers *outBuffers )
 {
     
@@ -358,17 +353,8 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
             play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
         }
         lastWedges = numHealthWedges;
-    //tickActor(0,outBuffers);
-    if (objt==NULL){
-        // test
-        objt = spawn_object_at_origin(gMarioState->marioObj,0,1,bhvGoomba);
-        objt->oPosX=-1442;
-        objt->oPosY=0;
-        objt->oPosZ=-444;
-    }
-    gCurrentObject = objt;
-    cur_obj_update();
-    geo_process_root_hack_single_node_obj( getModel(-1) );
+    tickAllActors();
+    unload_deactivated_objects();
 }
 
 

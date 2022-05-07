@@ -502,8 +502,8 @@ struct Object *spawn_object_at_origin(struct Object *parent, UNUSED s32 unusedAr
     obj = create_object_bhv(behaviorAddr);
 
     obj->parentObj = parent;
-    obj->header.gfx.areaIndex = parent->header.gfx.areaIndex;
-    obj->header.gfx.activeAreaIndex = parent->header.gfx.areaIndex;
+    //obj->header.gfx.areaIndex = parent->header.gfx.areaIndex;
+    //obj->header.gfx.activeAreaIndex = parent->header.gfx.areaIndex;
 
     geo_obj_init((struct GraphNodeObject *) &obj->header.gfx, gLoadedGraphNodes[model], gVec3fZero,
                  gVec3sZero);
@@ -774,101 +774,106 @@ f32 cur_obj_dist_to_nearest_object_with_behavior(const BehaviorScript *behavior)
 }
 
 struct Object *cur_obj_find_nearest_object_with_behavior(const BehaviorScript *behavior, f32 *dist) {
-    uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
-    struct Object *closestObj = NULL;
-    struct Object *obj;
-    struct ObjectNode *listHead;
-    f32 minDist = 0x20000;
+    // todo: un-stub
+    // uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
+    // struct Object *closestObj = NULL;
+    // struct Object *obj;
+    // struct ObjectNode *listHead;
+    // f32 minDist = 0x20000;
 
-    listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
-    obj = (struct Object *) listHead->next;
+    // listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
+    // obj = (struct Object *) listHead->next;
 
-    while (obj != (struct Object *) listHead) {
-        if (obj->behavior == behaviorAddr) {
-            if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED && obj != o) {
-                f32 objDist = dist_between_objects(o, obj);
-                if (objDist < minDist) {
-                    closestObj = obj;
-                    minDist = objDist;
-                }
-            }
-        }
-        obj = (struct Object *) obj->header.next;
-    }
+    // while (obj != (struct Object *) listHead) {
+    //     if (obj->behavior == behaviorAddr) {
+    //         if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED && obj != o) {
+    //             f32 objDist = dist_between_objects(o, obj);
+    //             if (objDist < minDist) {
+    //                 closestObj = obj;
+    //                 minDist = objDist;
+    //             }
+    //         }
+    //     }
+    //     obj = (struct Object *) obj->header.next;
+    // }
 
-    *dist = minDist;
-    return closestObj;
+    // *dist = minDist;
+    // return closestObj;
 }
 
 struct Object *find_unimportant_object(void) {
-    struct ObjectNode *listHead = &gObjectLists[OBJ_LIST_UNIMPORTANT];
-    struct ObjectNode *obj = listHead->next;
+    // todo: un-stub(?)
+    // struct ObjectNode *listHead = &gObjectLists[OBJ_LIST_UNIMPORTANT];
+    // struct ObjectNode *obj = listHead->next;
 
-    if (listHead == obj) {
-        obj = NULL;
-    }
+    // if (listHead == obj) {
+    //     obj = NULL;
+    // }
 
-    return (struct Object *) obj;
+    // return (struct Object *) obj;
 }
 
 s32 count_unimportant_objects(void) {
-    struct ObjectNode *listHead = &gObjectLists[OBJ_LIST_UNIMPORTANT];
-    struct ObjectNode *obj = listHead->next;
-    s32 count = 0;
+    // todo: un-stub(?)
+    // struct ObjectNode *listHead = &gObjectLists[OBJ_LIST_UNIMPORTANT];
+    // struct ObjectNode *obj = listHead->next;
+    // s32 count = 0;
 
-    while (listHead != obj) {
-        count++;
-        obj = obj->next;
-    }
+    // while (listHead != obj) {
+    //     count++;
+    //     obj = obj->next;
+    // }
 
-    return count;
+    // return count;
 }
 
 s32 count_objects_with_behavior(const BehaviorScript *behavior) {
-    uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
-    struct ObjectNode *listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
-    struct ObjectNode *obj = listHead->next;
-    s32 count = 0;
+    // todo: un-stub(?)
+    // uintptr_t *behaviorAddr = segmented_to_virtual(behavior);
+    // struct ObjectNode *listHead = &gObjectLists[get_object_list_from_behavior(behaviorAddr)];
+    // struct ObjectNode *obj = listHead->next;
+    // s32 count = 0;
 
-    while (listHead != obj) {
-        if (((struct Object *) obj)->behavior == behaviorAddr) {
-            count++;
-        }
+    // while (listHead != obj) {
+    //     if (((struct Object *) obj)->behavior == behaviorAddr) {
+    //         count++;
+    //     }
 
-        obj = obj->next;
-    }
+    //     obj = obj->next;
+    // }
 
-    return count;
+    // return count;
 }
 
 struct Object *cur_obj_find_nearby_held_actor(const BehaviorScript *behavior, f32 maxDist) {
-    const BehaviorScript *behaviorAddr = segmented_to_virtual(behavior);
-    struct ObjectNode *listHead;
-    struct Object *obj;
-    struct Object *foundObj;
+    // todo: un-stub
+    // const BehaviorScript *behaviorAddr = segmented_to_virtual(behavior);
+    // struct ObjectNode *listHead;
+    // struct Object *obj;
+    // struct Object *foundObj;
 
-    listHead = &gObjectLists[OBJ_LIST_GENACTOR];
-    obj = (struct Object *) listHead->next;
-    foundObj = NULL;
+    // listHead = &gObjectLists[OBJ_LIST_GENACTOR];
+    // obj = (struct Object *) listHead->next;
+    // foundObj = NULL;
 
-    while ((struct Object *) listHead != obj) {
-        if (obj->behavior == behaviorAddr) {
-            if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED) {
-                // This includes the dropped and thrown states. By combining instant
-                // release, this allows us to activate mama penguin remotely
-                if (obj->oHeldState != HELD_FREE) {
-                    if (dist_between_objects(o, obj) < maxDist) {
-                        foundObj = obj;
-                        break;
-                    }
-                }
-            }
-        }
+    // while ((struct Object *) listHead != obj) {
+    //     if (obj->behavior == behaviorAddr) {
+    //         if (obj->activeFlags != ACTIVE_FLAG_DEACTIVATED) {
+    //             // This includes the dropped and thrown states. By combining instant
+    //             // release, this allows us to activate mama penguin remotely
+    //             if (obj->oHeldState != HELD_FREE) {
+    //                 if (dist_between_objects(o, obj) < maxDist) {
+    //                     foundObj = obj;
+    //                     break;
+    //                 }
+    //             }
+    //         }
+    //     }
 
-        obj = (struct Object *) obj->header.next;
-    }
+    //     obj = (struct Object *) obj->header.next;
+    // }
 
-    return foundObj;
+    // return foundObj;
 }
 
 static void cur_obj_reset_timer_and_subaction(void) {

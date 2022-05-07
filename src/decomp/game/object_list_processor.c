@@ -23,6 +23,7 @@
 #include "../include/object_constants.h"
 #include "../include/model_ids.h"
 #include "../shim.h"
+#include "../../actorMgr.h"
 
 /**
  * Flags controlling what debug info is displayed.
@@ -75,13 +76,6 @@ struct Object gObjectPool[OBJECT_POOL_CAPACITY];
  * A special object whose purpose is to act as a parent for macro objects.
  */
 struct Object gMacroObjectDefaultParent;
-
-/**
- * A pointer to gObjectListArray.
- * Given an object list index idx, gObjectLists[idx] is the head of a doubly
- * linked list of all currently spawned objects in the list.
- */
-struct ObjectNode *gObjectLists;
 
 /**
  * A singly linked list of available slots in the object pool.
@@ -331,31 +325,6 @@ s32 update_objects_in_list(struct ObjectNode *objList) {
 }
 
 /**
- * Unload any objects in the list that have been deactivated.
- */
-s32 unload_deactivated_objects_in_list(struct ObjectNode *objList) {
-    struct ObjectNode *obj = objList->next;
-
-    while (objList != obj) {
-        gCurrentObject = (struct Object *) obj;
-
-        obj = obj->next;
-
-        if ((gCurrentObject->activeFlags & ACTIVE_FLAG_ACTIVE) != ACTIVE_FLAG_ACTIVE) {
-            // Prevent object from respawning after exiting and re-entering the
-            // area
-            if (!(gCurrentObject->oFlags & OBJ_FLAG_PERSISTENT_RESPAWN)) {
-                set_object_respawn_info_bits(gCurrentObject, RESPAWN_INFO_DONT_RESPAWN);
-            }
-
-            unload_object(gCurrentObject);
-        }
-    }
-
-    return 0;
-}
-
-/**
  * OR the object's respawn info with bits << 8. If bits = 0xFF, this prevents
  * the object from respawning after leaving and re-entering the area.
  * For macro objects, respawnInfo points to the 16 bit entry in the macro object
@@ -376,31 +345,6 @@ void set_object_respawn_info_bits(struct Object *obj, u8 bits) {
             info16 = (u16 *) obj->respawnInfo;
             *info16 |= bits << 8;
             break;
-    }
-}
-
-/**
- * Unload all objects whose activeAreaIndex is areaIndex.
- */
-void unload_objects_from_area(UNUSED s32 unused, s32 areaIndex) {
-    struct Object *obj;
-    struct ObjectNode *node;
-    struct ObjectNode *list;
-    s32 i;
-    gObjectLists = gObjectListArray;
-
-    for (i = 0; i < NUM_OBJ_LISTS; i++) {
-        list = gObjectLists + i;
-        node = list->next;
-
-        while (node != list) {
-            obj = (struct Object *) node;
-            node = node->next;
-
-            if (obj->header.gfx.activeAreaIndex == areaIndex) {
-                unload_object(obj);
-            }
-        }
     }
 }
 
@@ -517,43 +461,46 @@ void clear_objects(void) {
 /**
  * Update spawner and surface objects.
  */
-void update_terrain_objects(void) {
-    gObjectCounter = update_objects_in_list(&gObjectLists[OBJ_LIST_SPAWNER]);
-    //! This was meant to be +=
-    gObjectCounter = update_objects_in_list(&gObjectLists[OBJ_LIST_SURFACE]);
-}
+// void update_terrain_objects(void) {
+//     gObjectCounter = update_objects_in_list(&gObjectLists[OBJ_LIST_SPAWNER]);
+//     //! This was meant to be +=
+//     gObjectCounter = update_objects_in_list(&gObjectLists[OBJ_LIST_SURFACE]);
+// }
 
 /**
  * Update all other object lists besides spawner and surface objects, using
  * the order specified by sObjectListUpdateOrder.
  */
-void update_non_terrain_objects(void) {
-    UNUSED u8 filler[4];
-    s32 listIndex;
+// void update_non_terrain_objects(void) {
+//     UNUSED u8 filler[4];
+//     s32 listIndex;
 
-    s32 i = 2;
-    while ((listIndex = sObjectListUpdateOrder[i]) != -1) {
-        gObjectCounter += update_objects_in_list(&gObjectLists[listIndex]);
-        i++;
-    }
-}
+//     s32 i = 2;
+//     while ((listIndex = sObjectListUpdateOrder[i]) != -1) {
+//         gObjectCounter += update_objects_in_list(&gObjectLists[listIndex]);
+//         i++;
+//     }
+// }
 
 /**
  * Unload deactivated objects in any object list.
  */
 void unload_deactivated_objects(void) {
-    UNUSED u8 filler[4];
-    s32 listIndex;
+    struct ObjPool* pool = getActorPool();
+    for (int i = 0; i < pool->size; i++) {
+        struct Object* obj = pool->objects[i];
+        if (obj==NULL) continue;
+        if ((obj->activeFlags & ACTIVE_FLAG_ACTIVE) != ACTIVE_FLAG_ACTIVE) {
+            // Prevent object from respawning after exiting and re-entering the
+            // area
+            if (!(obj->oFlags & OBJ_FLAG_PERSISTENT_RESPAWN)) {
+                set_object_respawn_info_bits(obj, RESPAWN_INFO_DONT_RESPAWN);
+            }
 
-    s32 i = 0;
-    while ((listIndex = sObjectListUpdateOrder[i]) != -1) {
-        unload_deactivated_objects_in_list(&gObjectLists[listIndex]);
-        i++;
+            unload_object(obj);
+            obj_pool_free_index(pool,i);
+        }
     }
-
-    // TIME_STOP_UNKNOWN_0 was most likely intended to be used to track whether
-    // any objects had been deactivated
-    gTimeStopState &= ~TIME_STOP_UNKNOWN_0;
 }
 
 /**
