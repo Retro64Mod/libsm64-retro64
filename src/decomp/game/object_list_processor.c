@@ -488,7 +488,7 @@ void clear_objects(void) {
 void unload_deactivated_objects(void) {
     struct ObjPool* pool = getActorPool();
     for (int i = 0; i < pool->size; i++) {
-        struct Object* obj = pool->objects[i];
+        struct Object* obj = getActor(i);
         if (obj==NULL) continue;
         if ((obj->activeFlags & ACTIVE_FLAG_ACTIVE) != ACTIVE_FLAG_ACTIVE) {
             // Prevent object from respawning after exiting and re-entering the

@@ -507,7 +507,7 @@ struct Object *spawn_object_at_origin(struct Object *parent, UNUSED s32 unusedAr
 
     geo_obj_init((struct GraphNodeObject *) &obj->header.gfx, gLoadedGraphNodes[model], gVec3fZero,
                  gVec3sZero);
-
+    putObjectInActorPool(obj);
     return obj;
 }
 
@@ -515,7 +515,7 @@ struct Object *spawn_object(struct Object *parent, s32 model, const BehaviorScri
     struct Object *obj = spawn_object_at_origin(parent, 0, model, behavior);
 
     obj_copy_pos_and_angle(obj, parent);
-
+    
     return obj;
 }
 
@@ -1559,21 +1559,21 @@ void obj_spawn_loot_blue_coins(struct Object *obj, s32 numCoins, f32 sp28, s16 p
 }
 
 void obj_spawn_loot_yellow_coins(struct Object *obj, s32 numCoins, f32 sp28) {
-    //obj_spawn_loot_coins(obj, numCoins, sp28, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
+    obj_spawn_loot_coins(obj, numCoins, sp28, bhvSingleCoinGetsSpawned, 0, MODEL_YELLOW_COIN);
 }
 
 void cur_obj_spawn_loot_coin_at_mario_pos(void) {
-    // struct Object *coin;
-    // if (o->oNumLootCoins <= 0) {
-    //     return;
-    // }
+    struct Object *coin;
+    if (o->oNumLootCoins <= 0) {
+        return;
+    }
 
-    // o->oNumLootCoins--;
+    o->oNumLootCoins--;
 
-    // coin = spawn_object(o, MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned);
-    // coin->oVelY = 30.0f;
+    coin = spawn_object(o, MODEL_YELLOW_COIN, bhvSingleCoinGetsSpawned);
+    coin->oVelY = 30.0f;
 
-    // obj_copy_pos(coin, gMarioObject);
+    obj_copy_pos(coin, gMarioObject);
 }
 
 f32 cur_obj_abs_y_dist_to_home(void) {

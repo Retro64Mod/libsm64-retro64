@@ -4,6 +4,7 @@
 
 #include "../include/object_fields.h"
 #include "../include/object_constants.h"
+#include "../include/model_ids.h"
 #include "../game/object_list_processor.h"
 #include "../game/interaction.h"
 #include "../game/behavior_actions.h"
@@ -925,16 +926,16 @@
 //     GOTO(bhvYellowCoin + 1),
 // };
 
-// const BehaviorScript bhvYellowCoin[] = {
-//     BEGIN(OBJ_LIST_LEVEL),
-//     // Yellow coin - common:
-//     BILLBOARD(),
-//     OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
-//     CALL_NATIVE(bhv_yellow_coin_init),
-//     BEGIN_LOOP(),
-//         CALL_NATIVE(bhv_yellow_coin_loop),
-//     END_LOOP(),
-// };
+const BehaviorScript bhvYellowCoin[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    // Yellow coin - common:
+    BILLBOARD(),
+    OR_INT(oFlags, (OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE)),
+    CALL_NATIVE(bhv_yellow_coin_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_yellow_coin_loop),
+    END_LOOP(),
+};
 
 // const BehaviorScript bhvTemporaryYellowCoin[] = {
 //     BEGIN(OBJ_LIST_LEVEL),
@@ -964,17 +965,17 @@
 //     DEACTIVATE(),
 // };
 
-// const BehaviorScript bhvSingleCoinGetsSpawned[] = {
-//     BEGIN(OBJ_LIST_LEVEL),
-//     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-//     BILLBOARD(),
-//     CALL_NATIVE(bhv_coin_init),
-//     SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 30, /*Gravity*/ -400, /*Bounciness*/ -70, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
-//     BEGIN_LOOP(),
-//         CALL_NATIVE(bhv_coin_loop),
-//         ADD_INT(oAnimState, 1),
-//     END_LOOP(),
-// };
+const BehaviorScript bhvSingleCoinGetsSpawned[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    BILLBOARD(),
+    CALL_NATIVE(bhv_coin_init),
+    SET_OBJ_PHYSICS(/*Wall hitbox radius*/ 30, /*Gravity*/ -400, /*Bounciness*/ -70, /*Drag strength*/ 1000, /*Friction*/ 1000, /*Buoyancy*/ 200, /*Unused*/ 0, 0),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_coin_loop),
+        ADD_INT(oAnimState, 1),
+    END_LOOP(),
+};
 
 // const BehaviorScript bhvCoinSparkles[] = {
 //     BEGIN(OBJ_LIST_DEFAULT),

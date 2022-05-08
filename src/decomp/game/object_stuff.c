@@ -162,7 +162,7 @@ static void geo_obj_init(struct GraphNodeObject *graphNode, void *sharedChild, V
     graphNode->node.flags &= ~GRAPH_RENDER_BILLBOARD;
 }
 
-static struct Object *spawn_object_at_origin(void) {
+static struct Object *spawn_object_at_origin_m(void) {
     struct Object *obj;
     obj = create_object();
 
@@ -208,7 +208,7 @@ static void copy_mario_state_to_object(void) {
 
 struct Object *hack_allocate_mario(void)
 {
-    return spawn_object_at_origin();
+    return spawn_object_at_origin_m();
 }
 
 /**

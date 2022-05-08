@@ -108,7 +108,7 @@ void clear_object_collision(enum ObjectList objType) {
         pool = &s_mario_instance_pool;
     }
     for (int i = 0; i < pool->size; i++) {
-        struct Object* b = objType != -1 ? pool->objects[i] : (*((struct GlobalState **)s_mario_instance_pool.objects[ i ]))->mgMarioObject;
+        struct Object* b = objType != -1 ? getActor(i) : (*((struct GlobalState **)s_mario_instance_pool.objects[ i ]))->mgMarioObject;
         if (b==NULL) continue;
         enum ObjectList actorType = getActorObjList(i);
         if (actorType == objType || objType == -1) {
@@ -125,7 +125,7 @@ void check_collision_in_list(struct Object *a, enum ObjectList objType) {
     if (a->oIntangibleTimer == 0) {
         struct ObjPool* pool = getActorPool();
         for (int i = 0; i < pool->size; i++) {
-            struct Object* b = pool->objects[i];
+            struct Object* b = getActor(i);
             if (b==NULL || b==a) continue;
             enum ObjectList actorType = getActorObjList(i);
             if (actorType == objType || objType == -1) {
@@ -159,7 +159,7 @@ void check_player_object_collision(void) { // TODO: rewrite this to handle new "
 void check_pushable_object_collision(void) {
     struct ObjPool* pool = getActorPool();
     for (int i = 0; i < pool->size; i++) {
-        struct Object* b = pool->objects[i];
+        struct Object* b = getActor(i);
         if (b==NULL) continue;
         enum ObjectList actorType = getActorObjList(i);
         if (actorType == OBJ_LIST_PUSHABLE) {

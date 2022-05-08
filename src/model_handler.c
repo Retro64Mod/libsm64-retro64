@@ -6,10 +6,12 @@
 #include "decomp/model_vibri/geo.inc.h"
 // models done
 #include "decomp/model_goomba/geo.inc.h"
+#include "decomp/model_coin/geo.inc.h"
 #include "decomp/game/actors/common0.h"
 #include "decomp/engine/geo_layout.h"
 #include "model_handler.h"
 #include "load_tex_data.h"
+#include "decomp/include/model_ids.h"
 
 static void* modelPointers[ModelsUsed]={0x0};
 
@@ -27,7 +29,8 @@ void initModels(struct AllocOnlyPool *pool){
     modelPointers[MODEL_NECOARC] = (void*)necoarc_geo_ptr;
     modelPointers[MODEL_VIBRI] = (void*)vibri_geo_ptr;
 
-    goomba_test = process_geo_layout(pool,goomba_geo_ptr);
+    gLoadedGraphNodes[MODEL_GOOMBA]=process_geo_layout(pool,goomba_geo_ptr);
+    gLoadedGraphNodes[MODEL_YELLOW_COIN]=process_geo_layout(pool,yellow_coin_geo_ptr);
 
     for (int i = 0;i<ModelsUsed;i++){
         model_nodes[i]=process_geo_layout( pool, modelPointers[i] );
@@ -35,8 +38,6 @@ void initModels(struct AllocOnlyPool *pool){
 }
 
 struct GraphNode* getModel(int model){
-    if (model==-1)
-        return goomba_test;
     if (model<0 || model>=ModelsUsed){
         model=0;
     }

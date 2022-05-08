@@ -123,6 +123,7 @@ typedef struct {
 #define gsDPSetTileSize(t, uls, ult, lrs, lrt) \
     GFXCMD_SetTileSize, \
     uls, ult, lrs, lrt
+#define gsSPBranchList(dl) gsSPDisplayList(dl)
 
 #define gsDPPipeSync() (GFXCMD_None)
 #define gsDPSetCombineMode(a, b) (GFXCMD_None)
