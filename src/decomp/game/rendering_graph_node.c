@@ -635,7 +635,7 @@ static void geo_process_animated_part(struct GraphNodeAnimatedPart *node) {
  */
 void geo_set_animation_globals(struct AnimInfo *node, s32 hasAnimation) {
     struct Animation *anim = node->curAnim;
-
+    if (anim==NULL)return; // Not sure if this is needed; crashes on models (i.e coins)
     if (hasAnimation) {
         node->animFrame = geo_update_animation_frame(node, &node->animFrameAccelAssist);
     }

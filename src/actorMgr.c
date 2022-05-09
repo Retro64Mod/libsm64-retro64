@@ -105,5 +105,8 @@ struct ObjPool* getActorPool(){
 }
 
 struct Object* getActor(int id){
-    return ((struct GlobalState*)s_actor_instance_pool.objects[ id ])->mgCurrentObject;
+    struct GlobalState* gs = ((struct GlobalState*)s_actor_instance_pool.objects[ id ]);
+    if (gs==NULL)
+        return NULL;
+    return gs->mgCurrentObject;
 }
