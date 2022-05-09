@@ -56,6 +56,12 @@ struct SM64MarioState
     uint32_t currentModel;
 };
 
+struct SM64ActorState
+{
+    float position[3];
+    float velocity[3];
+};
+
 struct SM64MarioGeometryBuffers
 {
     float *position;
@@ -116,7 +122,7 @@ void audio_tick();
 void audio_thread();
 
 // actorMgr.c
-extern SM64_LIB_FN int initActor(int actorType,int x,int y,int z,int scale);
-extern SM64_LIB_FN void tickActor(int actorID,struct SM64MarioGeometryBuffers *outBuffers);
+extern SM64_LIB_FN int initActor(int actorType,float x,float y,float z);
+extern SM64_LIB_FN void tickActor(int actorID,struct SM64ActorState* state,struct SM64MarioGeometryBuffers *outBuffers);
 
 #endif//LIB_SM64_H

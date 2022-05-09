@@ -257,7 +257,6 @@ SM64_LIB_FN int32_t sm64_mChar_create( float x, float y, float z )
     set_mario_action( gMarioState, ACT_SPAWN_SPIN_AIRBORNE, 0);
     find_floor( x, y, z, &gMarioState->floor );
     obj_become_tangible( gMarioObject );
-initActor(0,0,0,0,0);
     return marioIndex;
 }
 
@@ -353,7 +352,6 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
             play_sound(SOUND_MENU_POWER_METER, gGlobalSoundSource);
         }
         lastWedges = numHealthWedges;
-    tickAllActors();
     unload_deactivated_objects();
 }
 

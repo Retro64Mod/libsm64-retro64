@@ -507,7 +507,7 @@ struct Object *spawn_object_at_origin(struct Object *parent, UNUSED s32 unusedAr
 
     geo_obj_init((struct GraphNodeObject *) &obj->header.gfx, gLoadedGraphNodes[model], gVec3fZero,
                  gVec3sZero);
-    putObjectInActorPool(obj);
+    obj->unused2 = putObjectInActorPool(obj);
     return obj;
 }
 

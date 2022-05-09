@@ -40,25 +40,25 @@ int putObjectInActorPool(struct Object* obj){
 
 }
 
-SM64_LIB_FN int initActor(int actorType,int x,int y,int z,int scale){
+SM64_LIB_FN int initActor(int actorType,float x,float y,float z){
     g_state->mgCurrentObject=NULL;
     struct Object* obj = spawn_object_at_origin(gMarioState->marioObj,0,MODEL_GOOMBA,bhvGoomba);
-    obj->oPosX=-1442;
-    obj->oPosY=0;
-    obj->oPosZ=-444;
+    obj->oPosX=x;
+    obj->oPosY=y;
+    obj->oPosZ=z;
     obj->parentObj=obj;
-    return -1;//putObjectInActorPool(obj);
+    return obj->unused2;
 }
 
 void tickAllActors(){
     for (int i = 0; i < s_actor_instance_pool.size; i++) {
         if (s_actor_instance_pool.objects[i] != NULL) {
-            tickActor(i,NULL);
+            tickActor(i,NULL,NULL);
         }
     }
 }
 
-SM64_LIB_FN void tickActor(int actorID,struct SM64MarioGeometryBuffers *outBuffers){
+SM64_LIB_FN void tickActor(int actorID,struct SM64ActorState* state,struct SM64MarioGeometryBuffers *outBuffers){
     if( actorID >= s_actor_instance_pool.size || s_actor_instance_pool.objects[actorID] == NULL )
     {
         DEBUG_PRINT("Tried to tick non-existant Actor with ID: %u", actorID);
