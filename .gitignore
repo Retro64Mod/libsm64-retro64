@@ -1,4 +1,6 @@
 /src/decomp/model_goomba
+/src/decomp/model_coin
+/src/decomp/model_star
 /build/
 /dist/
 /test/level.c

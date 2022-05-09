@@ -7,6 +7,7 @@
 // models done
 #include "decomp/model_goomba/geo.inc.h"
 #include "decomp/model_coin/geo.inc.h"
+#include "decomp/model_star/geo.inc.h"
 #include "decomp/game/actors/common0.h"
 #include "decomp/engine/geo_layout.h"
 #include "model_handler.h"
@@ -31,6 +32,7 @@ void initModels(struct AllocOnlyPool *pool){
 
     gLoadedGraphNodes[MODEL_GOOMBA]=process_geo_layout(pool,goomba_geo_ptr);
     gLoadedGraphNodes[MODEL_YELLOW_COIN]=process_geo_layout(pool,yellow_coin_geo_ptr);
+    gLoadedGraphNodes[MODEL_STAR]=process_geo_layout(pool,star_geo_ptr);
 
     for (int i = 0;i<ModelsUsed;i++){
         model_nodes[i]=process_geo_layout( pool, modelPointers[i] );

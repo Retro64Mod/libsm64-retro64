@@ -7,7 +7,7 @@
 //#include "prevent_bss_reordering.h"
 #include "../include/sm64.h"
 #include "area.h"
-//#include "audio/external.h"
+#include "../audio/external.h"
 //#include "behavior_data.h"
 #include "camera.h"
 //#include "dialog_ids.h"
@@ -621,53 +621,53 @@ s32 act_debug_free_move(struct MarioState *m) {
 }
 
 void general_star_dance_handler(struct MarioState *m, s32 isInWater) {
-//  s32 dialogID;
-//  if (m->actionState == 0) {
-//      switch (++m->actionTimer) {
-//          case 1:
-//              spawn_object(m->marioObj, MODEL_STAR, bhvCelebrationStar);
-//              disable_background_sound();
-//              if (m->actionArg & 1) {
-//                  play_course_clear();
-//              } else {
-//                  if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2) {
-//                      play_music(SEQ_PLAYER_ENV, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_KEY), 0);
-//                  } else {
-//                      play_music(SEQ_PLAYER_ENV, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_STAR), 0);
-//                  }
-//              }
-//              break;
+ s32 dialogID;
+ if (m->actionState == 0) {
+     switch (++m->actionTimer) {
+         case 1:
+             //spawn_object(m->marioObj, MODEL_STAR, bhvCelebrationStar);
+             //disable_background_sound();
+             if (m->actionArg & 1) {
+                 play_course_clear();
+             } else {
+                //  if (gCurrLevelNum == LEVEL_BOWSER_1 || gCurrLevelNum == LEVEL_BOWSER_2) {
+                //      play_music(SEQ_PLAYER_ENV, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_KEY), 0);
+                //  } else {
+                      play_music(SEQ_PLAYER_ENV, SEQUENCE_ARGS(15, SEQ_EVENT_CUTSCENE_COLLECT_STAR), 0);
+                //  }
+             }
+             break;
 
-//          case 42:
-//              play_sound(SOUND_MARIO_HERE_WE_GO, m->marioObj->header.gfx.cameraToObject);
-//              break;
+         case 42:
+             play_sound(SOUND_MARIO_HERE_WE_GO, m->marioObj->header.gfx.cameraToObject);
+             break;
 
-//          case 80:
-//              if ((m->actionArg & 1) == 0) {
-//                  level_trigger_warp(m, WARP_OP_STAR_EXIT);
-//              } else {
-//                  enable_time_stop();
-//                  create_dialog_box_with_response(gLastCompletedStarNum == 7 ? DIALOG_013 : DIALOG_014);
-//                  m->actionState = 1;
-//              }
-//              break;
-//      }
-//  } else if (m->actionState == 1 && gDialogResponse) {
-//      if (gDialogResponse == 1) {
-//          save_file_do_save(gCurrSaveFileNum - 1);
-//      }
-//      m->actionState = 2;
-//  } else if (m->actionState == 2 && is_anim_at_end(m)) {
-//      disable_time_stop();
-//      enable_background_sound();
-//      dialogID = get_star_collection_dialog(m);
-//      if (dialogID != 0) {
-//          // look up for dialog
-//          set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, dialogID);
-//      } else {
-//          set_mario_action(m, isInWater ? ACT_WATER_IDLE : ACT_IDLE, 0);
-//      }
-//  }
+         case 80:
+             if ((m->actionArg & 1) == 0) {
+                 level_trigger_warp(m, WARP_OP_STAR_EXIT);
+             } else {
+                 enable_time_stop();
+                 //create_dialog_box_with_response(gLastCompletedStarNum == 7 ? DIALOG_013 : DIALOG_014);
+                 m->actionState = 1;
+             }
+             break;
+     }
+ } else if (m->actionState == 1 /*&& gDialogResponse*/) {
+    //  if (gDialogResponse == 1) {
+    //      save_file_do_save(gCurrSaveFileNum - 1);
+    //  }
+     m->actionState = 2;
+ } else if (m->actionState == 2 && is_anim_at_end(m)) {
+     disable_time_stop();
+     //enable_background_sound();
+     dialogID = get_star_collection_dialog(m);
+     if (dialogID != 0) {
+         // look up for dialog
+         set_mario_action(m, ACT_READING_AUTOMATIC_DIALOG, dialogID);
+     } else {
+         set_mario_action(m, isInWater ? ACT_WATER_IDLE : ACT_IDLE, 0);
+     }
+ }
 }
 
 s32 act_star_dance(struct MarioState *m) {

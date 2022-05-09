@@ -859,16 +859,16 @@
 //     GOTO(bhvSpawnedStarNoLevelExit + 1 + 1),
 // };
 
-// const BehaviorScript bhvSpawnedStarNoLevelExit[] = {
-//     BEGIN(OBJ_LIST_LEVEL),
-//     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-//     // Spawned star - common:
-//     SET_HOME(),
-//     CALL_NATIVE(bhv_spawned_star_init),
-//     BEGIN_LOOP(),
-//         CALL_NATIVE(bhv_spawned_star_loop),
-//     END_LOOP(),
-// };
+const BehaviorScript bhvSpawnedStarNoLevelExit[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    // Spawned star - common:
+    SET_HOME(),
+    CALL_NATIVE(bhv_spawned_star_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_spawned_star_loop),
+    END_LOOP(),
+};
 
 // const BehaviorScript bhvMrIBlueCoin[] = {
 //     BEGIN(OBJ_LIST_LEVEL),
@@ -4603,15 +4603,15 @@ const BehaviorScript bhvCarrySomething6[] = {
 //     END_LOOP(),
 // };
 
-// const BehaviorScript bhvStar[] = {
-//     BEGIN(OBJ_LIST_LEVEL),
-//     OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
-//     CALL_NATIVE(bhv_init_room),
-//     CALL_NATIVE(bhv_collect_star_init),
-//     BEGIN_LOOP(),
-//         CALL_NATIVE(bhv_collect_star_loop),
-//     END_LOOP(),
-// };
+const BehaviorScript bhvStar[] = {
+    BEGIN(OBJ_LIST_LEVEL),
+    OR_INT(oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE),
+    CALL_NATIVE(bhv_init_room),
+    CALL_NATIVE(bhv_collect_star_init),
+    BEGIN_LOOP(),
+        CALL_NATIVE(bhv_collect_star_loop),
+    END_LOOP(),
+};
 
 // const BehaviorScript bhvStarSpawnCoordinates[] = {
 //     BEGIN(OBJ_LIST_LEVEL),

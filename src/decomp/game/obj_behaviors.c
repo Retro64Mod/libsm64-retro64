@@ -803,6 +803,7 @@ s8 sDebugTimer = 0;
 // }
 
 #include "behaviors/coin.inc.c"
+#include "behaviors/sparkle_spawn_star.inc.c"
 // #include "behaviors/moving_coin.inc.c"
 // #include "behaviors/seaweed.inc.c"
 // #include "behaviors/bobomb.inc.c"
@@ -840,7 +841,7 @@ s8 sDebugTimer = 0;
 // #include "behaviors/snowman.inc.c"
 // #include "behaviors/boulder.inc.c"
 // #include "behaviors/cap.inc.c"
-// #include "behaviors/spawn_star.inc.c"
+#include "behaviors/spawn_star.inc.c"
 // #include "behaviors/red_coin.inc.c"
 // #include "behaviors/hidden_star.inc.c"
 // #include "behaviors/rolling_log.inc.c"
