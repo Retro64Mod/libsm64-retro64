@@ -35,8 +35,7 @@ struct ObjPool s_actor_instance_pool = { 0, 0 };
 int putObjectInActorPool(struct Object* obj){
     int id = obj_pool_alloc_index( &s_actor_instance_pool, sizeof( struct GlobalState ));
     s_actor_instance_pool.objects[id] = global_state_create();
-    global_state_bind( s_actor_instance_pool.objects[ id ] );
-    gCurrentObject=obj;
+    ((struct GlobalState*)s_actor_instance_pool.objects[ id ])->mgCurrentObject=obj;
     return id;
 
 }
@@ -66,9 +65,13 @@ SM64_LIB_FN void tickActor(int actorID,struct SM64MarioGeometryBuffers *outBuffe
         return NULL;
     }
     global_state_bind( s_actor_instance_pool.objects[ actorID ] );
+    // since we're in the object's state now, we need to set it's mario object to the closest mario inst
+    
+    gMarioObject=(*((struct GlobalState **)s_mario_instance_pool.objects[ 0 ]))->mgMarioObject;//->oPosX
+
     //gfx_adapter_bind_output_buffers( outBuffers );
     cur_obj_update();
-    if (g_state->mgCurrentObject->header.gfx.sharedChild!=0x0)
+    if (gCurrentObject->header.gfx.sharedChild!=0x0)
     geo_process_root_hack_single_node_obj( g_state->mgCurrentObject->header.gfx.sharedChild );
 
     gAreaUpdateCounter++;
