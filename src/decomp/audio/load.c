@@ -412,7 +412,6 @@ out2:
 UNUSED static
 #endif
 void patch_sound(UNUSED struct AudioBankSound *sound, UNUSED u8 *memBase, UNUSED u8 *offsetBase) {
-    return;
     struct AudioBankSample *sample;
     void *patched;
     UNUSED u8 *mem; // unused on US
@@ -478,7 +477,6 @@ void patch_sound(UNUSED struct AudioBankSound *sound, UNUSED u8 *memBase, UNUSED
 
 // on US/JP this inlines patch_sound, using some -sopt compiler flag
 void patch_audio_bank(struct AudioBank *mem, u8 *offset, u32 numInstruments, u32 numDrums) {
-    return;
     struct Instrument *instrument;
     struct Instrument **itInstrs;
     struct Instrument **end;

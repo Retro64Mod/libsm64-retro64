@@ -102,7 +102,7 @@ int getCurrentModel(){
 
 pthread_t gSoundThread;
 
-SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequences_bin,uint8_t *sound_data_ctl,uint8_t *sound_data_tbl,int bank_set_len,int sequences_len,int ctl_len,int tbl_len, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction )
+SM64_LIB_FN void sm64_global_init( uint8_t *rom, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction )
 {
     uint8_t * rom2 = malloc(0x800000);
     memcpy(rom2,rom,0x800000);
@@ -112,9 +112,9 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     gMusicData=parse_seqfile(rom+8063072); // SEQ
     gBankSetsData=rom+0x7CC621; // BIN
     // shift the next 90 elements after gBankSetsData+0x45 forward by 1
-    memmove(gBankSetsData+0x45,gBankSetsData+0x45-1,0x90);
+    memmove(gBankSetsData+0x45,gBankSetsData+0x45-1,0x5B);
     gBankSetsData[0x45]=0x00;
-    update_CTL_sample_pointers(gSoundDataADSR,gSoundDataRaw);
+    ptrs_to_offsets(gSoundDataADSR);
     initMarioGeo(rom);
     if( s_init_global )
         sm64_global_terminate();
@@ -158,19 +158,6 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     
 }
 
-SM64_LIB_FN void sm64_global_init_audioBin(uint8_t *rom,char* audioData, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction){
-    // file format: audioDataTblSize,soundDataCtlSize,bankSetsSize,sequencesSize,soundDataTBL,soundDataCtl,bankSets,sequences
-    int audioDataTblSize = *(int*)audioData;
-    int soundDataCtlSize = *(int*)(audioData+4);
-    int bankSetsSize = *(int*)(audioData+8);
-    int sequencesSize = *(int*)(audioData+12);
-    char* soundDataTBL = audioData+16;
-    char* soundDataCTL = audioData+16+audioDataTblSize;
-    char* bankSets = audioData+16+audioDataTblSize+soundDataCtlSize;
-    char* sequences = audioData+16+audioDataTblSize+soundDataCtlSize+bankSetsSize;
-    sm64_global_init(rom,bankSets,sequences,soundDataCTL,soundDataTBL,bankSetsSize,sequencesSize,soundDataCtlSize,audioDataTblSize,outTexture,debugPrintFunction);
-}
-
 SM64_LIB_FN void sm64_global_terminate( void )
 {
     if( !s_init_global ) return;
@@ -189,6 +176,7 @@ SM64_LIB_FN void sm64_global_terminate( void )
     s_init_global = false;
     s_init_one_mario = false;
        
+	ctl_free();
     alloc_only_pool_free( s_mario_geo_pool );
     surfaces_unload_all();
     unload_mario_anims();
