@@ -10,7 +10,7 @@ struct Loop
     unsigned int end;
     int count;
     unsigned int pad;
-    short state[16];
+    short state[1];
 };
 
 
@@ -18,7 +18,7 @@ struct Book
 {
     int order; // must be 2
     int npredictors; // must be 2
-    short table[64]; // 16 * order * npredictors
+    short table[32]; // 8 * order * npredictors
 };
 
 struct Sample{
@@ -40,7 +40,7 @@ struct delay_arg{
 };
 
 struct Envelope{
-    struct delay_arg delay_args[6]; // array of [(delay,arg)]
+    struct delay_arg delay_args[1]; // array of [(delay,arg)]
 };
 
 struct Drum{
@@ -71,9 +71,9 @@ struct SEQ{
     unsigned char* data;
 };
 
-struct CTL
+struct CTL 
 {
-    s16 numInstruments;
+    unsigned int numInstruments;
     unsigned int numDrums;
     unsigned int shared;
     unsigned int iso_date;
@@ -82,12 +82,13 @@ struct CTL
 };
 
 struct seqObject{
-    uintptr_t offset;
-    unsigned int len;
+    uintptr_t offset __attribute__((aligned (8)));
+    unsigned int len __attribute__((aligned (8)));
 };
 
 struct seqFile{
     unsigned short revision;
     unsigned short seqCount;
+	unsigned int pad;
     struct seqObject seqArray[1];
-};
+} __attribute__((aligned (16)));
