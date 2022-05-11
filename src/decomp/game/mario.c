@@ -547,7 +547,16 @@ struct Surface *resolve_and_return_wall_collisions(Vec3f pos, f32 offset, f32 ra
 
     // This only returns the most recent wall and can also return NULL
     // there are no wall collisions.
-    return wall;
+    for (s32 i = 0; i < collisionData.numWalls; i++) {
+        s32 anglediffstore = 0;
+        s32 anglediff = 
+            abs_angle_diff(gCurrentObject->oMoveAngleYaw - 0x8000, 
+                            atan2s(collisionData.walls[i]->normal.z, collisionData.walls[i]->normal.x));
+        if (anglediff < anglediffstore) {
+            wall = collisionData.walls;
+            anglediffstore = anglediff;
+        }
+    }
 }
 
 /**
