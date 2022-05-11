@@ -68,8 +68,8 @@ SM64_LIB_FN void tickActor(int actorID,struct SM64ActorState* state,struct SM64M
     // since we're in the object's state now, we need to set it's mario object to the closest mario inst
     
     gMarioObject=(*((struct GlobalState **)s_mario_instance_pool.objects[ 0 ]))->mgMarioObject;//->oPosX
-
-    //gfx_adapter_bind_output_buffers( outBuffers );
+    if (outBuffers!=NULL)
+        gfx_adapter_bind_output_buffers( outBuffers );
     cur_obj_update();
     if (gCurrentObject->header.gfx.sharedChild!=0x0)
     geo_process_root_hack_single_node_obj( g_state->mgCurrentObject->header.gfx.sharedChild );

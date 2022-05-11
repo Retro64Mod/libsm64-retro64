@@ -212,7 +212,7 @@ static void engine_surface_from_lib_surface( struct Surface *surface, const stru
 
 uint32_t loaded_surface_iter_group_count( void )
 {
-    if (isTickingActor)
+    if (isTickingActor) // checks if an actor is being ticked, if so switches to actor specific function. probably not the best way to do this
         return actor_loaded_surface_iter_group_count(getActorPool()->objects[gCurrentObject->unused2]);
     return 1 + s_surface_object_count;
 }
@@ -224,7 +224,7 @@ uint32_t actor_loaded_surface_iter_group_count( struct GlobalState* actorState )
 
 uint32_t loaded_surface_iter_group_size( uint32_t groupIndex )
 {
-    if (isTickingActor)
+    if (isTickingActor) // checks if an actor is being ticked, if so switches to actor specific function. probably not the best way to do this
         return actor_loaded_surface_iter_group_size(groupIndex,getActorPool()->objects[gCurrentObject->unused2]);
     if( groupIndex == 0 )
         return s_static_surface_count;
@@ -242,7 +242,7 @@ uint32_t actor_loaded_surface_iter_group_size( uint32_t groupIndex,struct Global
 
 struct Surface *loaded_surface_iter_get_at_index( uint32_t groupIndex, uint32_t surfaceIndex )
 {
-    if (isTickingActor)
+    if (isTickingActor) // checks if an actor is being ticked, if so switches to actor specific function. probably not the best way to do this
         return actor_loaded_surface_iter_get_at_index(groupIndex,surfaceIndex,getActorPool()->objects[gCurrentObject->unused2]);
     if( groupIndex == 0 )
         return &s_static_surface_list[ surfaceIndex ];

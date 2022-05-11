@@ -213,7 +213,7 @@ struct Object
     /*0x204*/ f32 hurtboxHeight;
     /*0x208*/ f32 hitboxDownOffset;
     /*0x20C*/ const BehaviorScript *behavior;
-    /*0x210*/ u32 unused2;
+    /*0x210*/ u32 unused2; // libsm64-retro64: changed functionality to hold current actor's ID. TODO: rename?
     /*0x214*/ struct SurfaceObjectTransform *platform; // libsm64: type change from Object*
     /*0x218*/ void *collisionData;
     /*0x21C*/ Mat4 transform;
