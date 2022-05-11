@@ -210,6 +210,11 @@ SM64_LIB_FN void sm64_static_surfaces_load( const struct SM64Surface *surfaceArr
     surfaces_load_static( surfaceArray, numSurfaces );
 }
 
+SM64_LIB_FN void sm64_actor_static_surfaces_load( int actorID,const struct SM64Surface *surfaceArray, uint32_t numSurfaces )
+{
+    actor_surfaces_load_static( actorID,surfaceArray, numSurfaces );
+}
+
 SM64_LIB_FN int32_t sm64_mChar_create( float x, float y, float z )
 {
     int32_t marioIndex = obj_pool_alloc_index( &s_mario_instance_pool, sizeof( struct MarioInstance ));

@@ -5,3 +5,4 @@ struct ObjPool* getActorPool();
 void tickAllActors();
 int putObjectInActorPool(struct Object* obj);
 struct Object* getActor(int id);
+#define isTickingActor gCurrentObject!=gMarioObject && gCurrentObject->behavior!=0x0

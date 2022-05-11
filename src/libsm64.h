@@ -124,5 +124,6 @@ void audio_thread();
 // actorMgr.c
 extern SM64_LIB_FN int initActor(int actorType,float x,float y,float z);
 extern SM64_LIB_FN void tickActor(int actorID,struct SM64ActorState* state,struct SM64MarioGeometryBuffers *outBuffers);
+extern SM64_LIB_FN void sm64_actor_static_surfaces_load( int actorID,const struct SM64Surface *surfaceArray, uint32_t numSurfaces );
 
 #endif//LIB_SM64_H

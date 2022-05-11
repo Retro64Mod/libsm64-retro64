@@ -42,6 +42,13 @@ struct GlobalState
     struct Object *mgMarioObject;
     struct MarioAnimation mD_80339D10;
     struct MarioState mgMarioStateVal;
+
+    // for actors (not mario)
+    uint32_t actor_s_static_surface_count;
+    struct Surface *actor_s_static_surface_list;
+
+    uint32_t actor_s_surface_object_count;
+    struct LoadedSurfaceObject *actor_s_surface_object_list;
 };
 
 // From mario_actions_submerged.c, needed to initialize global state

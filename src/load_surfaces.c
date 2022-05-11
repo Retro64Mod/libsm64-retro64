@@ -8,6 +8,8 @@
 #include "decomp/include/surface_terrains.h"
 #include "decomp/engine/math_util.h"
 #include "decomp/shim.h"
+#include "actorMgr.h"
+
 
 #include "debug_print.h"
 
@@ -210,23 +212,50 @@ static void engine_surface_from_lib_surface( struct Surface *surface, const stru
 
 uint32_t loaded_surface_iter_group_count( void )
 {
+    if (isTickingActor)
+        return actor_loaded_surface_iter_group_count(getActorPool()->objects[gCurrentObject->unused2]);
     return 1 + s_surface_object_count;
+}
+
+uint32_t actor_loaded_surface_iter_group_count( struct GlobalState* actorState )
+{
+    return 1 + actorState->actor_s_surface_object_count;
 }
 
 uint32_t loaded_surface_iter_group_size( uint32_t groupIndex )
 {
+    if (isTickingActor)
+        return actor_loaded_surface_iter_group_size(groupIndex,getActorPool()->objects[gCurrentObject->unused2]);
     if( groupIndex == 0 )
         return s_static_surface_count;
 
     return s_surface_object_list[ groupIndex - 1 ].surfaceCount;
 }
 
+uint32_t actor_loaded_surface_iter_group_size( uint32_t groupIndex,struct GlobalState* actorState  )
+{
+    if( groupIndex == 0 )
+        return actorState->actor_s_static_surface_count;
+
+    return actorState->actor_s_surface_object_list[ groupIndex - 1 ].surfaceCount;
+}
+
 struct Surface *loaded_surface_iter_get_at_index( uint32_t groupIndex, uint32_t surfaceIndex )
 {
+    if (isTickingActor)
+        return actor_loaded_surface_iter_get_at_index(groupIndex,surfaceIndex,getActorPool()->objects[gCurrentObject->unused2]);
     if( groupIndex == 0 )
         return &s_static_surface_list[ surfaceIndex ];
 
     return &s_surface_object_list[ groupIndex - 1 ].engineSurfaces[ surfaceIndex ];
+}
+
+struct Surface *actor_loaded_surface_iter_get_at_index( uint32_t groupIndex, uint32_t surfaceIndex,struct GlobalState* actorState )
+{
+    if( groupIndex == 0 )
+        return &actorState->actor_s_static_surface_list[ surfaceIndex ];
+
+    return &actorState->actor_s_surface_object_list[ groupIndex - 1 ].engineSurfaces[ surfaceIndex ];
 }
 
 void surfaces_load_static( const struct SM64Surface *surfaceArray, uint32_t numSurfaces )
@@ -334,4 +363,25 @@ void surfaces_unload_all( void )
     free( s_surface_object_list );
     s_surface_object_count = 0;
     s_surface_object_list = NULL;
+}
+
+// actor related
+#include "actorMgr.h"
+void actor_surfaces_load_static( int actorID,const struct SM64Surface *surfaceArray, uint32_t numSurfaces )
+{
+    struct ObjPool* s_actor_instance_pool = getActorPool();
+    if( actorID >= s_actor_instance_pool->size || s_actor_instance_pool->objects[actorID] == NULL )
+        return;
+    global_state_bind( s_actor_instance_pool->objects[ actorID ] );
+
+    
+
+    if( g_state->actor_s_static_surface_list != NULL )
+        free( g_state->actor_s_static_surface_list );
+
+    g_state->actor_s_static_surface_count = numSurfaces;
+    g_state->actor_s_static_surface_list = malloc( sizeof( struct Surface ) * numSurfaces );
+
+    for( int i = 0; i < numSurfaces; ++i )
+        engine_surface_from_lib_surface( &g_state->actor_s_static_surface_list[i], &surfaceArray[i], NULL );
 }
