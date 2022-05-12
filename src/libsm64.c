@@ -42,6 +42,8 @@
 #include "decomp/pc/audio/audio_alsa.h"
 #include "decomp/audio/external.h"
 
+#include "decomp/game/config.h"
+
 #include "decomp/audio/load_dat.h"
 #include "decomp/mario/geo.inc.h"
 
@@ -556,6 +558,13 @@ SM64_LIB_FN int sm64_set_volume(float vol){
 
 SM64_LIB_FN int sm64_get_version(){
     return LIB_VER; // used for compability checking with Retro64
+}
+
+SM64_LIB_FN void sm64_set_redive(u8 val) {
+    configRedive = val;
+}
+SM64_LIB_FN void sm64_set_ground_pound_jump(u8 val) {
+    configGroundPoundJump = val;
 }
 
 #ifdef VERSION_EU
