@@ -296,7 +296,7 @@ SM64_LIB_FN void sm64_mChar_animTick(int32_t marioId, uint32_t stateFlags,struct
     gMarioState->lastTime = timeInMilliseconds();
 
     gMarioState->flags = stateFlags;
-    if (gMarioState->marioObj->header.gfx.animInfo.animFrame!=info->animID && info->animID!=-1)
+    if (gMarioState->marioObj->header.gfx.animInfo.animID!=info->animID && info->animID!=-1)
         set_mario_anim_with_accel( gMarioState, info->animID,info->animAccel );
     gMarioState->marioObj->header.gfx.animInfo.animAccel=info->animAccel;
 

@@ -50,42 +50,70 @@ SM64_LIB_FN int initActor(int actorType,float x,float y,float z){
     return obj->unused2;
 }
 
-void tickAllActors(){
-    for (int i = 0; i < s_actor_instance_pool.size; i++) {
-        if (s_actor_instance_pool.objects[i] != NULL) {
-            tickActor(i,NULL,NULL);
-        }
-    }
-}
-
-SM64_LIB_FN void tickActor(int actorID,struct SM64ActorState* state,struct SM64MarioGeometryBuffers *outBuffers){
+SM64_LIB_FN struct AnimInfo* tickActor(int actorID,struct SM64ActorState* state,struct SM64MarioGeometryBuffers *outBuffers){
     if( actorID >= s_actor_instance_pool.size || s_actor_instance_pool.objects[actorID] == NULL )
     {
         DEBUG_PRINT("Tried to tick non-existant Actor with ID: %u", actorID);
         return NULL;
     }
     global_state_bind( s_actor_instance_pool.objects[ actorID ] );
-    // since we're in the object's state now, we need to set it's mario object to the closest mario inst
+    // TODO: since we're in the object's state now, we need to set it's mario object to the closest mario inst
     
     gMarioObject=(*((struct GlobalState **)s_mario_instance_pool.objects[ 0 ]))->mgMarioObject;//->oPosX
     if (outBuffers!=NULL)
         gfx_adapter_bind_output_buffers( outBuffers );
     cur_obj_update();
     if (gCurrentObject->header.gfx.sharedChild!=0x0)
-    geo_process_root_hack_single_node_obj( g_state->mgCurrentObject->header.gfx.sharedChild );
+        geo_process_root_hack_single_node_obj( g_state->mgCurrentObject->header.gfx.sharedChild );
 
-    gAreaUpdateCounter++;
+    if (state!=NULL){
+        state->position[0]=gCurrentObject->oPosX;
+        state->position[1]=gCurrentObject->oPosY;
+        state->position[2]=gCurrentObject->oPosZ;
+        state->velocity[0]=gCurrentObject->oVelX;
+        state->velocity[1]=gCurrentObject->oVelY;
+        state->velocity[2]=gCurrentObject->oVelZ;
+        state->scale[0]=gCurrentObject->header.gfx.scale[0];
+        state->scale[1]=gCurrentObject->header.gfx.scale[1];
+        state->scale[2]=gCurrentObject->header.gfx.scale[2];
+        state->rotation[0]=gCurrentObject->header.gfx.angle[0];
+        state->rotation[1]=gCurrentObject->header.gfx.angle[1];
+        state->rotation[2]=gCurrentObject->header.gfx.angle[2];
+    }
+    gAreaUpdateCounter++;   
     detect_object_collisions(); // temp
+    return &gCurrentObject->header.gfx.animInfo;
 }
 
-SM64_LIB_FN void tickActorAnim(int actorID,struct SM64MarioGeometryBuffers *outBuffers){
+SM64_LIB_FN void tickActorAnim(int actorID,uint32_t stateFlags,struct AnimInfo* info,struct SM64MarioGeometryBuffers *outBuffers,int16_t rot[3],float scale[3]){
     if( actorID >= s_actor_instance_pool.size || s_actor_instance_pool.objects[actorID] == NULL )
     {
         DEBUG_PRINT("Tried to tick non-existant Actor with ID: %u", actorID);
         return NULL;
     }
     global_state_bind( s_actor_instance_pool.objects[ actorID ] );
-    //gfx_adapter_bind_output_buffers( outBuffers );
+
+    //gCurrentObject->activeFlags=stateFlags;
+
+    if (gCurrentObject->header.gfx.animInfo.animID!=info->animID && info->animID!=-1){
+        gCurrentObject->header.gfx.animInfo.animAccel=info->animAccel;
+        gCurrentObject->header.gfx.animInfo.animFrameAccelAssist=info->animFrameAccelAssist;
+        gCurrentObject->header.gfx.animInfo.animID=info->animID;
+        gCurrentObject->header.gfx.animInfo.animFrame=0;
+        gCurrentObject->header.gfx.animInfo.curAnim=goomba_seg8_anims_0801DA4C[0];
+        //gCurrentObject->header.gfx.throwMatrix=NULL;
+    }else if (gCurrentObject->header.gfx.animInfo.animAccel!=info->animAccel){
+        gCurrentObject->header.gfx.animInfo.animAccel=info->animAccel; // only change accel
+    }
+
+    gCurrentObject->header.gfx.scale[0] = scale[0];
+    gCurrentObject->header.gfx.scale[1] = scale[1];
+    gCurrentObject->header.gfx.scale[2] = scale[2];
+    gCurrentObject->header.gfx.angle[0] = rot[0];
+    gCurrentObject->header.gfx.angle[1] = rot[1];
+    gCurrentObject->header.gfx.angle[2] = rot[2];
+
+    gfx_adapter_bind_output_buffers( outBuffers );
 
     geo_process_root_hack_single_node_obj( g_state->mgCurrentObject->header.gfx.sharedChild );
 
