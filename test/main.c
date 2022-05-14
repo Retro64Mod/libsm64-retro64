@@ -444,7 +444,7 @@ string[fsize] = 0;
     sm64_global_init_audioBin( rom, string, texture, NULL );
     sm64_static_surfaces_load( surfaces, surfaces_count );
     uint32_t mCharId = sm64_mChar_create( 0, 1000, 0 );
-
+initActor(1,-1000,100,-400);
     free( rom );
 
     RenderState renderState;
@@ -494,6 +494,7 @@ string[fsize] = 0;
         mCharState.currentModel=0;
 
         sm64_mChar_tick( mCharId, &mCharInputs, &mCharState, &mCharGeometry );
+        tickActor(0,NULL,NULL);
 
         render_draw( &renderState, cameraPos, &mCharState, &mCharGeometry );
 

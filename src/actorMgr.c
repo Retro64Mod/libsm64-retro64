@@ -5,7 +5,6 @@
 #include "decomp/model_goomba/anims/table.inc.c"
 #include "decomp/include/PR/os_cont.h"
 #include "decomp/include/sm64.h"
-#include "decomp/shim.h"
 #include "decomp/memory.h"
 #include "decomp/global_state.h"
 #include "decomp/game/mario.h"
@@ -41,8 +40,15 @@ int putObjectInActorPool(struct Object* obj){
 }
 
 SM64_LIB_FN int initActor(int actorType,float x,float y,float z){
-    g_state->mgCurrentObject=NULL;
-    struct Object* obj = spawn_object_at_origin(gMarioState->marioObj,0,MODEL_GOOMBA,bhvGoomba);
+    struct Object* obj;
+    //g_state->mgCurrentObject=NULL;
+    if (actorType==ACTOR_TYPE_GOOMBA){
+        obj = spawn_object_at_origin(gMarioState->marioObj,0,MODEL_GOOMBA,bhvGoomba);
+    }else if (actorType==ACTOR_TYPE_STAR){
+        obj = spawn_object_at_origin(gMarioState->marioObj,0,MODEL_STAR,bhvStar);
+    }else{
+        return -2;
+    }
     obj->oPosX=x;
     obj->oPosY=y;
     obj->oPosZ=z;
@@ -137,4 +143,32 @@ struct Object* getActor(int id){
     if (gs==NULL)
         return NULL;
     return gs->mgCurrentObject;
+}
+
+int getActorUsedTextures(){
+    if (gCurrentObject->behavior==bhvGoomba){
+        return 1;
+    }else if (gCurrentObject->behavior==bhvStar){
+        return 2;
+    }
+    return 0;
+}
+static const int texGoomba [1] = { 32};
+static const int texStar [1] = { 32,32};
+int* getActorWidths(){
+    if (gCurrentObject->behavior==bhvGoomba){
+        return texGoomba;
+    }else if (gCurrentObject->behavior==bhvStar){
+        return texStar;
+    }
+    return texGoomba;
+}
+
+int* getActorHeights(){
+    if (gCurrentObject->behavior==bhvGoomba){
+        return texGoomba;
+    }else if (gCurrentObject->behavior==bhvStar){
+        return texStar;
+    }
+    return texGoomba;
 }

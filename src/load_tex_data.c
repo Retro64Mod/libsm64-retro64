@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "libsm64.h"
-
+#include "actorMgr.h"
 #include "decomp/tools/libmio0.h"
 #include "decomp/tools/n64graphics.h"
 
@@ -55,6 +55,9 @@ void load_mario_textures_from_rom( uint8_t *rom, uint8_t *outTexture )
 #include "decomp/model_vibri/geo.inc.h"
 
 int getUsedTextures(){
+    if (isTickingActor){
+        return getActorUsedTextures();
+    }
     switch (getCurrentModel()){
         case MODEL_MARIO:
             return NUM_USED_TEXTURES;
@@ -74,6 +77,9 @@ int getUsedTextures(){
 }
 
 int* getWidths(){
+    if (isTickingActor){
+        return getActorWidths();
+    }
     switch (getCurrentModel()){
         case MODEL_MARIO:
             return mario_tex_widths;
@@ -93,6 +99,9 @@ int* getWidths(){
 }
 
 int* getHeights(){
+    if (isTickingActor){
+        return getActorHeights();
+    }
     switch (getCurrentModel()){
         case MODEL_MARIO:
             return mario_tex_heights;

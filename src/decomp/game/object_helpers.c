@@ -502,8 +502,8 @@ struct Object *spawn_object_at_origin(struct Object *parent, UNUSED s32 unusedAr
     obj = create_object_bhv(behaviorAddr);
 
     obj->parentObj = parent;
-    obj->header.gfx.areaIndex = parent->header.gfx.areaIndex;
-    obj->header.gfx.activeAreaIndex = parent->header.gfx.areaIndex;
+    //obj->header.gfx.areaIndex = parent->header.gfx.areaIndex;
+    //obj->header.gfx.activeAreaIndex = parent->header.gfx.areaIndex;
     // TODO: somehow deal w/ setting collision data here? maybe inherit from parent
 
     geo_obj_init((struct GraphNodeObject *) &obj->header.gfx, gLoadedGraphNodes[model], gVec3fZero,
