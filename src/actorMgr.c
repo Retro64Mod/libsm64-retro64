@@ -56,6 +56,18 @@ SM64_LIB_FN int initActor(int actorType,float x,float y,float z){
     return obj->unused2;
 }
 
+SM64_LIB_FN void destroyActor(int actorID){
+    if( actorID >= s_actor_instance_pool.size || s_actor_instance_pool.objects[actorID] == NULL )
+    {
+        DEBUG_PRINT("Tried to destroy non-existant Actor with ID: %u", actorID);
+        return;
+    }
+    global_state_bind( s_actor_instance_pool.objects[ actorID ] );
+    free(gCurrentObject);
+    // todo: do we have to free vertices/surfaces as well?
+    obj_pool_free_index( &s_actor_instance_pool, actorID );
+}
+
 SM64_LIB_FN struct AnimInfo* tickActor(int actorID,struct SM64ActorState* state,struct SM64MarioGeometryBuffers *outBuffers){
     if( actorID >= s_actor_instance_pool.size || s_actor_instance_pool.objects[actorID] == NULL )
     {
