@@ -54,6 +54,7 @@ static struct AudioAPI *audio_api;
 
 static bool s_init_global = false;
 static bool s_init_one_mario = false;
+static bool modelsInit=false;
 bool hasAudio;
 struct MarioInstance
 {

@@ -1168,6 +1168,8 @@ void geo_process_root_hack_single_node(struct GraphNode *node)
 
 void geo_process_root_hack_single_node_obj(struct GraphNode *node)
 {
+    if (node==NULL)
+        return;
     gDisplayListHead = NULL; // Currently unused, but referenced
 
     display_list_pool_reset();

@@ -30,13 +30,15 @@ void initModels(struct AllocOnlyPool *pool){
     modelPointers[MODEL_NECOARC] = (void*)necoarc_geo_ptr;
     modelPointers[MODEL_VIBRI] = (void*)vibri_geo_ptr;
 
-    gLoadedGraphNodes[MODEL_GOOMBA]=process_geo_layout(pool,goomba_geo_ptr);
-    gLoadedGraphNodes[MODEL_YELLOW_COIN]=process_geo_layout(pool,yellow_coin_geo_ptr);
-    gLoadedGraphNodes[MODEL_STAR]=process_geo_layout(pool,star_geo_ptr);
-
     for (int i = 0;i<ModelsUsed;i++){
         model_nodes[i]=process_geo_layout( pool, modelPointers[i] );
     }
+}
+
+void initActorModels(struct AllocOnlyPool *pool){
+    gLoadedGraphNodes[MODEL_GOOMBA]=process_geo_layout(pool,goomba_geo_ptr);
+    gLoadedGraphNodes[MODEL_YELLOW_COIN]=process_geo_layout(pool,yellow_coin_geo_ptr);
+    gLoadedGraphNodes[MODEL_STAR]=process_geo_layout(pool,star_geo_ptr);
 }
 
 struct GraphNode* getModel(int model){

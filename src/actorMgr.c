@@ -30,6 +30,8 @@
 #include "decomp/include/model_ids.h"
 #include "actorMgr.h"
 struct ObjPool s_actor_instance_pool = { 0, 0 };
+static bool s_init_one_actor = false;
+static struct AllocOnlyPool *s_actor_geo_pool = NULL;
 
 int putObjectInActorPool(struct Object* obj){
     int id = obj_pool_alloc_index( &s_actor_instance_pool, sizeof( struct GlobalState ));
@@ -40,12 +42,17 @@ int putObjectInActorPool(struct Object* obj){
 }
 
 SM64_LIB_FN int initActor(int actorType,float x,float y,float z){
+    if (!s_init_one_actor){
+        s_init_one_actor=true;
+        s_actor_geo_pool = alloc_only_pool_init();
+        initActorModels(s_actor_geo_pool);
+    }
     struct Object* obj;
     //g_state->mgCurrentObject=NULL;
     if (actorType==ACTOR_TYPE_GOOMBA){
-        obj = spawn_object_at_origin(gMarioState->marioObj,0,MODEL_GOOMBA,bhvGoomba);
+        obj = spawn_object_at_origin(NULL,0,MODEL_GOOMBA,bhvGoomba);
     }else if (actorType==ACTOR_TYPE_STAR){
-        obj = spawn_object_at_origin(gMarioState->marioObj,0,MODEL_STAR,bhvStar);
+        obj = spawn_object_at_origin(NULL,0,MODEL_STAR,bhvStar);
     }else{
         return -2;
     }
@@ -76,7 +83,7 @@ SM64_LIB_FN struct AnimInfo* tickActor(int actorID,struct SM64ActorState* state,
     }
     global_state_bind( s_actor_instance_pool.objects[ actorID ] );
     // TODO: since we're in the object's state now, we need to set it's mario object to the closest mario inst
-    if (s_mario_instance_pool.objects[ 0 ]==NULL)
+    if (s_mario_instance_pool.objects == NULL || s_mario_instance_pool.objects[ 0 ]==NULL)
         gMarioObject=NULL; // may cause mobs to be deleted in java side
     else
         gMarioObject=(*((struct GlobalState **)s_mario_instance_pool.objects[ 0 ]))->mgMarioObject;//->oPosX
