@@ -879,7 +879,11 @@ void treat_far_home_as_mario(f32 threshold) {
     f32 dy = o->oHomeY - o->oPosY;
     f32 dz = o->oHomeZ - o->oPosZ;
     f32 distance = sqrtf(dx * dx + dy * dy + dz * dz);
-
+    if (gMarioObject==NULL){
+        o->oAngleToMario=999999;
+        o->oAngleToMario=0;
+        return;
+    }
     if (distance > threshold) {
         o->oAngleToMario = atan2s(dz, dx);
         o->oDistanceToMario = 25000.0f;

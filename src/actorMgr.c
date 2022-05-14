@@ -64,8 +64,10 @@ SM64_LIB_FN struct AnimInfo* tickActor(int actorID,struct SM64ActorState* state,
     }
     global_state_bind( s_actor_instance_pool.objects[ actorID ] );
     // TODO: since we're in the object's state now, we need to set it's mario object to the closest mario inst
-    
-    gMarioObject=(*((struct GlobalState **)s_mario_instance_pool.objects[ 0 ]))->mgMarioObject;//->oPosX
+    if (s_mario_instance_pool.objects[ 0 ]==NULL)
+        gMarioObject=NULL; // may cause mobs to be deleted in java side
+    else
+        gMarioObject=(*((struct GlobalState **)s_mario_instance_pool.objects[ 0 ]))->mgMarioObject;//->oPosX
     if (outBuffers!=NULL)
         gfx_adapter_bind_output_buffers( outBuffers );
     cur_obj_update();
@@ -100,6 +102,8 @@ SM64_LIB_FN void tickActorAnim(int actorID,uint32_t stateFlags,struct AnimInfo* 
     global_state_bind( s_actor_instance_pool.objects[ actorID ] );
 
     //gCurrentObject->activeFlags=stateFlags;
+    if (gCurrentObject->header.gfx.animInfo.curAnim==NULL)
+        gCurrentObject->header.gfx.animInfo.curAnim=info->curAnim;
 
     if (gCurrentObject->header.gfx.animInfo.animID!=info->animID && info->animID!=-1){
         gCurrentObject->header.gfx.animInfo.animAccel=info->animAccel;

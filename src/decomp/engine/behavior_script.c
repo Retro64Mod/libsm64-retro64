@@ -913,17 +913,23 @@ void cur_obj_update(void) {
     BhvCommandProc bhvCmdProc;
     s32 bhvProcResult;
 
-    // Calculate the distance from the object to Mario.
-    if (objFlags & OBJ_FLAG_COMPUTE_DIST_TO_MARIO) {
-        gCurrentObject->oDistanceToMario = dist_between_objects(gCurrentObject, gMarioObject);
-        distanceFromMario = gCurrentObject->oDistanceToMario;
-    } else {
-        distanceFromMario = 0.0f;
-    }
+    if (gMarioObject!=NULL){
+            // Calculate the distance from the object to Mario.
+        if (objFlags & OBJ_FLAG_COMPUTE_DIST_TO_MARIO) {
+            gCurrentObject->oDistanceToMario = dist_between_objects(gCurrentObject, gMarioObject);
+            distanceFromMario = gCurrentObject->oDistanceToMario;
+        } else {
+            distanceFromMario = 0.0f;
+        }
 
-    // Calculate the angle from the object to Mario.
-    if (objFlags & OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO) {
-        gCurrentObject->oAngleToMario = obj_angle_to_object(gCurrentObject, gMarioObject);
+        // Calculate the angle from the object to Mario.
+        if (objFlags & OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO) {
+            gCurrentObject->oAngleToMario = obj_angle_to_object(gCurrentObject, gMarioObject);
+        }
+    }else{
+        distanceFromMario = 9999999;
+        gCurrentObject->oDistanceToMario = 9999999;
+        gCurrentObject->oAngleToMario=0;
     }
 
     // If the object's action has changed, reset the action timer.

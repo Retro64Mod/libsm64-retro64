@@ -76,7 +76,7 @@ s32 detect_object_hurtbox_overlap(struct Object *a, struct Object *b) {
     f32 sp28 = a->hurtboxRadius + b->hurtboxRadius;
     f32 sp24 = sqrtf(sp34 * sp34 + sp2C * sp2C);
 
-    if (a == gMarioObject) {
+    if (gMarioObject != NULL && a == gMarioObject) {
         b->oInteractionSubtype |= INT_SUBTYPE_DELAY_INVINCIBILITY;
     }
 
@@ -90,7 +90,7 @@ s32 detect_object_hurtbox_overlap(struct Object *a, struct Object *b) {
         if (sp20 < sp38) {
             return 0;
         }
-        if (a == gMarioObject) {
+        if (gMarioObject != NULL && a == gMarioObject) {
             b->oInteractionSubtype &= ~INT_SUBTYPE_DELAY_INVINCIBILITY;
         }
         return 1;
@@ -108,6 +108,8 @@ void clear_object_collision(enum ObjectList objType) {
         pool = &s_mario_instance_pool;
     }
     for (int i = 0; i < pool->size; i++) {
+        if (objType==-1 && s_mario_instance_pool.objects[ i ]==NULL)
+            continue;
         struct Object* b = objType != -1 ? getActor(i) : (*((struct GlobalState **)s_mario_instance_pool.objects[ i ]))->mgMarioObject;
         if (b==NULL) continue;
         enum ObjectList actorType = getActorObjList(i);
@@ -141,6 +143,8 @@ void check_collision_in_list(struct Object *a, enum ObjectList objType) {
 
 void check_player_object_collision(void) { // TODO: rewrite this to handle new "object list"
     for (int i = 0;i<s_mario_instance_pool.size;i++) {
+        if (s_mario_instance_pool.objects[ i ]==NULL)
+            continue;
         struct Object* b = (*((struct GlobalState **)s_mario_instance_pool.objects[ i ]))->mgMarioObject;
         if (b==NULL) continue;
         //if (((b->behavior[0] >> 16) & 0xFFFF)==OBJ_LIST_PLAYER){
