@@ -43,6 +43,7 @@
 #include "decomp/audio/external.h"
 
 #include "decomp/audio/load_dat.h"
+#include "decomp/tools/convUtils.h"
 #include "decomp/mario/geo.inc.h"
 
 static struct AllocOnlyPool *s_mario_geo_pool = NULL;
@@ -54,7 +55,6 @@ static struct AudioAPI *audio_api;
 
 static bool s_init_global = false;
 static bool s_init_one_mario = false;
-bool hasAudio;
 struct MarioInstance
 {
     struct GlobalState *globalState;
@@ -102,24 +102,20 @@ int getCurrentModel(){
 
 pthread_t gSoundThread;
 
-SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequences_bin,uint8_t *sound_data_ctl,uint8_t *sound_data_tbl,int bank_set_len,int sequences_len,int ctl_len,int tbl_len, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction )
+SM64_LIB_FN void sm64_global_init( uint8_t *rom, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction )
 {
-    handleErrors();
-    hasAudio=false;
-    if (bank_set_len != 0 & sequences_len != 0 & ctl_len != 0 & tbl_len != 0)
-    {
-        hasAudio=true;
-        gBankSetsData=malloc(bank_set_len);
-        gMusicData=malloc(sequences_len);
-        gSoundDataADSR=malloc(ctl_len);
-        gSoundDataRaw=malloc(tbl_len);
-        memcpy(gBankSetsData,bank_sets,bank_set_len);
-        memcpy(gMusicData,sequences_bin,sequences_len);
-        memcpy(gSoundDataADSR,sound_data_ctl,ctl_len);
-        memcpy(gSoundDataRaw,sound_data_tbl,tbl_len);
-    }
+    uint8_t * rom2 = malloc(0x800000);
+    memcpy(rom2,rom,0x800000);
+    rom = rom2;
+    gSoundDataADSR= parse_seqfile(rom+5748512); // CTL
+    gSoundDataRaw= parse_seqfile(rom+5846368); // TBL
+    gMusicData=parse_seqfile(rom+8063072); // SEQ
+    gBankSetsData=rom+0x7CC621; // BIN
+    // shift the next 90 elements after gBankSetsData+0x45 forward by 1
+    memmove(gBankSetsData+0x45,gBankSetsData+0x45-1,0x5B);
+    gBankSetsData[0x45]=0x00;
+    ptrs_to_offsets(gSoundDataADSR);
     initMarioGeo(rom);
-
     if( s_init_global )
         sm64_global_terminate();
     s_init_global = true;
@@ -129,53 +125,37 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
     load_mario_anims_from_rom( rom );
 
     memory_init();
-
-    if (hasAudio){
     #if HAVE_WASAPI
-        if (audio_api == NULL && audio_wasapi.init()) {
-            audio_api = &audio_wasapi;
-        }
+    if (audio_api == NULL && audio_wasapi.init()) {
+        audio_api = &audio_wasapi;
+    }
     #endif
     #if HAVE_PULSE_AUDIO
-        if (audio_api == NULL && audio_pulse.init()) {
-            audio_api = &audio_pulse;
-        }
+    if (audio_api == NULL && audio_pulse.init()) {
+        audio_api = &audio_pulse;
+    }
     #endif
     #if HAVE_ALSA
-        if (audio_api == NULL && audio_alsa.init()) {
-            audio_api = &audio_alsa;
-        }
+    if (audio_api == NULL && audio_alsa.init()) {
+        audio_api = &audio_alsa;
+    }
     #endif
     #ifdef TARGET_WEB
-        if (audio_api == NULL && audio_sdl.init()) {
-            audio_api = &audio_sdl;
-        }
-    #endif
-        if (audio_api == NULL) {
-            audio_api = &audio_null;
-        }
-        
-        audio_init();
-        sound_init();
-        sound_reset(0);
-        // start audio thread
-        pthread_create(&gSoundThread, NULL, audio_thread, NULL);
-    }else{
-        DEBUG_PRINT("No audio support");
+    if (audio_api == NULL && audio_sdl.init()) {
+        audio_api = &audio_sdl;
     }
-}
+    #endif
+    if (audio_api == NULL) {
+        audio_api = &audio_null;
+    }
+        
+    audio_init();
+    sound_init();
+    sound_reset(0);
 
-SM64_LIB_FN void sm64_global_init_audioBin(uint8_t *rom,char* audioData, uint8_t *outTexture, SM64DebugPrintFunctionPtr debugPrintFunction){
-    // file format: audioDataTblSize,soundDataCtlSize,bankSetsSize,sequencesSize,soundDataTBL,soundDataCtl,bankSets,sequences
-    int audioDataTblSize = *(int*)audioData;
-    int soundDataCtlSize = *(int*)(audioData+4);
-    int bankSetsSize = *(int*)(audioData+8);
-    int sequencesSize = *(int*)(audioData+12);
-    char* soundDataTBL = audioData+16;
-    char* soundDataCTL = audioData+16+audioDataTblSize;
-    char* bankSets = audioData+16+audioDataTblSize+soundDataCtlSize;
-    char* sequences = audioData+16+audioDataTblSize+soundDataCtlSize+bankSetsSize;
-    sm64_global_init(rom,bankSets,sequences,soundDataCTL,soundDataTBL,bankSetsSize,sequencesSize,soundDataCtlSize,audioDataTblSize,outTexture,debugPrintFunction);
+    // start audio thread
+    pthread_create(&gSoundThread, NULL, audio_thread, NULL);
+    
 }
 
 SM64_LIB_FN void sm64_global_terminate( void )
@@ -196,6 +176,7 @@ SM64_LIB_FN void sm64_global_terminate( void )
     s_init_global = false;
     s_init_one_mario = false;
        
+	ctl_free();
     alloc_only_pool_free( s_mario_geo_pool );
     surfaces_unload_all();
     unload_mario_anims();
