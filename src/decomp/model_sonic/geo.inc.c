@@ -6,6 +6,7 @@
 #include "../game/object_stuff.h"
 #include "../game/behavior_actions.h"
 #include "model.inc.h"
+#include "geo.inc.h"
 
 #define SHADOW_CIRCLE_PLAYER 99
 

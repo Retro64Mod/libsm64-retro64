@@ -136,6 +136,7 @@ typedef struct {
 #define gsDPSetTile(fmt, siz, line, tmem, tile, palette, cmt, maskt, shiftt, cms, masks, shifts) (GFXCMD_None)
 #define gsDPLoadBlock(tile, uls, ult, lrs, dxt) (GFXCMD_None)
 #define gsDPLoadSync() (GFXCMD_None)
+#define gsDPLoadTile(tile, uls, ult, lrs, dxt) (GFXCMD_None)
 
 #define gsSPSetLights1(name)						\
 	gsSPLight(&name.l,1),					\

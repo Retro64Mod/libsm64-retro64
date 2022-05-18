@@ -4,6 +4,7 @@
 #include "decomp/model_alex/geo.inc.h"
 #include "decomp/model_necoarc/geo.inc.h"
 #include "decomp/model_vibri/geo.inc.h"
+#include "decomp/model_sonic/geo.inc.h"
 // models done
 #include "decomp/engine/geo_layout.h"
 #include "model_handler.h"
@@ -20,6 +21,7 @@ void initModels(struct AllocOnlyPool *pool){
     modelPointers[MODEL_ALEX] = (void*)alex_geo_ptr;
     modelPointers[MODEL_NECOARC] = (void*)necoarc_geo_ptr;
     modelPointers[MODEL_VIBRI] = (void*)vibri_geo_ptr;
+    modelPointers[MODEL_SONIC] = (void*)sonic_geo_ptr;
 
     for (int i = 0;i<ModelsUsed;i++){
         model_nodes[i]=process_geo_layout( pool, modelPointers[i] );

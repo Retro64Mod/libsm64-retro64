@@ -37,28 +37,28 @@ Gfx sonic_metal_rgba16_aligner[] = {gsSPEndDisplayList()};
 #define sonic_metal_rgba16 0
 
 Gfx sonic_sonic_shading_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define sonic_sonic_shading_rgba16 0
+#define sonic_sonic_shading_rgba16 4
 
 Gfx sonic_sonic_face_64px_rgba16_aligner[] = {gsSPEndDisplayList()};
 #define sonic_sonic_face_64px_rgba16 0
 
 Gfx sonic_sonic_face_64px_2_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define sonic_sonic_face_64px_2_rgba16 0
+#define sonic_sonic_face_64px_2_rgba16 1
 
 Gfx sonic_sonic_face_64px_3_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define sonic_sonic_face_64px_3_rgba16 0
+#define sonic_sonic_face_64px_3_rgba16 2
 
 Gfx sonic_sonic_face_64px_4_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define sonic_sonic_face_64px_4_rgba16 0
+#define sonic_sonic_face_64px_4_rgba16 3
 
 Gfx sonic_wing_2_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define sonic_wing_2_rgba16 0
+#define sonic_wing_2_rgba16 6
 
 Gfx sonic_wing1_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define sonic_wing1_rgba16 0
+#define sonic_wing1_rgba16 7
 
 Gfx sonic_sonic_shoe_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define sonic_sonic_shoe_rgba16 0
+#define sonic_sonic_shoe_rgba16 5
 
 Gfx sonic_sonic_cap_rgba16_aligner[] = {gsSPEndDisplayList()};
 #define sonic_sonic_cap_rgba16 0
