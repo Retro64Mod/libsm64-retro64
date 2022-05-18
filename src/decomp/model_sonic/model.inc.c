@@ -1,81 +1,81 @@
 #include "../../load_tex_data.h"
 #include "../../gfx_macros.h"
 
-Lights1 mario_gloves_v3_lights = gdSPDefLights1(
+Lights1 sonic_gloves_v3_lights = gdSPDefLights1(
 	0x7F, 0x7F, 0x7F,
 	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 mario_BODY_f3d_lights = gdSPDefLights1(
+Lights1 sonic_BODY_f3d_lights = gdSPDefLights1(
 	0x7F, 0x7F, 0x7F,
 	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 mario_open_lights = gdSPDefLights1(
+Lights1 sonic_open_lights = gdSPDefLights1(
 	0x7F, 0x7F, 0x7F,
 	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 mario_half_lights = gdSPDefLights1(
+Lights1 sonic_half_lights = gdSPDefLights1(
 	0x7F, 0x7F, 0x7F,
 	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 mario_closed_lights = gdSPDefLights1(
+Lights1 sonic_closed_lights = gdSPDefLights1(
 	0x7F, 0x7F, 0x7F,
 	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 mario_dead_lights = gdSPDefLights1(
+Lights1 sonic_dead_lights = gdSPDefLights1(
 	0x7F, 0x7F, 0x7F,
 	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 mario_SHOES_f3d_lights = gdSPDefLights1(
+Lights1 sonic_SHOES_f3d_lights = gdSPDefLights1(
 	0x7F, 0x7F, 0x7F,
 	0xFE, 0xFE, 0xFE, 0x28, 0x28, 0x28);
 
-Lights1 mario_cap_v3_lights = gdSPDefLights1(
+Lights1 sonic_cap_v3_lights = gdSPDefLights1(
 	0x7F, 0x0, 0x0,
 	0xFE, 0x0, 0x0, 0x28, 0x28, 0x28);
 
-Gfx mario_metal_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define mario_metal_rgba16 0
+Gfx sonic_metal_rgba16_aligner[] = {gsSPEndDisplayList()};
+#define sonic_metal_rgba16 0
 
-Gfx mario_sonic_shading_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define mario_sonic_shading_rgba16 0
+Gfx sonic_sonic_shading_rgba16_aligner[] = {gsSPEndDisplayList()};
+#define sonic_sonic_shading_rgba16 0
 
-Gfx mario_sonic_face_64px_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define mario_sonic_face_64px_rgba16 0
+Gfx sonic_sonic_face_64px_rgba16_aligner[] = {gsSPEndDisplayList()};
+#define sonic_sonic_face_64px_rgba16 0
 
-Gfx mario_sonic_face_64px_2_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define mario_sonic_face_64px_2_rgba16 0
+Gfx sonic_sonic_face_64px_2_rgba16_aligner[] = {gsSPEndDisplayList()};
+#define sonic_sonic_face_64px_2_rgba16 0
 
-Gfx mario_sonic_face_64px_3_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define mario_sonic_face_64px_3_rgba16 0
+Gfx sonic_sonic_face_64px_3_rgba16_aligner[] = {gsSPEndDisplayList()};
+#define sonic_sonic_face_64px_3_rgba16 0
 
-Gfx mario_sonic_face_64px_4_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define mario_sonic_face_64px_4_rgba16 0
+Gfx sonic_sonic_face_64px_4_rgba16_aligner[] = {gsSPEndDisplayList()};
+#define sonic_sonic_face_64px_4_rgba16 0
 
-Gfx mario_wing_2_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define mario_wing_2_rgba16 0
+Gfx sonic_wing_2_rgba16_aligner[] = {gsSPEndDisplayList()};
+#define sonic_wing_2_rgba16 0
 
-Gfx mario_wing1_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define mario_wing1_rgba16 0
+Gfx sonic_wing1_rgba16_aligner[] = {gsSPEndDisplayList()};
+#define sonic_wing1_rgba16 0
 
-Gfx mario_sonic_shoe_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define mario_sonic_shoe_rgba16 0
+Gfx sonic_sonic_shoe_rgba16_aligner[] = {gsSPEndDisplayList()};
+#define sonic_sonic_shoe_rgba16 0
 
-Gfx mario_mario_cap_rgba16_aligner[] = {gsSPEndDisplayList()};
-#define mario_mario_cap_rgba16 0
+Gfx sonic_sonic_cap_rgba16_aligner[] = {gsSPEndDisplayList()};
+#define sonic_sonic_cap_rgba16 0
 
-Vtx mario_000_offset_mesh_layer_1_vtx_0[3] = {
+Vtx sonic_000_offset_mesh_layer_1_vtx_0[3] = {
 	{{{19, 3, -7},0, {-16, -16},{0x5C, 0x53, 0xE5, 0xFF}}},
 	{{{14, 5, -4},0, {-16, -16},{0x4, 0x7E, 0xF3, 0xFF}}},
 	{{{19, 3, 6},0, {-16, -16},{0x5C, 0x54, 0x1A, 0xFF}}},
 };
 
-Gfx mario_000_offset_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 3, 0),
+Gfx sonic_000_offset_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 3, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_001_mesh_layer_1_vtx_0[146] = {
+Vtx sonic_000_offset_001_mesh_layer_1_vtx_0[146] = {
 	{{{-47, -51, -6},0, {977, 449},{0x51, 0x9E, 0x0, 0xFF}}},
 	{{{-54, -44, 12},0, {722, 449},{0x24, 0xCB, 0x6E, 0xFF}}},
 	{{{-124, -116, 0},0, {722, 714},{0xD3, 0x8C, 0x1B, 0xFF}}},
@@ -224,27 +224,27 @@ Vtx mario_000_offset_001_mesh_layer_1_vtx_0[146] = {
 	{{{-49, 39, 0},0, {728, 445},{0xAA, 0x5D, 0xF7, 0xFF}}},
 };
 
-Gfx mario_000_offset_001_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_001_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
+Gfx sonic_000_offset_001_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_001_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 2, 0),
 	gsSP1Triangle(8, 9, 10, 0),
 	gsSP1Triangle(11, 12, 13, 0),
-	gsSPVertex((char*)mario_000_offset_001_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_offset_001_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_000_offset_001_mesh_layer_1_vtx_0 + 29*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_offset_001_mesh_layer_1_vtx_0 + 29*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 5, 0),
 	gsSP1Triangle(8, 9, 5, 0),
 	gsSP1Triangle(10, 11, 12, 0),
 	gsSP1Triangle(13, 14, 12, 0),
-	gsSPVertex((char*)mario_000_offset_001_mesh_layer_1_vtx_0 + 44*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_offset_001_mesh_layer_1_vtx_0 + 44*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 2, 0),
 	gsSP1Triangle(5, 6, 2, 0),
@@ -252,7 +252,7 @@ Gfx mario_000_offset_001_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(9, 10, 7, 0),
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(11, 13, 14, 0),
-	gsSPVertex((char*)mario_000_offset_001_mesh_layer_1_vtx_0 + 59*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_offset_001_mesh_layer_1_vtx_0 + 59*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -261,7 +261,7 @@ Gfx mario_000_offset_001_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_000_offset_001_mesh_layer_1_vtx_0 + 75*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_offset_001_mesh_layer_1_vtx_0 + 75*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -270,7 +270,7 @@ Gfx mario_000_offset_001_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(10, 11, 8, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(14, 15, 12, 0),
-	gsSPVertex((char*)mario_000_offset_001_mesh_layer_1_vtx_0 + 91*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_offset_001_mesh_layer_1_vtx_0 + 91*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -279,7 +279,7 @@ Gfx mario_000_offset_001_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(10, 11, 8, 0),
 	gsSP1Triangle(8, 12, 13, 0),
 	gsSP1Triangle(8, 13, 14, 0),
-	gsSPVertex((char*)mario_000_offset_001_mesh_layer_1_vtx_0 + 106*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_offset_001_mesh_layer_1_vtx_0 + 106*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -288,7 +288,7 @@ Gfx mario_000_offset_001_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_000_offset_001_mesh_layer_1_vtx_0 + 122*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_offset_001_mesh_layer_1_vtx_0 + 122*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -297,7 +297,7 @@ Gfx mario_000_offset_001_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_000_offset_001_mesh_layer_1_vtx_0 + 138*sizeof(Vtx), 8, 0),
+	gsSPVertex((char*)sonic_000_offset_001_mesh_layer_1_vtx_0 + 138*sizeof(Vtx), 8, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -305,7 +305,7 @@ Gfx mario_000_offset_001_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_displaylist_mesh_layer_1_vtx_0[188] = {
+Vtx sonic_000_displaylist_mesh_layer_1_vtx_0[188] = {
 	{{{58, 131, -3},0, {681, 114},{0xB, 0x88, 0xD7, 0xFF}}},
 	{{{58, 131, 0},0, {637, 114},{0xE0, 0xB2, 0x5F, 0xFF}}},
 	{{{51, 135, -1},0, {637, 159},{0x9D, 0xCA, 0xC5, 0xFF}}},
@@ -496,52 +496,52 @@ Vtx mario_000_displaylist_mesh_layer_1_vtx_0[188] = {
 	{{{65, 128, -1},0, {105, 821},{0xF, 0x7E, 0x0, 0xFF}}},
 };
 
-Gfx mario_000_displaylist_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
+Gfx sonic_000_displaylist_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 5, 0),
 	gsSP1Triangle(11, 12, 13, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 1, 10, 0),
 	gsSP1Triangle(4, 11, 12, 0),
 	gsSP1Triangle(13, 14, 15, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 30*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 30*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 45*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 45*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 60*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 60*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 75*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 75*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 90*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 90*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(9, 11, 12, 0),
 	gsSP1Triangle(13, 14, 15, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 106*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 106*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(3, 5, 6, 0),
@@ -549,7 +549,7 @@ Gfx mario_000_displaylist_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(9, 10, 7, 0),
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(13, 14, 11, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 121*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 121*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -558,7 +558,7 @@ Gfx mario_000_displaylist_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(10, 11, 8, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 137*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 137*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -567,7 +567,7 @@ Gfx mario_000_displaylist_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(10, 11, 8, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 153*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 153*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -576,7 +576,7 @@ Gfx mario_000_displaylist_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(10, 11, 8, 0),
 	gsSP1Triangle(8, 12, 13, 0),
 	gsSP1Triangle(12, 14, 13, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 168*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 168*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -585,13 +585,13 @@ Gfx mario_000_displaylist_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_0 + 184*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_0 + 184*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_displaylist_mesh_layer_1_vtx_1[13] = {
+Vtx sonic_000_displaylist_mesh_layer_1_vtx_1[13] = {
 	{{{69, -8, -131},0, {2018, 2020},{0xE7, 0x19, 0x86, 0xFF}}},
 	{{{49, 90, -93},0, {1009, 2030},{0xFA, 0x53, 0xA0, 0xFF}}},
 	{{{169, 90, -93},0, {1006, 1059},{0x1B, 0x51, 0xA2, 0xFF}}},
@@ -607,8 +607,8 @@ Vtx mario_000_displaylist_mesh_layer_1_vtx_1[13] = {
 	{{{169, -8, -131},0, {2018, 1063},{0x10, 0x1B, 0x85, 0xFF}}},
 };
 
-Gfx mario_000_displaylist_mesh_layer_1_tri_1[] = {
-	gsSPVertex((char*)mario_000_displaylist_mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 13, 0),
+Gfx sonic_000_displaylist_mesh_layer_1_tri_1[] = {
+	gsSPVertex((char*)sonic_000_displaylist_mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 13, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 2, 1, 0),
 	gsSP1Triangle(3, 1, 4, 0),
@@ -626,7 +626,7 @@ Gfx mario_000_displaylist_mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0[188] = {
+Vtx sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0[188] = {
 	{{{57, 128, -2},0, {681, 114},{0xB, 0x88, 0xD7, 0xFF}}},
 	{{{57, 128, 2},0, {637, 114},{0xE0, 0xB2, 0x5F, 0xFF}}},
 	{{{51, 132, 0},0, {637, 159},{0x9D, 0xCA, 0xC5, 0xFF}}},
@@ -817,52 +817,52 @@ Vtx mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0[188] = {
 	{{{64, 125, 0},0, {105, 821},{0xF, 0x7E, 0x0, 0xFF}}},
 };
 
-Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
+Gfx sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 5, 0),
 	gsSP1Triangle(11, 12, 13, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 1, 10, 0),
 	gsSP1Triangle(4, 11, 12, 0),
 	gsSP1Triangle(13, 14, 15, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 30*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 30*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 45*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 45*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 60*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 60*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 75*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 75*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 90*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 90*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(9, 11, 12, 0),
 	gsSP1Triangle(13, 14, 15, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 106*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 106*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(3, 5, 6, 0),
@@ -870,7 +870,7 @@ Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(9, 10, 7, 0),
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(13, 14, 11, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 121*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 121*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -879,7 +879,7 @@ Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(10, 11, 8, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 137*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 137*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -888,7 +888,7 @@ Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(10, 11, 8, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 153*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 153*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -897,7 +897,7 @@ Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(10, 11, 8, 0),
 	gsSP1Triangle(8, 12, 13, 0),
 	gsSP1Triangle(12, 14, 13, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 168*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 168*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -906,13 +906,13 @@ Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 184*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_0 + 184*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_1[13] = {
+Vtx sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_1[13] = {
 	{{{68, -11, -130},0, {2018, 2020},{0xE7, 0x19, 0x86, 0xFF}}},
 	{{{48, 87, -92},0, {1009, 2030},{0xFA, 0x53, 0xA0, 0xFF}}},
 	{{{168, 87, -92},0, {1006, 1059},{0x1B, 0x51, 0xA2, 0xFF}}},
@@ -928,8 +928,8 @@ Vtx mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_1[13] = {
 	{{{169, -11, -130},0, {2018, 1063},{0x10, 0x1B, 0x85, 0xFF}}},
 };
 
-Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_tri_1[] = {
-	gsSPVertex((char*)mario_002_switch_option_head__no_cap__mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 13, 0),
+Gfx sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_1[] = {
+	gsSPVertex((char*)sonic_002_switch_option_head__no_cap__mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 13, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 2, 1, 0),
 	gsSP1Triangle(3, 1, 4, 0),
@@ -947,63 +947,63 @@ Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_displaylist_001_mesh_layer_4_vtx_0[4] = {
+Vtx sonic_000_displaylist_001_mesh_layer_4_vtx_0[4] = {
 	{{{0, 0, 0},0, {-16, 1978},{0x17, 0x0, 0x7D, 0xFF}}},
 	{{{104, 0, -19},0, {974, 1978},{0x17, 0x0, 0x7D, 0xFF}}},
 	{{{104, 212, -19},0, {974, -34},{0x17, 0x0, 0x7D, 0xFF}}},
 	{{{0, 212, 0},0, {-16, -34},{0x16, 0x0, 0x7D, 0xFF}}},
 };
 
-Gfx mario_000_displaylist_001_mesh_layer_4_tri_0[] = {
-	gsSPVertex((char*)mario_000_displaylist_001_mesh_layer_4_vtx_0 + 0*sizeof(Vtx), 4, 0),
+Gfx sonic_000_displaylist_001_mesh_layer_4_tri_0[] = {
+	gsSPVertex((char*)sonic_000_displaylist_001_mesh_layer_4_vtx_0 + 0*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_displaylist_001_mesh_layer_4_vtx_1[4] = {
+Vtx sonic_000_displaylist_001_mesh_layer_4_vtx_1[4] = {
 	{{{-103, 212, 18},0, {-16, -34},{0x16, 0x0, 0x7D, 0xFF}}},
 	{{{0, 0, 0},0, {974, 1978},{0x17, 0x0, 0x7D, 0xFF}}},
 	{{{0, 212, 0},0, {974, -34},{0x16, 0x0, 0x7D, 0xFF}}},
 	{{{-103, 0, 19},0, {-16, 1978},{0x16, 0x0, 0x7D, 0xFF}}},
 };
 
-Gfx mario_000_displaylist_001_mesh_layer_4_tri_1[] = {
-	gsSPVertex((char*)mario_000_displaylist_001_mesh_layer_4_vtx_1 + 0*sizeof(Vtx), 4, 0),
+Gfx sonic_000_displaylist_001_mesh_layer_4_tri_1[] = {
+	gsSPVertex((char*)sonic_000_displaylist_001_mesh_layer_4_vtx_1 + 0*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_displaylist_002_mesh_layer_4_vtx_0[4] = {
+Vtx sonic_000_displaylist_002_mesh_layer_4_vtx_0[4] = {
 	{{{0, 0, 0},0, {-16, 1978},{0xE9, 0x0, 0x7D, 0xFF}}},
 	{{{104, 0, 19},0, {974, 1978},{0xE9, 0x0, 0x7D, 0xFF}}},
 	{{{104, 212, 19},0, {974, -34},{0xE9, 0x0, 0x7D, 0xFF}}},
 	{{{0, 212, 0},0, {-16, -34},{0xEA, 0x0, 0x7D, 0xFF}}},
 };
 
-Gfx mario_000_displaylist_002_mesh_layer_4_tri_0[] = {
-	gsSPVertex((char*)mario_000_displaylist_002_mesh_layer_4_vtx_0 + 0*sizeof(Vtx), 4, 0),
+Gfx sonic_000_displaylist_002_mesh_layer_4_tri_0[] = {
+	gsSPVertex((char*)sonic_000_displaylist_002_mesh_layer_4_vtx_0 + 0*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_displaylist_002_mesh_layer_4_vtx_1[4] = {
+Vtx sonic_000_displaylist_002_mesh_layer_4_vtx_1[4] = {
 	{{{-103, 212, -18},0, {-16, -34},{0xEA, 0x0, 0x7D, 0xFF}}},
 	{{{-103, 0, -19},0, {-16, 1978},{0xEA, 0x0, 0x7D, 0xFF}}},
 	{{{0, 0, 0},0, {974, 1978},{0xE9, 0x0, 0x7D, 0xFF}}},
 	{{{0, 212, 0},0, {974, -34},{0xEA, 0x0, 0x7D, 0xFF}}},
 };
 
-Gfx mario_000_displaylist_002_mesh_layer_4_tri_1[] = {
-	gsSPVertex((char*)mario_000_displaylist_002_mesh_layer_4_vtx_1 + 0*sizeof(Vtx), 4, 0),
+Gfx sonic_000_displaylist_002_mesh_layer_4_tri_1[] = {
+	gsSPVertex((char*)sonic_000_displaylist_002_mesh_layer_4_vtx_1 + 0*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_003_mesh_layer_1_vtx_0[20] = {
+Vtx sonic_000_offset_003_mesh_layer_1_vtx_0[20] = {
 	{{{60, 8, 0},0, {121, 916},{0xE3, 0x7C, 0x3, 0xFF}}},
 	{{{1, -2, 10},0, {290, 747},{0xE2, 0x1B, 0x78, 0xFF}}},
 	{{{60, -1, 10},0, {290, 916},{0x18, 0x1A, 0x7A, 0xFF}}},
@@ -1026,8 +1026,8 @@ Vtx mario_000_offset_003_mesh_layer_1_vtx_0[20] = {
 	{{{60, -2, -8},0, {290, 916},{0x1E, 0xFC, 0x85, 0xFF}}},
 };
 
-Gfx mario_000_offset_003_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_003_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_000_offset_003_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_003_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1038,13 +1038,13 @@ Gfx mario_000_offset_003_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(11, 13, 10, 0),
 	gsSP1Triangle(14, 13, 15, 0),
 	gsSP1Triangle(14, 7, 13, 0),
-	gsSPVertex((char*)mario_000_offset_003_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_offset_003_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_004_mesh_layer_1_vtx_0[18] = {
+Vtx sonic_000_offset_004_mesh_layer_1_vtx_0[18] = {
 	{{{45, 9, 1},0, {72, 932},{0xFE, 0x73, 0x35, 0xFF}}},
 	{{{-1, -1, 10},0, {278, 726},{0x18, 0x1A, 0x7A, 0xFF}}},
 	{{{45, 0, 10},0, {278, 932},{0xFE, 0x9, 0x7F, 0xFF}}},
@@ -1065,8 +1065,8 @@ Vtx mario_000_offset_004_mesh_layer_1_vtx_0[18] = {
 	{{{46, -1, -8},0, {278, 932},{0x1, 0x22, 0x86, 0xFF}}},
 };
 
-Gfx mario_000_offset_004_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_004_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
+Gfx sonic_000_offset_004_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_004_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1075,13 +1075,13 @@ Gfx mario_000_offset_004_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 10, 13, 0),
 	gsSP1Triangle(12, 7, 10, 0),
-	gsSPVertex((char*)mario_000_offset_004_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_offset_004_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_displaylist_003_mesh_layer_1_vtx_0[58] = {
+Vtx sonic_000_displaylist_003_mesh_layer_1_vtx_0[58] = {
 	{{{24, -5, -20},0, {563, 907},{0x44, 0x15, 0x97, 0xFF}}},
 	{{{-4, 19, 2},0, {647, 823},{0xBA, 0x66, 0xE2, 0xFF}}},
 	{{{24, 20, 3},0, {647, 907},{0x45, 0x68, 0xE8, 0xFF}}},
@@ -1142,8 +1142,8 @@ Vtx mario_000_displaylist_003_mesh_layer_1_vtx_0[58] = {
 	{{{104, -26, -23},0, {563, 823},{0x2F, 0xC9, 0x98, 0xFF}}},
 };
 
-Gfx mario_000_displaylist_003_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_displaylist_003_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_000_displaylist_003_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_displaylist_003_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1154,7 +1154,7 @@ Gfx mario_000_displaylist_003_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(11, 13, 10, 0),
 	gsSP1Triangle(14, 13, 15, 0),
 	gsSP1Triangle(14, 7, 13, 0),
-	gsSPVertex((char*)mario_000_displaylist_003_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_displaylist_003_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1163,7 +1163,7 @@ Gfx mario_000_displaylist_003_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 11, 9, 0),
 	gsSP1Triangle(12, 13, 10, 0),
 	gsSP1Triangle(12, 14, 13, 0),
-	gsSPVertex((char*)mario_000_displaylist_003_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_displaylist_003_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1172,7 +1172,7 @@ Gfx mario_000_displaylist_003_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 6, 0),
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(11, 14, 12, 0),
-	gsSPVertex((char*)mario_000_displaylist_003_mesh_layer_1_vtx_0 + 46*sizeof(Vtx), 12, 0),
+	gsSPVertex((char*)sonic_000_displaylist_003_mesh_layer_1_vtx_0 + 46*sizeof(Vtx), 12, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1182,7 +1182,7 @@ Gfx mario_000_displaylist_003_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_002_switch_option_right_hand_open_mesh_layer_1_vtx_0[70] = {
+Vtx sonic_002_switch_option_right_hand_open_mesh_layer_1_vtx_0[70] = {
 	{{{19, 1, -23},0, {563, 907},{0x60, 0xDF, 0xB3, 0xFF}}},
 	{{{18, 24, 1},0, {647, 907},{0x5C, 0x54, 0x18, 0xFF}}},
 	{{{-9, 24, 1},0, {647, 823},{0xA0, 0x4C, 0x22, 0xFF}}},
@@ -1255,8 +1255,8 @@ Vtx mario_002_switch_option_right_hand_open_mesh_layer_1_vtx_0[70] = {
 	{{{45, -38, -38},0, {555, 820},{0x5, 0xAD, 0xA0, 0xFF}}},
 };
 
-Gfx mario_002_switch_option_right_hand_open_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_002_switch_option_right_hand_open_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_002_switch_option_right_hand_open_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_002_switch_option_right_hand_open_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1267,7 +1267,7 @@ Gfx mario_002_switch_option_right_hand_open_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(14, 15, 12, 0),
 	gsSP1Triangle(14, 12, 7, 0),
-	gsSPVertex((char*)mario_002_switch_option_right_hand_open_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_002_switch_option_right_hand_open_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1276,7 +1276,7 @@ Gfx mario_002_switch_option_right_hand_open_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 9, 13, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_002_switch_option_right_hand_open_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_002_switch_option_right_hand_open_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1286,7 +1286,7 @@ Gfx mario_002_switch_option_right_hand_open_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(12, 13, 6, 0),
 	gsSP1Triangle(12, 6, 14, 0),
 	gsSP1Triangle(8, 1, 15, 0),
-	gsSPVertex((char*)mario_002_switch_option_right_hand_open_mesh_layer_1_vtx_0 + 47*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_002_switch_option_right_hand_open_mesh_layer_1_vtx_0 + 47*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(3, 5, 6, 0),
@@ -1295,7 +1295,7 @@ Gfx mario_002_switch_option_right_hand_open_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(11, 14, 12, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_002_switch_option_right_hand_open_mesh_layer_1_vtx_0 + 63*sizeof(Vtx), 7, 0),
+	gsSPVertex((char*)sonic_002_switch_option_right_hand_open_mesh_layer_1_vtx_0 + 63*sizeof(Vtx), 7, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(2, 1, 3, 0),
 	gsSP1Triangle(3, 4, 2, 0),
@@ -1306,7 +1306,7 @@ Gfx mario_002_switch_option_right_hand_open_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_006_mesh_layer_1_vtx_0[20] = {
+Vtx sonic_000_offset_006_mesh_layer_1_vtx_0[20] = {
 	{{{58, 8, 1},0, {121, 916},{0xE1, 0x7B, 0x7, 0xFF}}},
 	{{{58, -1, -9},0, {290, 916},{0x1E, 0x6, 0x85, 0xFF}}},
 	{{{-1, -2, -9},0, {290, 747},{0xDA, 0x3, 0x87, 0xFF}}},
@@ -1329,8 +1329,8 @@ Vtx mario_000_offset_006_mesh_layer_1_vtx_0[20] = {
 	{{{10, -11, -1},0, {121, 747},{0xD6, 0x8C, 0xE3, 0xFF}}},
 };
 
-Gfx mario_000_offset_006_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_006_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_000_offset_006_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_006_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1341,13 +1341,13 @@ Gfx mario_000_offset_006_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(14, 15, 12, 0),
 	gsSP1Triangle(14, 12, 7, 0),
-	gsSPVertex((char*)mario_000_offset_006_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_offset_006_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_007_mesh_layer_1_vtx_0[18] = {
+Vtx sonic_000_offset_007_mesh_layer_1_vtx_0[18] = {
 	{{{46, 9, 0},0, {72, 932},{0xFE, 0x7A, 0xDE, 0xFF}}},
 	{{{46, 0, -9},0, {278, 932},{0xFF, 0xDE, 0x86, 0xFF}}},
 	{{{0, -1, -9},0, {278, 726},{0x1E, 0x5, 0x85, 0xFF}}},
@@ -1368,8 +1368,8 @@ Vtx mario_000_offset_007_mesh_layer_1_vtx_0[18] = {
 	{{{0, -10, 0},0, {72, 726},{0xE4, 0x84, 0xFB, 0xFF}}},
 };
 
-Gfx mario_000_offset_007_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_007_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
+Gfx sonic_000_offset_007_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_007_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1378,13 +1378,13 @@ Gfx mario_000_offset_007_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 13, 10, 0),
 	gsSP1Triangle(12, 10, 7, 0),
-	gsSPVertex((char*)mario_000_offset_007_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_offset_007_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_displaylist_004_mesh_layer_1_vtx_0[58] = {
+Vtx sonic_000_displaylist_004_mesh_layer_1_vtx_0[58] = {
 	{{{26, -5, 21},0, {563, 907},{0x44, 0x15, 0x69, 0xFF}}},
 	{{{25, 20, -1},0, {647, 907},{0x45, 0x68, 0x18, 0xFF}}},
 	{{{-3, 19, -1},0, {647, 823},{0xBA, 0x66, 0x1E, 0xFF}}},
@@ -1445,8 +1445,8 @@ Vtx mario_000_displaylist_004_mesh_layer_1_vtx_0[58] = {
 	{{{105, -26, 24},0, {563, 823},{0x2F, 0xC9, 0x69, 0xFF}}},
 };
 
-Gfx mario_000_displaylist_004_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_displaylist_004_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_000_displaylist_004_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_displaylist_004_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1457,7 +1457,7 @@ Gfx mario_000_displaylist_004_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(14, 15, 12, 0),
 	gsSP1Triangle(14, 12, 7, 0),
-	gsSPVertex((char*)mario_000_displaylist_004_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_000_displaylist_004_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1466,7 +1466,7 @@ Gfx mario_000_displaylist_004_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 9, 13, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_000_displaylist_004_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_displaylist_004_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1476,7 +1476,7 @@ Gfx mario_000_displaylist_004_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(12, 13, 6, 0),
 	gsSP1Triangle(12, 6, 14, 0),
 	gsSP1Triangle(8, 1, 15, 0),
-	gsSPVertex((char*)mario_000_displaylist_004_mesh_layer_1_vtx_0 + 47*sizeof(Vtx), 11, 0),
+	gsSPVertex((char*)sonic_000_displaylist_004_mesh_layer_1_vtx_0 + 47*sizeof(Vtx), 11, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(3, 5, 6, 0),
@@ -1485,7 +1485,7 @@ Gfx mario_000_displaylist_004_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_002_switch_option_left_hand_open_mesh_layer_1_vtx_0[70] = {
+Vtx sonic_002_switch_option_left_hand_open_mesh_layer_1_vtx_0[70] = {
 	{{{18, 1, 25},0, {563, 907},{0x44, 0x19, 0x69, 0xFF}}},
 	{{{18, 25, 2},0, {647, 907},{0x47, 0x68, 0x14, 0xFF}}},
 	{{{-9, 24, 2},0, {647, 823},{0xBB, 0x68, 0x19, 0xFF}}},
@@ -1558,8 +1558,8 @@ Vtx mario_002_switch_option_left_hand_open_mesh_layer_1_vtx_0[70] = {
 	{{{45, -38, 40},0, {555, 820},{0x5, 0xAD, 0x60, 0xFF}}},
 };
 
-Gfx mario_002_switch_option_left_hand_open_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_002_switch_option_left_hand_open_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_002_switch_option_left_hand_open_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_002_switch_option_left_hand_open_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1570,7 +1570,7 @@ Gfx mario_002_switch_option_left_hand_open_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(14, 15, 12, 0),
 	gsSP1Triangle(14, 12, 7, 0),
-	gsSPVertex((char*)mario_002_switch_option_left_hand_open_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_002_switch_option_left_hand_open_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1579,7 +1579,7 @@ Gfx mario_002_switch_option_left_hand_open_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 9, 13, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_002_switch_option_left_hand_open_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_002_switch_option_left_hand_open_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1589,7 +1589,7 @@ Gfx mario_002_switch_option_left_hand_open_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(12, 13, 6, 0),
 	gsSP1Triangle(12, 6, 14, 0),
 	gsSP1Triangle(8, 1, 15, 0),
-	gsSPVertex((char*)mario_002_switch_option_left_hand_open_mesh_layer_1_vtx_0 + 47*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_002_switch_option_left_hand_open_mesh_layer_1_vtx_0 + 47*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(3, 5, 6, 0),
@@ -1598,7 +1598,7 @@ Gfx mario_002_switch_option_left_hand_open_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(11, 14, 12, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_002_switch_option_left_hand_open_mesh_layer_1_vtx_0 + 63*sizeof(Vtx), 7, 0),
+	gsSPVertex((char*)sonic_002_switch_option_left_hand_open_mesh_layer_1_vtx_0 + 63*sizeof(Vtx), 7, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(2, 1, 3, 0),
 	gsSP1Triangle(3, 4, 2, 0),
@@ -1609,7 +1609,7 @@ Gfx mario_002_switch_option_left_hand_open_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0[78] = {
+Vtx sonic_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0[78] = {
 	{{{17, 6, -21},0, {563, 907},{0x4E, 0x1B, 0x9F, 0xFF}}},
 	{{{25, -16, 2},0, {647, 907},{0x6E, 0xC0, 0x0, 0xFF}}},
 	{{{-1, -25, 2},0, {647, 823},{0xD2, 0x8A, 0x0, 0xFF}}},
@@ -1690,8 +1690,8 @@ Vtx mario_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0[78] = {
 	{{{119, 16, -18},0, {555, 844},{0x28, 0x9E, 0xBA, 0xFF}}},
 };
 
-Gfx mario_004_switch_option_left_hand_peace_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_004_switch_option_left_hand_peace_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1702,7 +1702,7 @@ Gfx mario_004_switch_option_left_hand_peace_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(14, 15, 12, 0),
 	gsSP1Triangle(14, 12, 7, 0),
-	gsSPVertex((char*)mario_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1711,7 +1711,7 @@ Gfx mario_004_switch_option_left_hand_peace_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 9, 13, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1721,7 +1721,7 @@ Gfx mario_004_switch_option_left_hand_peace_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(12, 13, 6, 0),
 	gsSP1Triangle(12, 6, 14, 0),
 	gsSP1Triangle(8, 1, 15, 0),
-	gsSPVertex((char*)mario_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0 + 47*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0 + 47*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(3, 5, 6, 0),
@@ -1730,7 +1730,7 @@ Gfx mario_004_switch_option_left_hand_peace_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(11, 14, 12, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0 + 63*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_004_switch_option_left_hand_peace_mesh_layer_1_vtx_0 + 63*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(2, 1, 3, 0),
 	gsSP1Triangle(3, 4, 2, 0),
@@ -1751,7 +1751,7 @@ Gfx mario_004_switch_option_left_hand_peace_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0[59] = {
+Vtx sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0[59] = {
 	{{{131, 47, -28},0, {1088, 212},{0xE4, 0x5D, 0xAE, 0xFF}}},
 	{{{107, -19, -60},0, {458, 16},{0xCE, 0xE, 0x8C, 0xFF}}},
 	{{{78, 11, 13},0, {756, 802},{0xD2, 0x40, 0x9C, 0xFF}}},
@@ -1813,8 +1813,8 @@ Vtx mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0[59] = {
 	{{{65, -53, 28},0, {-16, -16},{0xBA, 0x7, 0x6A, 0xFF}}},
 };
 
-Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_005_switch_option_left_hand_cap_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(1, 3, 2, 0),
 	gsSP1Triangle(1, 4, 3, 0),
@@ -1828,7 +1828,7 @@ Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(12, 13, 11, 0),
 	gsSP1Triangle(12, 14, 13, 0),
 	gsSP1Triangle(15, 14, 12, 0),
-	gsSPVertex((char*)mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 3, 2, 0),
@@ -1844,7 +1844,7 @@ Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(13, 11, 12, 0),
 	gsSP1Triangle(14, 11, 13, 0),
 	gsSP1Triangle(14, 13, 15, 0),
-	gsSPVertex((char*)mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0 + 32*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0 + 32*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(2, 1, 3, 0),
 	gsSP1Triangle(1, 4, 3, 0),
@@ -1860,7 +1860,7 @@ Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(12, 13, 6, 0),
 	gsSP1Triangle(13, 14, 6, 0),
 	gsSP1Triangle(6, 14, 15, 0),
-	gsSPVertex((char*)mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0 + 48*sizeof(Vtx), 11, 0),
+	gsSPVertex((char*)sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_0 + 48*sizeof(Vtx), 11, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(1, 3, 2, 0),
 	gsSP1Triangle(2, 3, 4, 0),
@@ -1873,7 +1873,7 @@ Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1[70] = {
+Vtx sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1[70] = {
 	{{{18, 9, 19},0, {563, 907},{0x3B, 0x2A, 0x69, 0xFF}}},
 	{{{11, 32, -4},0, {647, 907},{0x29, 0x77, 0x14, 0xFF}}},
 	{{{-15, 25, -4},0, {647, 823},{0xA3, 0x53, 0x19, 0xFF}}},
@@ -1946,8 +1946,8 @@ Vtx mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1[70] = {
 	{{{53, -21, 34},0, {555, 820},{0x1A, 0xB1, 0x60, 0xFF}}},
 };
 
-Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_1[] = {
-	gsSPVertex((char*)mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_005_switch_option_left_hand_cap_mesh_layer_1_tri_1[] = {
+	gsSPVertex((char*)sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1958,7 +1958,7 @@ Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_1[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(14, 15, 12, 0),
 	gsSP1Triangle(14, 12, 7, 0),
-	gsSPVertex((char*)mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1 + 16*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1 + 16*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1967,7 +1967,7 @@ Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_1[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 9, 13, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1 + 31*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1 + 31*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -1977,7 +1977,7 @@ Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_1[] = {
 	gsSP1Triangle(12, 13, 6, 0),
 	gsSP1Triangle(12, 6, 14, 0),
 	gsSP1Triangle(8, 1, 15, 0),
-	gsSPVertex((char*)mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1 + 47*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1 + 47*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(3, 5, 6, 0),
@@ -1986,7 +1986,7 @@ Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_1[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(11, 14, 12, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1 + 63*sizeof(Vtx), 7, 0),
+	gsSPVertex((char*)sonic_005_switch_option_left_hand_cap_mesh_layer_1_vtx_1 + 63*sizeof(Vtx), 7, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(2, 1, 3, 0),
 	gsSP1Triangle(3, 4, 2, 0),
@@ -1997,7 +1997,7 @@ Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0[59] = {
+Vtx sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0[59] = {
 	{{{131, 47, -25},0, {1088, 212},{0xE4, 0x5D, 0xAE, 0xFF}}},
 	{{{107, -19, -57},0, {458, 16},{0xCE, 0xE, 0x8C, 0xFF}}},
 	{{{78, 11, 16},0, {756, 802},{0xD2, 0x40, 0x9C, 0xFF}}},
@@ -2059,8 +2059,8 @@ Vtx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0[59] = {
 	{{{65, -53, 31},0, {-16, -16},{0xBA, 0x7, 0x6A, 0xFF}}},
 };
 
-Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(1, 3, 2, 0),
 	gsSP1Triangle(1, 4, 3, 0),
@@ -2074,7 +2074,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(12, 13, 11, 0),
 	gsSP1Triangle(12, 14, 13, 0),
 	gsSP1Triangle(15, 14, 12, 0),
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0 + 16*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 3, 2, 0),
@@ -2090,7 +2090,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(13, 11, 12, 0),
 	gsSP1Triangle(14, 11, 13, 0),
 	gsSP1Triangle(14, 13, 15, 0),
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0 + 32*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0 + 32*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(2, 1, 3, 0),
 	gsSP1Triangle(1, 4, 3, 0),
@@ -2106,7 +2106,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(12, 13, 6, 0),
 	gsSP1Triangle(13, 14, 6, 0),
 	gsSP1Triangle(6, 14, 15, 0),
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0 + 48*sizeof(Vtx), 11, 0),
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_0 + 48*sizeof(Vtx), 11, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(1, 3, 2, 0),
 	gsSP1Triangle(2, 3, 4, 0),
@@ -2119,7 +2119,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1[70] = {
+Vtx sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1[70] = {
 	{{{18, 9, 19},0, {563, 907},{0x3B, 0x2A, 0x69, 0xFF}}},
 	{{{12, 32, -4},0, {647, 907},{0x29, 0x77, 0x14, 0xFF}}},
 	{{{-14, 25, -4},0, {647, 823},{0xA3, 0x53, 0x19, 0xFF}}},
@@ -2192,8 +2192,8 @@ Vtx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1[70] = {
 	{{{54, -21, 34},0, {555, 820},{0x1A, 0xB1, 0x60, 0xFF}}},
 };
 
-Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1[] = {
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1[] = {
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2204,7 +2204,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(14, 15, 12, 0),
 	gsSP1Triangle(14, 12, 7, 0),
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1 + 16*sizeof(Vtx), 15, 0),
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1 + 16*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2213,7 +2213,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 9, 13, 0),
 	gsSP1Triangle(12, 13, 14, 0),
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1 + 31*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1 + 31*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2223,7 +2223,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1[] = {
 	gsSP1Triangle(12, 13, 6, 0),
 	gsSP1Triangle(12, 6, 14, 0),
 	gsSP1Triangle(8, 1, 15, 0),
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1 + 47*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1 + 47*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(3, 5, 6, 0),
@@ -2232,7 +2232,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(11, 14, 12, 0),
 	gsSP1Triangle(12, 14, 15, 0),
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1 + 63*sizeof(Vtx), 7, 0),
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_vtx_1 + 63*sizeof(Vtx), 7, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(2, 1, 3, 0),
 	gsSP1Triangle(3, 4, 2, 0),
@@ -2243,7 +2243,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_vtx_0[8] = {
+Vtx sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_vtx_0[8] = {
 	{{{178, -177, 104},0, {-16, 4008},{0xA8, 0xB3, 0xCF, 0xFF}}},
 	{{{319, -248, -38},0, {-16, -16},{0xA8, 0xB3, 0xCF, 0xFF}}},
 	{{{349, -325, 29},0, {974, -16},{0xA8, 0xB3, 0xCF, 0xFF}}},
@@ -2254,8 +2254,8 @@ Vtx mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_vtx_0[8] = {
 	{{{258, 156, 194},0, {974, 4008},{0xBD, 0x65, 0xD9, 0xFF}}},
 };
 
-Gfx mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0[] = {
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_vtx_0 + 0*sizeof(Vtx), 8, 0),
+Gfx sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0[] = {
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_vtx_0 + 0*sizeof(Vtx), 8, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 0, 2, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2263,7 +2263,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_vtx_1[8] = {
+Vtx sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_vtx_1[8] = {
 	{{{368, 146, -17},0, {974, -16},{0xBD, 0x65, 0xD9, 0xFF}}},
 	{{{166, 37, 44},0, {-16, 4008},{0xBE, 0x65, 0xD9, 0xFF}}},
 	{{{212, 96, 119},0, {974, 4008},{0xBD, 0x65, 0xD9, 0xFF}}},
@@ -2274,8 +2274,8 @@ Vtx mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_vtx_1[8] = {
 	{{{290, -171, -105},0, {-16, -16},{0xA8, 0xB3, 0xCE, 0xFF}}},
 };
 
-Gfx mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1[] = {
-	gsSPVertex((char*)mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_vtx_1 + 0*sizeof(Vtx), 8, 0),
+Gfx sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1[] = {
+	gsSPVertex((char*)sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_vtx_1 + 0*sizeof(Vtx), 8, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2283,7 +2283,7 @@ Gfx mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_009_mesh_layer_1_vtx_0[18] = {
+Vtx sonic_000_offset_009_mesh_layer_1_vtx_0[18] = {
 	{{{-1, 0, -10},0, {697, 653},{0x0, 0xD8, 0x87, 0xFF}}},
 	{{{67, -10, 0},0, {886, 465},{0x34, 0x92, 0xDC, 0xFF}}},
 	{{{-1, -10, 0},0, {886, 653},{0x0, 0x87, 0x28, 0xFF}}},
@@ -2304,8 +2304,8 @@ Vtx mario_000_offset_009_mesh_layer_1_vtx_0[18] = {
 	{{{-1, 10, 0},0, {886, 653},{0x0, 0x79, 0xD8, 0xFF}}},
 };
 
-Gfx mario_000_offset_009_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_009_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
+Gfx sonic_000_offset_009_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_009_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2314,13 +2314,13 @@ Gfx mario_000_offset_009_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 10, 13, 0),
 	gsSP1Triangle(12, 7, 10, 0),
-	gsSPVertex((char*)mario_000_offset_009_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_offset_009_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_010_mesh_layer_1_vtx_0[18] = {
+Vtx sonic_000_offset_010_mesh_layer_1_vtx_0[18] = {
 	{{{2, 0, -9},0, {709, 671},{0xB7, 0x0, 0x98, 0xFF}}},
 	{{{47, -10, 1},0, {899, 481},{0x0, 0x81, 0x0, 0xFF}}},
 	{{{2, -10, 1},0, {899, 671},{0xB7, 0x98, 0x0, 0xFF}}},
@@ -2341,8 +2341,8 @@ Vtx mario_000_offset_010_mesh_layer_1_vtx_0[18] = {
 	{{{2, 10, 1},0, {899, 671},{0xB6, 0x67, 0x0, 0xFF}}},
 };
 
-Gfx mario_000_offset_010_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_010_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
+Gfx sonic_000_offset_010_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_010_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2351,13 +2351,13 @@ Gfx mario_000_offset_010_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(4, 9, 10, 0),
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(11, 13, 10, 0),
-	gsSPVertex((char*)mario_000_offset_010_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_offset_010_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_010_mesh_layer_1_vtx_1[20] = {
+Vtx sonic_000_offset_010_mesh_layer_1_vtx_1[20] = {
 	{{{44, 5, -24},0, {546, 942},{0xB4, 0x0, 0x9A, 0xFF}}},
 	{{{97, -26, -3},0, {688, 800},{0x49, 0x98, 0xF6, 0xFF}}},
 	{{{44, -26, -2},0, {688, 942},{0xB8, 0x97, 0xF8, 0xFF}}},
@@ -2380,8 +2380,8 @@ Vtx mario_000_offset_010_mesh_layer_1_vtx_1[20] = {
 	{{{43, 36, -3},0, {688, 942},{0xB7, 0x68, 0xF8, 0xFF}}},
 };
 
-Gfx mario_000_offset_010_mesh_layer_1_tri_1[] = {
-	gsSPVertex((char*)mario_000_offset_010_mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_000_offset_010_mesh_layer_1_tri_1[] = {
+	gsSPVertex((char*)sonic_000_offset_010_mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2392,13 +2392,13 @@ Gfx mario_000_offset_010_mesh_layer_1_tri_1[] = {
 	gsSP1Triangle(11, 13, 10, 0),
 	gsSP1Triangle(14, 13, 15, 0),
 	gsSP1Triangle(14, 7, 13, 0),
-	gsSPVertex((char*)mario_000_offset_010_mesh_layer_1_vtx_1 + 16*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_offset_010_mesh_layer_1_vtx_1 + 16*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_011_mesh_layer_1_vtx_0[47] = {
+Vtx sonic_000_offset_011_mesh_layer_1_vtx_0[47] = {
 	{{{-15, 71, 60},0, {952, 786},{0xFF, 0x54, 0x60, 0xFF}}},
 	{{{-15, 71, -40},0, {792, 946},{0x6, 0x59, 0xA5, 0xFF}}},
 	{{{-55, 86, 9},0, {792, 786},{0xA6, 0x5A, 0xFF, 0xFF}}},
@@ -2448,15 +2448,15 @@ Vtx mario_000_offset_011_mesh_layer_1_vtx_0[47] = {
 	{{{66, -1, 47},0, {430, 647},{0xF3, 0xD8, 0x78, 0xFF}}},
 };
 
-Gfx mario_000_offset_011_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_011_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 15, 0),
+Gfx sonic_000_offset_011_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_011_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(1, 12, 13, 0),
 	gsSP1Triangle(1, 13, 14, 0),
-	gsSPVertex((char*)mario_000_offset_011_mesh_layer_1_vtx_0 + 15*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_offset_011_mesh_layer_1_vtx_0 + 15*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2465,7 +2465,7 @@ Gfx mario_000_offset_011_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 15, 13, 0),
-	gsSPVertex((char*)mario_000_offset_011_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_offset_011_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 3, 1, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2477,7 +2477,7 @@ Gfx mario_000_offset_011_mesh_layer_1_tri_0[] = {
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_012_mesh_layer_1_vtx_0[18] = {
+Vtx sonic_000_offset_012_mesh_layer_1_vtx_0[18] = {
 	{{{-1, 0, 10},0, {697, 653},{0x0, 0xD8, 0x79, 0xFF}}},
 	{{{-1, -10, 0},0, {886, 653},{0x0, 0x87, 0xD8, 0xFF}}},
 	{{{67, -10, 0},0, {886, 465},{0x34, 0x92, 0x24, 0xFF}}},
@@ -2498,8 +2498,8 @@ Vtx mario_000_offset_012_mesh_layer_1_vtx_0[18] = {
 	{{{67, 0, -10},0, {697, 465},{0x55, 0xE3, 0xA6, 0xFF}}},
 };
 
-Gfx mario_000_offset_012_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_012_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
+Gfx sonic_000_offset_012_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_012_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2508,13 +2508,13 @@ Gfx mario_000_offset_012_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 10, 11, 0),
 	gsSP1Triangle(12, 13, 10, 0),
 	gsSP1Triangle(12, 10, 7, 0),
-	gsSPVertex((char*)mario_000_offset_012_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_offset_012_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_013_mesh_layer_1_vtx_0[18] = {
+Vtx sonic_000_offset_013_mesh_layer_1_vtx_0[18] = {
 	{{{2, 0, 10},0, {709, 671},{0xB7, 0x0, 0x68, 0xFF}}},
 	{{{2, -10, 0},0, {899, 671},{0xB7, 0x98, 0x0, 0xFF}}},
 	{{{47, -10, 0},0, {899, 481},{0x0, 0x81, 0x0, 0xFF}}},
@@ -2535,8 +2535,8 @@ Vtx mario_000_offset_013_mesh_layer_1_vtx_0[18] = {
 	{{{47, 0, -10},0, {709, 481},{0x0, 0x0, 0x81, 0xFF}}},
 };
 
-Gfx mario_000_offset_013_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_offset_013_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
+Gfx sonic_000_offset_013_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_offset_013_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 14, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2545,13 +2545,13 @@ Gfx mario_000_offset_013_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(4, 10, 8, 0),
 	gsSP1Triangle(11, 10, 12, 0),
 	gsSP1Triangle(11, 12, 13, 0),
-	gsSPVertex((char*)mario_000_offset_013_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_offset_013_mesh_layer_1_vtx_0 + 14*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_offset_013_mesh_layer_1_vtx_1[20] = {
+Vtx sonic_000_offset_013_mesh_layer_1_vtx_1[20] = {
 	{{{44, 5, 24},0, {546, 942},{0xB4, 0x0, 0x66, 0xFF}}},
 	{{{44, -26, 3},0, {688, 942},{0xB8, 0x97, 0x8, 0xFF}}},
 	{{{97, -26, 4},0, {688, 800},{0x49, 0x98, 0xA, 0xFF}}},
@@ -2574,8 +2574,8 @@ Vtx mario_000_offset_013_mesh_layer_1_vtx_1[20] = {
 	{{{97, 5, -27},0, {546, 800},{0x4A, 0x0, 0x99, 0xFF}}},
 };
 
-Gfx mario_000_offset_013_mesh_layer_1_tri_1[] = {
-	gsSPVertex((char*)mario_000_offset_013_mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 16, 0),
+Gfx sonic_000_offset_013_mesh_layer_1_tri_1[] = {
+	gsSPVertex((char*)sonic_000_offset_013_mesh_layer_1_vtx_1 + 0*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2586,13 +2586,13 @@ Gfx mario_000_offset_013_mesh_layer_1_tri_1[] = {
 	gsSP1Triangle(11, 12, 13, 0),
 	gsSP1Triangle(14, 15, 12, 0),
 	gsSP1Triangle(14, 12, 7, 0),
-	gsSPVertex((char*)mario_000_offset_013_mesh_layer_1_vtx_1 + 16*sizeof(Vtx), 4, 0),
+	gsSPVertex((char*)sonic_000_offset_013_mesh_layer_1_vtx_1 + 16*sizeof(Vtx), 4, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSPEndDisplayList(),
 };
 
-Vtx mario_000_displaylist_005_mesh_layer_1_vtx_0[47] = {
+Vtx sonic_000_displaylist_005_mesh_layer_1_vtx_0[47] = {
 	{{{-15, 71, -59},0, {952, 786},{0xFF, 0x54, 0xA0, 0xFF}}},
 	{{{-55, 86, -8},0, {792, 786},{0xA6, 0x5A, 0x1, 0xFF}}},
 	{{{-15, 71, 41},0, {792, 946},{0x6, 0x59, 0x5B, 0xFF}}},
@@ -2642,15 +2642,15 @@ Vtx mario_000_displaylist_005_mesh_layer_1_vtx_0[47] = {
 	{{{66, -1, -47},0, {430, 647},{0xF3, 0xD8, 0x88, 0xFF}}},
 };
 
-Gfx mario_000_displaylist_005_mesh_layer_1_tri_0[] = {
-	gsSPVertex((char*)mario_000_displaylist_005_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 15, 0),
+Gfx sonic_000_displaylist_005_mesh_layer_1_tri_0[] = {
+	gsSPVertex((char*)sonic_000_displaylist_005_mesh_layer_1_vtx_0 + 0*sizeof(Vtx), 15, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(3, 4, 5, 0),
 	gsSP1Triangle(6, 7, 8, 0),
 	gsSP1Triangle(9, 10, 11, 0),
 	gsSP1Triangle(2, 12, 13, 0),
 	gsSP1Triangle(2, 14, 12, 0),
-	gsSPVertex((char*)mario_000_displaylist_005_mesh_layer_1_vtx_0 + 15*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_displaylist_005_mesh_layer_1_vtx_0 + 15*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2659,7 +2659,7 @@ Gfx mario_000_displaylist_005_mesh_layer_1_tri_0[] = {
 	gsSP1Triangle(8, 11, 9, 0),
 	gsSP1Triangle(12, 13, 14, 0),
 	gsSP1Triangle(12, 15, 13, 0),
-	gsSPVertex((char*)mario_000_displaylist_005_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
+	gsSPVertex((char*)sonic_000_displaylist_005_mesh_layer_1_vtx_0 + 31*sizeof(Vtx), 16, 0),
 	gsSP1Triangle(0, 1, 2, 0),
 	gsSP1Triangle(0, 2, 3, 0),
 	gsSP1Triangle(4, 5, 6, 0),
@@ -2672,21 +2672,21 @@ Gfx mario_000_displaylist_005_mesh_layer_1_tri_0[] = {
 };
 
 
-Gfx mat_mario_gloves_v3[] = {
+Gfx mat_sonic_gloves_v3[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT, 0, 0, 0, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
-	gsSPSetLights1(mario_gloves_v3_lights),
+	gsSPSetLights1(sonic_gloves_v3_lights),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_mario_metal_v3[] = {
+Gfx mat_sonic_metal_v3[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, TEXEL0, 0, 0, 0, ENVIRONMENT, 0, 0, 0, TEXEL0, 0, 0, 0, ENVIRONMENT),
 	gsSPSetGeometryMode(G_TEXTURE_GEN),
 	gsSPTexture(4031, 1983, 0, 0, 1),
 	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, mario_metal_rgba16),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, sonic_metal_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 5, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0),
 	gsDPLoadSync(),
 	gsDPLoadTile(7, 0, 0, 252, 124),
@@ -2696,99 +2696,99 @@ Gfx mat_mario_metal_v3[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_mario_metal_v3[] = {
+Gfx mat_revert_sonic_metal_v3[] = {
 	gsDPPipeSync(),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_mario_BODY_f3d[] = {
+Gfx mat_sonic_BODY_f3d[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, mario_sonic_shading_rgba16),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, sonic_sonic_shading_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPLoadSync(),
 	gsDPLoadTile(7, 0, 0, 124, 124),
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
-	gsSPSetLights1(mario_BODY_f3d_lights),
+	gsSPSetLights1(sonic_BODY_f3d_lights),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_mario_open[] = {
+Gfx mat_sonic_open[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, mario_sonic_face_64px_rgba16),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, sonic_sonic_face_64px_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0),
 	gsDPLoadSync(),
 	gsDPLoadTile(7, 0, 0, 252, 252),
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(mario_open_lights),
+	gsSPSetLights1(sonic_open_lights),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_mario_half[] = {
+Gfx mat_sonic_half[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, mario_sonic_face_64px_2_rgba16),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, sonic_sonic_face_64px_2_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0),
 	gsDPLoadSync(),
 	gsDPLoadTile(7, 0, 0, 252, 252),
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(mario_half_lights),
+	gsSPSetLights1(sonic_half_lights),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_mario_closed[] = {
+Gfx mat_sonic_closed[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, mario_sonic_face_64px_3_rgba16),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, sonic_sonic_face_64px_3_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0),
 	gsDPLoadSync(),
 	gsDPLoadTile(7, 0, 0, 252, 252),
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(mario_closed_lights),
+	gsSPSetLights1(sonic_closed_lights),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_mario_dead[] = {
+Gfx mat_sonic_dead[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, mario_sonic_face_64px_4_rgba16),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 64, sonic_sonic_face_64px_4_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0),
 	gsDPLoadSync(),
 	gsDPLoadTile(7, 0, 0, 252, 252),
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 16, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 6, 0),
 	gsDPSetTileSize(0, 0, 0, 252, 252),
-	gsSPSetLights1(mario_dead_lights),
+	gsSPSetLights1(sonic_dead_lights),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_mario_wing_2_v3[] = {
+Gfx mat_sonic_wing_2_v3[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0),
 	gsSPClearGeometryMode(G_CULL_BACK),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, mario_wing_2_rgba16),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, sonic_wing_2_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPLoadSync(),
 	gsDPLoadTile(7, 0, 0, 124, 252),
@@ -2798,19 +2798,19 @@ Gfx mat_mario_wing_2_v3[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_mario_wing_2_v3[] = {
+Gfx mat_revert_sonic_wing_2_v3[] = {
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_CULL_BACK),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_mario_wing_1_v3[] = {
+Gfx mat_sonic_wing_1_v3[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(0, 0, 0, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0, 0, 0, 0, TEXEL0, TEXEL0, 0, ENVIRONMENT, 0),
 	gsSPClearGeometryMode(G_CULL_BACK),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, mario_wing1_rgba16),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, sonic_wing1_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 7, 0, G_TX_WRAP | G_TX_NOMIRROR, 6, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPLoadSync(),
 	gsDPLoadTile(7, 0, 0, 124, 252),
@@ -2820,456 +2820,456 @@ Gfx mat_mario_wing_1_v3[] = {
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_revert_mario_wing_1_v3[] = {
+Gfx mat_revert_sonic_wing_1_v3[] = {
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_CULL_BACK),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_mario_SHOES_f3d[] = {
+Gfx mat_sonic_SHOES_f3d[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT, TEXEL0, 0, SHADE, 0, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, mario_sonic_shoe_rgba16),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, sonic_sonic_shoe_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPLoadSync(),
 	gsDPLoadTile(7, 0, 0, 124, 124),
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
-	gsSPSetLights1(mario_SHOES_f3d_lights),
+	gsSPSetLights1(sonic_SHOES_f3d_lights),
 	gsSPEndDisplayList(),
 };
 
-Gfx mat_mario_cap_v3[] = {
+Gfx mat_sonic_cap_v3[] = {
 	gsDPPipeSync(),
 	gsDPSetCombineLERP(TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT, TEXEL0, SHADE, TEXEL0_ALPHA, SHADE, 0, 0, 0, ENVIRONMENT),
 	gsSPTexture(65535, 65535, 0, 0, 1),
 	gsDPTileSync(),
-	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, mario_mario_cap_rgba16),
+	gsDPSetTextureImage(G_IM_FMT_RGBA, G_IM_SIZ_16b, 32, sonic_sonic_cap_rgba16),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 7, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPLoadSync(),
 	gsDPLoadTile(7, 0, 0, 124, 124),
 	gsDPPipeSync(),
 	gsDPSetTile(G_IM_FMT_RGBA, G_IM_SIZ_16b, 8, 0, 0, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0, G_TX_CLAMP | G_TX_NOMIRROR, 5, 0),
 	gsDPSetTileSize(0, 0, 0, 124, 124),
-	gsSPSetLights1(mario_cap_v3_lights),
+	gsSPSetLights1(sonic_cap_v3_lights),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_gloves_v3),
-	gsSPDisplayList(mario_000_offset_mesh_layer_1_tri_0),
+Gfx sonic_000_offset_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_gloves_v3),
+	gsSPDisplayList(sonic_000_offset_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_001_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_offset_001_mesh_layer_1_tri_0),
+Gfx sonic_000_offset_001_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_offset_001_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_001_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_001_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_001_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_001_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_displaylist_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_open),
-	gsSPDisplayList(mario_000_displaylist_mesh_layer_1_tri_1),
+Gfx sonic_000_displaylist_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_displaylist_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_open),
+	gsSPDisplayList(sonic_000_displaylist_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_displaylist_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_displaylist_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_displaylist_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_displaylist_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_displaylist_mesh_layer_1_tri_1),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_mesh_layer_1_mat_override_half_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_displaylist_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_half),
-	gsSPDisplayList(mario_000_displaylist_mesh_layer_1_tri_1),
+Gfx sonic_000_displaylist_mesh_layer_1_mat_override_half_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_displaylist_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_half),
+	gsSPDisplayList(sonic_000_displaylist_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_mesh_layer_1_mat_override_closed_2[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_displaylist_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_closed),
-	gsSPDisplayList(mario_000_displaylist_mesh_layer_1_tri_1),
+Gfx sonic_000_displaylist_mesh_layer_1_mat_override_closed_2[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_displaylist_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_closed),
+	gsSPDisplayList(sonic_000_displaylist_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_mesh_layer_1_mat_override_dead_3[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_displaylist_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_dead),
-	gsSPDisplayList(mario_000_displaylist_mesh_layer_1_tri_1),
+Gfx sonic_000_displaylist_mesh_layer_1_mat_override_dead_3[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_displaylist_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_dead),
+	gsSPDisplayList(sonic_000_displaylist_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_002_switch_option_head__no_cap__mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_open),
-	gsSPDisplayList(mario_002_switch_option_head__no_cap__mesh_layer_1_tri_1),
+Gfx sonic_002_switch_option_head__no_cap__mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_open),
+	gsSPDisplayList(sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_002_switch_option_head__no_cap__mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_002_switch_option_head__no_cap__mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_1),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_mat_override_half_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_half),
-	gsSPDisplayList(mario_002_switch_option_head__no_cap__mesh_layer_1_tri_1),
+Gfx sonic_002_switch_option_head__no_cap__mesh_layer_1_mat_override_half_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_half),
+	gsSPDisplayList(sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_mat_override_closed_2[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_closed),
-	gsSPDisplayList(mario_002_switch_option_head__no_cap__mesh_layer_1_tri_1),
+Gfx sonic_002_switch_option_head__no_cap__mesh_layer_1_mat_override_closed_2[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_closed),
+	gsSPDisplayList(sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_002_switch_option_head__no_cap__mesh_layer_1_mat_override_dead_3[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_002_switch_option_head__no_cap__mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_dead),
-	gsSPDisplayList(mario_002_switch_option_head__no_cap__mesh_layer_1_tri_1),
+Gfx sonic_002_switch_option_head__no_cap__mesh_layer_1_mat_override_dead_3[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_dead),
+	gsSPDisplayList(sonic_002_switch_option_head__no_cap__mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_001_mesh_layer_4[] = {
-	gsSPDisplayList(mat_mario_wing_2_v3),
-	gsSPDisplayList(mario_000_displaylist_001_mesh_layer_4_tri_0),
-	gsSPDisplayList(mat_revert_mario_wing_2_v3),
-	gsSPDisplayList(mat_mario_wing_1_v3),
-	gsSPDisplayList(mario_000_displaylist_001_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_mario_wing_1_v3),
+Gfx sonic_000_displaylist_001_mesh_layer_4[] = {
+	gsSPDisplayList(mat_sonic_wing_2_v3),
+	gsSPDisplayList(sonic_000_displaylist_001_mesh_layer_4_tri_0),
+	gsSPDisplayList(mat_revert_sonic_wing_2_v3),
+	gsSPDisplayList(mat_sonic_wing_1_v3),
+	gsSPDisplayList(sonic_000_displaylist_001_mesh_layer_4_tri_1),
+	gsSPDisplayList(mat_revert_sonic_wing_1_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_001_mesh_layer_4_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_wing_2_v3),
-	gsSPDisplayList(mario_000_displaylist_001_mesh_layer_4_tri_0),
-	gsSPDisplayList(mat_revert_mario_wing_2_v3),
-	gsSPDisplayList(mat_mario_wing_1_v3),
-	gsSPDisplayList(mario_000_displaylist_001_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_mario_wing_1_v3),
+Gfx sonic_000_displaylist_001_mesh_layer_4_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_wing_2_v3),
+	gsSPDisplayList(sonic_000_displaylist_001_mesh_layer_4_tri_0),
+	gsSPDisplayList(mat_revert_sonic_wing_2_v3),
+	gsSPDisplayList(mat_sonic_wing_1_v3),
+	gsSPDisplayList(sonic_000_displaylist_001_mesh_layer_4_tri_1),
+	gsSPDisplayList(mat_revert_sonic_wing_1_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_002_mesh_layer_4[] = {
-	gsSPDisplayList(mat_mario_wing_2_v3),
-	gsSPDisplayList(mario_000_displaylist_002_mesh_layer_4_tri_0),
-	gsSPDisplayList(mat_revert_mario_wing_2_v3),
-	gsSPDisplayList(mat_mario_wing_1_v3),
-	gsSPDisplayList(mario_000_displaylist_002_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_mario_wing_1_v3),
+Gfx sonic_000_displaylist_002_mesh_layer_4[] = {
+	gsSPDisplayList(mat_sonic_wing_2_v3),
+	gsSPDisplayList(sonic_000_displaylist_002_mesh_layer_4_tri_0),
+	gsSPDisplayList(mat_revert_sonic_wing_2_v3),
+	gsSPDisplayList(mat_sonic_wing_1_v3),
+	gsSPDisplayList(sonic_000_displaylist_002_mesh_layer_4_tri_1),
+	gsSPDisplayList(mat_revert_sonic_wing_1_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_002_mesh_layer_4_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_wing_2_v3),
-	gsSPDisplayList(mario_000_displaylist_002_mesh_layer_4_tri_0),
-	gsSPDisplayList(mat_revert_mario_wing_2_v3),
-	gsSPDisplayList(mat_mario_wing_1_v3),
-	gsSPDisplayList(mario_000_displaylist_002_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_mario_wing_1_v3),
+Gfx sonic_000_displaylist_002_mesh_layer_4_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_wing_2_v3),
+	gsSPDisplayList(sonic_000_displaylist_002_mesh_layer_4_tri_0),
+	gsSPDisplayList(mat_revert_sonic_wing_2_v3),
+	gsSPDisplayList(mat_sonic_wing_1_v3),
+	gsSPDisplayList(sonic_000_displaylist_002_mesh_layer_4_tri_1),
+	gsSPDisplayList(mat_revert_sonic_wing_1_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_003_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_offset_003_mesh_layer_1_tri_0),
+Gfx sonic_000_offset_003_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_offset_003_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_003_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_003_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_003_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_003_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_004_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_offset_004_mesh_layer_1_tri_0),
+Gfx sonic_000_offset_004_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_offset_004_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_004_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_004_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_004_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_004_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_003_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_000_displaylist_003_mesh_layer_1_tri_0),
+Gfx sonic_000_displaylist_003_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_000_displaylist_003_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_003_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_displaylist_003_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_displaylist_003_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_displaylist_003_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_002_switch_option_right_hand_open_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_002_switch_option_right_hand_open_mesh_layer_1_tri_0),
+Gfx sonic_002_switch_option_right_hand_open_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_002_switch_option_right_hand_open_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_002_switch_option_right_hand_open_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_002_switch_option_right_hand_open_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_002_switch_option_right_hand_open_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_002_switch_option_right_hand_open_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_006_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_offset_006_mesh_layer_1_tri_0),
+Gfx sonic_000_offset_006_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_offset_006_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_006_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_006_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_006_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_006_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_007_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_offset_007_mesh_layer_1_tri_0),
+Gfx sonic_000_offset_007_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_offset_007_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_007_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_007_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_007_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_007_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_004_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_000_displaylist_004_mesh_layer_1_tri_0),
+Gfx sonic_000_displaylist_004_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_000_displaylist_004_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_004_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_displaylist_004_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_displaylist_004_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_displaylist_004_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_002_switch_option_left_hand_open_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_002_switch_option_left_hand_open_mesh_layer_1_tri_0),
+Gfx sonic_002_switch_option_left_hand_open_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_002_switch_option_left_hand_open_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_002_switch_option_left_hand_open_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_002_switch_option_left_hand_open_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_002_switch_option_left_hand_open_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_002_switch_option_left_hand_open_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_004_switch_option_left_hand_peace_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_004_switch_option_left_hand_peace_mesh_layer_1_tri_0),
+Gfx sonic_004_switch_option_left_hand_peace_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_004_switch_option_left_hand_peace_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_004_switch_option_left_hand_peace_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_004_switch_option_left_hand_peace_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_004_switch_option_left_hand_peace_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_004_switch_option_left_hand_peace_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_cap_v3),
-	gsSPDisplayList(mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_1),
+Gfx sonic_005_switch_option_left_hand_cap_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_cap_v3),
+	gsSPDisplayList(sonic_005_switch_option_left_hand_cap_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_005_switch_option_left_hand_cap_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_005_switch_option_left_hand_cap_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_005_switch_option_left_hand_cap_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_005_switch_option_left_hand_cap_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_005_switch_option_left_hand_cap_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_005_switch_option_left_hand_cap_mesh_layer_1_tri_1),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_cap_v3),
-	gsSPDisplayList(mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1),
+Gfx sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_cap_v3),
+	gsSPDisplayList(sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4[] = {
-	gsSPDisplayList(mat_mario_wing_2_v3),
-	gsSPDisplayList(mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0),
-	gsSPDisplayList(mat_revert_mario_wing_2_v3),
-	gsSPDisplayList(mat_mario_wing_1_v3),
-	gsSPDisplayList(mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_mario_wing_1_v3),
+Gfx sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4[] = {
+	gsSPDisplayList(mat_sonic_wing_2_v3),
+	gsSPDisplayList(sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0),
+	gsSPDisplayList(mat_revert_sonic_wing_2_v3),
+	gsSPDisplayList(mat_sonic_wing_1_v3),
+	gsSPDisplayList(sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1),
+	gsSPDisplayList(mat_revert_sonic_wing_1_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_wing_2_v3),
-	gsSPDisplayList(mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0),
-	gsSPDisplayList(mat_revert_mario_wing_2_v3),
-	gsSPDisplayList(mat_mario_wing_1_v3),
-	gsSPDisplayList(mario_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_mario_wing_1_v3),
+Gfx sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_wing_2_v3),
+	gsSPDisplayList(sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0),
+	gsSPDisplayList(mat_revert_sonic_wing_2_v3),
+	gsSPDisplayList(mat_sonic_wing_1_v3),
+	gsSPDisplayList(sonic_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1),
+	gsSPDisplayList(mat_revert_sonic_wing_1_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_009_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_offset_009_mesh_layer_1_tri_0),
+Gfx sonic_000_offset_009_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_offset_009_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_009_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_009_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_009_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_009_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_010_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_offset_010_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_000_offset_010_mesh_layer_1_tri_1),
+Gfx sonic_000_offset_010_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_offset_010_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_000_offset_010_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_010_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_010_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_010_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_010_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_010_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_010_mesh_layer_1_tri_1),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_011_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_000_offset_011_mesh_layer_1_tri_0),
+Gfx sonic_000_offset_011_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_000_offset_011_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_011_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_011_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_011_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_011_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_012_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_offset_012_mesh_layer_1_tri_0),
+Gfx sonic_000_offset_012_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_offset_012_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_012_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_012_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_012_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_012_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_013_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_BODY_f3d),
-	gsSPDisplayList(mario_000_offset_013_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_000_offset_013_mesh_layer_1_tri_1),
+Gfx sonic_000_offset_013_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_BODY_f3d),
+	gsSPDisplayList(sonic_000_offset_013_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_000_offset_013_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_offset_013_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_013_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_offset_013_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_offset_013_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_013_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_offset_013_mesh_layer_1_tri_1),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_005_mesh_layer_1[] = {
-	gsSPDisplayList(mat_mario_SHOES_f3d),
-	gsSPDisplayList(mario_000_displaylist_005_mesh_layer_1_tri_0),
+Gfx sonic_000_displaylist_005_mesh_layer_1[] = {
+	gsSPDisplayList(mat_sonic_SHOES_f3d),
+	gsSPDisplayList(sonic_000_displaylist_005_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_000_displaylist_005_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_mario_metal_v3),
-	gsSPDisplayList(mario_000_displaylist_005_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_mario_metal_v3),
+Gfx sonic_000_displaylist_005_mesh_layer_1_mat_override_metal_v3_0[] = {
+	gsSPDisplayList(mat_sonic_metal_v3),
+	gsSPDisplayList(sonic_000_displaylist_005_mesh_layer_1_tri_0),
+	gsSPDisplayList(mat_revert_sonic_metal_v3),
 	gsSPEndDisplayList(),
 };
 
-Gfx mario_material_revert_render_settings[] = {
+Gfx sonic_material_revert_render_settings[] = {
 	gsDPPipeSync(),
 	gsSPSetGeometryMode(G_LIGHTING),
 	gsSPClearGeometryMode(G_TEXTURE_GEN),
