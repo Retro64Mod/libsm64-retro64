@@ -23,16 +23,18 @@ GeoLayout* convertPtr_follow(unsigned char* rom,unsigned int oldPtr){
     // LevelBank 17 is at 0x1279B0 in the ROM data
     unsigned char levelBank = oldPtr >> 24;
     unsigned int offset = oldPtr & 0xFFFFFF;
+    unsigned int newPtr = 0;
     if (levelBank==0x17){
-        unsigned int newPtr = 0x1279B0 + offset; // this should be the GeoLayout that is being referenced
-        GEO_DEBUG_PRINT("Converted %x to %x - Now parsing that!",oldPtr,newPtr);
-        GeoLayout* parsed=parse_full_geolayout(rom,rom+newPtr);
-        return parsed;
+        newPtr = 0x1279B0 + offset; // this should be the GeoLayout that is being referenced
+    }else if (levelBank==0x0F){
+        newPtr=0x2008d0+offset;
     }else{
         GEO_DEBUG_PRINT("Unknown level bank: %d", levelBank);
         return 0;
     }
-    return 0;
+    GEO_DEBUG_PRINT("Converted %x to %x - Now parsing that!",oldPtr,newPtr);
+    GeoLayout* parsed=parse_full_geolayout(rom,rom+newPtr);
+    return parsed;
 }
 
 uintptr_t convertPtr(unsigned int oldPtr) {

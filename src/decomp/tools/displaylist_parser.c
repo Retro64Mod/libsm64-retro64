@@ -15,6 +15,7 @@
 // It's loaded from 0x114750-0x1279B0 in MIO0 format. All the data is there, (Lights, vertices, textures)
 
 static unsigned char* mario_data=0x0;
+static unsigned char* actor_data[];
 #define DL_DEBUG_PRINT
 
 void paste_gfx_macro(Gfx* buf,int argnum,...){
@@ -42,11 +43,19 @@ void load_mario_data_from_rom( uint8_t *rom){
     DL_DEBUG_PRINT("Mario data loaded. Size: %d", head.dest_size);
 }
 
-Gfx* convertDLPtrMD(unsigned char* mario_data,unsigned int ptr){
-    
-    ptr=ptr-0x4000000; // offset in our decompressed data, assumes bank is 0x04
-    unsigned char* newPtr=mario_data+(unsigned int)ptr;
-    Gfx* parsed=parseGFX(mario_data,newPtr);
+Gfx* convertDLPtrMD(unsigned char* uncompressed_data,unsigned int ptr){
+    unsigned char levelBank = ptr >> 24;
+    if (levelBank==0x04)
+        ptr=ptr-0x4000000;
+    else if (levelBank==0x08)
+        ptr=ptr-0x8000000;
+    else
+    {
+        DEBUG_PRINT("Error: Unknown level bank: %d",levelBank);
+        return 0;
+    }
+    unsigned char* newPtr=uncompressed_data+(unsigned int)ptr;
+    Gfx* parsed=parseGFX(uncompressed_data,newPtr);
     return parsed;
 }
 
@@ -59,26 +68,26 @@ Gfx* convertDLPtr(unsigned char* rom,unsigned int ptr) {
     return convertDLPtrMD(mario_data,ptr);
 }
 
-Vtx* convertVTXPtrMD(unsigned char* mario_data,unsigned char* ptr,int amount){
+Vtx* convertVTXPtrMD(unsigned char* uncompressed_data,unsigned char* ptr,int amount){
     if (ptr==0)
         return 0;
     ptr=ptr-0x4000000; // offset in our decompressed data
-    unsigned char* newPtr=mario_data+(unsigned int)ptr;
-    return parseVTX(mario_data,newPtr,amount);
+    unsigned char* newPtr=uncompressed_data+(unsigned int)ptr;
+    return parseVTX(uncompressed_data,newPtr,amount);
 }
 
-Lights1* parseLight(unsigned char* mario_data,unsigned char* ptr){
+Lights1* parseLight(unsigned char* uncompressed_data,unsigned char* ptr){
     if (ptr==0)
         return 0;
     ptr=ptr-0x4000000; // offset in our decompressed data
-    unsigned char* newPtr=mario_data+(unsigned int)ptr;
+    unsigned char* newPtr=uncompressed_data+(unsigned int)ptr;
     Lights1* lights = malloc(sizeof(Lights1));
     Lights1 tempLight = gdSPDefLights1(newPtr[0],newPtr[1],newPtr[2],newPtr[8],newPtr[9],newPtr[10],newPtr[16],newPtr[17],newPtr[18]);
     memcpy(lights,&tempLight,sizeof(Lights1));
     return lights;
 }
 
-bool parseGFXCommand(unsigned char* mario_data,unsigned char* rawData,unsigned char* buf,uint8_t *cmd_length){
+bool parseGFXCommand(unsigned char* uncompressed_data,unsigned char* rawData,unsigned char* buf,uint8_t *cmd_length){
     // commands in rawData are ALWAYS 8 bytes long
     *cmd_length=0;
     unsigned int A;
@@ -124,10 +133,10 @@ bool parseGFXCommand(unsigned char* mario_data,unsigned char* rawData,unsigned c
             *cmd_length=3;
             DL_DEBUG_PRINT("gsSPLight(%X,%d) size",A,I);
             if (I==0x86){ // light
-                Lights1* lights = parseLight(mario_data,A-8);
+                Lights1* lights = parseLight(uncompressed_data,A-8);
                 paste_gfx_macro(buf,*cmd_length,gsSPLight(&lights->l,1));
             }else if (I==0x88){ // ambient
-                Lights1* lights = parseLight(mario_data,A);
+                Lights1* lights = parseLight(uncompressed_data,A);
                 paste_gfx_macro(buf,*cmd_length,gsSPLight(&lights->a,2));
             }
             
@@ -147,7 +156,7 @@ bool parseGFXCommand(unsigned char* mario_data,unsigned char* rawData,unsigned c
             S = read_u32_be(rawData+4);
             DL_DEBUG_PRINT("gsSPVertex(%X,%X,%X)",N,I,S);
             *cmd_length=4;
-            paste_gfx_macro(buf,*cmd_length,gsSPVertex(convertVTXPtrMD(mario_data,S,N+1),N+1,I)); // this might be wrong
+            paste_gfx_macro(buf,*cmd_length,gsSPVertex(convertVTXPtrMD(uncompressed_data,S,N+1),N+1,I)); // this might be wrong
             return false;
         case 0x06: // G_DL (gsSPDisplayList)
             /*
@@ -160,7 +169,7 @@ bool parseGFXCommand(unsigned char* mario_data,unsigned char* rawData,unsigned c
             B = read_u32_be(rawData+4);
             DL_DEBUG_PRINT("gsSPDisplayList(%X)",B);
             *cmd_length=2;
-            Gfx* SDL = convertDLPtrMD(mario_data,B);
+            Gfx* SDL = convertDLPtrMD(uncompressed_data,B);
             paste_gfx_macro(buf,*cmd_length,gsSPDisplayList(SDL));
             return false;
         case 0xB8: // G_ENDDL
@@ -271,7 +280,7 @@ bool parseGFXCommand(unsigned char* mario_data,unsigned char* rawData,unsigned c
     }
 }
 
-Gfx* parseGFX(unsigned char* mario_data,unsigned char* rawData){
+Gfx* parseGFX(unsigned char* uncompressed_data,unsigned char* rawData){
     int layoutAlloc=INITIAL_GFX_ALLOC*sizeof(GeoLayout);
     Gfx* gfxList = malloc(layoutAlloc);
     int memoryUsed=0; // how much memory is used in current gfx
@@ -280,7 +289,7 @@ Gfx* parseGFX(unsigned char* mario_data,unsigned char* rawData){
     uint8_t len = 0;
     bool done=false;
     while (!done){
-        done=parseGFXCommand(mario_data,rawData+currentDataPos,buffer,&len);
+        done=parseGFXCommand(uncompressed_data,rawData+currentDataPos,buffer,&len);
         if ((memoryUsed+len*8)>=layoutAlloc){
             layoutAlloc+=INITIAL_GFX_ALLOC*sizeof(GeoLayout);
             gfxList = realloc(gfxList,layoutAlloc);
@@ -292,7 +301,7 @@ Gfx* parseGFX(unsigned char* mario_data,unsigned char* rawData){
     return gfxList;
 }
 
-Vtx* parseVTX(unsigned char* mario_data,unsigned char* rawData,int amount){
+Vtx* parseVTX(unsigned char* uncompressed_data,unsigned char* rawData,int amount){
     Vtx* vtxList = malloc(sizeof(Vtx)*amount);
     for (int i=0;i<amount;i++){
         unsigned char* rawVtxPtr = rawData+i*16;

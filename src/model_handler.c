@@ -1,3 +1,5 @@
+#include <stddef.h>
+#include <stdbool.h>
 #include "decomp/mario/geo.inc.h"
 #include "decomp/model_luigi/geo.inc.h"
 #include "decomp/model_steve/geo.inc.h"
@@ -8,11 +10,11 @@
 #include "decomp/model_goomba/geo.inc.h"
 #include "decomp/model_coin/geo.inc.h"
 #include "decomp/model_star/geo.inc.h"
-#include "decomp/game/actors/common0.h"
 #include "decomp/engine/geo_layout.h"
 #include "model_handler.h"
 #include "load_tex_data.h"
 #include "decomp/include/model_ids.h"
+#include "decomp/tools/geolayout_parser.h"
 
 static void* modelPointers[ModelsUsed]={0x0};
 
@@ -21,6 +23,9 @@ struct GraphNode* goomba_test;
 
 struct GraphNode *D_8033A160[0x100];
 struct GraphNode **gLoadedGraphNodes = D_8033A160;
+
+static struct AllocOnlyPool *s_actor_geo_pool = NULL;
+static bool s_init_one_actor = false;
 
 void initModels(struct AllocOnlyPool *pool){
     modelPointers[MODEL_MARIO] = (void*)mario_geo_ptr;
@@ -35,10 +40,14 @@ void initModels(struct AllocOnlyPool *pool){
     }
 }
 
-void initActorModels(struct AllocOnlyPool *pool){
-    gLoadedGraphNodes[MODEL_GOOMBA]=process_geo_layout(pool,goomba_geo_ptr);
-    gLoadedGraphNodes[MODEL_YELLOW_COIN]=process_geo_layout(pool,yellow_coin_geo_ptr);
-    gLoadedGraphNodes[MODEL_STAR]=process_geo_layout(pool,star_geo_ptr);
+void initActorModels(char* rom){
+    if (!s_init_one_actor){
+        s_init_one_actor=true;
+        s_actor_geo_pool = alloc_only_pool_init();
+    }
+    gLoadedGraphNodes[MODEL_GOOMBA]=process_geo_layout(s_actor_geo_pool,convertPtr_follow(rom,0x0F0006E4)); // parse_full_geolayout
+    gLoadedGraphNodes[MODEL_YELLOW_COIN]=process_geo_layout(s_actor_geo_pool,yellow_coin_geo_ptr);
+    gLoadedGraphNodes[MODEL_STAR]=process_geo_layout(s_actor_geo_pool,convertPtr_follow(rom,0x0F0006E4));
 }
 
 struct GraphNode* getModel(int model){

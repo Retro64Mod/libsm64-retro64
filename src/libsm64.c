@@ -120,6 +120,7 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom,uint8_t *bank_sets,uint8_t *sequ
         memcpy(gSoundDataRaw,sound_data_tbl,tbl_len);
     }
     initMarioGeo(rom);
+    initActorModels(rom);
 
     if( s_init_global )
         sm64_global_terminate();

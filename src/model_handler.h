@@ -12,6 +12,6 @@ enum MarioModels{
 #define ModelsUsed 6
 
 void initModels(struct AllocOnlyPool *pool);
-void initActorModels(struct AllocOnlyPool *pool);
+void initActorModels(char* rom);
 struct GraphNode* getModel(int model);
 extern struct GraphNode **gLoadedGraphNodes;

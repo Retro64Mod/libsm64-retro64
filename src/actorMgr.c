@@ -30,8 +30,7 @@
 #include "decomp/include/model_ids.h"
 #include "actorMgr.h"
 struct ObjPool s_actor_instance_pool = { 0, 0 };
-static bool s_init_one_actor = false;
-static struct AllocOnlyPool *s_actor_geo_pool = NULL;
+
 
 int putObjectInActorPool(struct Object* obj){
     int id = obj_pool_alloc_index( &s_actor_instance_pool, sizeof( struct GlobalState ));
@@ -42,11 +41,6 @@ int putObjectInActorPool(struct Object* obj){
 }
 
 SM64_LIB_FN int initActor(int actorType,float x,float y,float z){
-    if (!s_init_one_actor){
-        s_init_one_actor=true;
-        s_actor_geo_pool = alloc_only_pool_init();
-        initActorModels(s_actor_geo_pool);
-    }
     struct Object* obj;
     //g_state->mgCurrentObject=NULL;
     if (actorType==ACTOR_TYPE_GOOMBA){
