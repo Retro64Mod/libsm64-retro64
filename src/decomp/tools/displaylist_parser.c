@@ -29,7 +29,9 @@ void paste_gfx_macro(Gfx* buf,int argnum,...){
     va_end(args);
 }
 
-Gfx* convertDLPtrMD(unsigned char* uncompressed_data,unsigned int ptr){
+uintptr_t convertBankPtr(uintptr_t ptr){
+    if (ptr==0)
+        return 0;
     unsigned char levelBank = ptr >> 24;
     if (levelBank==0x04)
         ptr=ptr-0x4000000;
@@ -40,6 +42,13 @@ Gfx* convertDLPtrMD(unsigned char* uncompressed_data,unsigned int ptr){
         DEBUG_PRINT("Error: Unknown level bank: %d",levelBank);
         return 0;
     }
+    return ptr;
+}
+
+Gfx* convertDLPtrMD(unsigned char* uncompressed_data,unsigned int ptr){
+    if (ptr==0)
+        return 0x0;
+    ptr = convertBankPtr(ptr);
     unsigned char* newPtr=uncompressed_data+(unsigned int)ptr;
     Gfx* parsed=parseGFX(uncompressed_data,newPtr);
     return parsed;
@@ -48,7 +57,7 @@ Gfx* convertDLPtrMD(unsigned char* uncompressed_data,unsigned int ptr){
 Vtx* convertVTXPtrMD(unsigned char* uncompressed_data,unsigned char* ptr,int amount){
     if (ptr==0)
         return 0;
-    ptr=ptr-0x4000000; // offset in our decompressed data
+    ptr=convertBankPtr(ptr);
     unsigned char* newPtr=uncompressed_data+(unsigned int)ptr;
     return parseVTX(uncompressed_data,newPtr,amount);
 }
@@ -56,7 +65,7 @@ Vtx* convertVTXPtrMD(unsigned char* uncompressed_data,unsigned char* ptr,int amo
 Lights1* parseLight(unsigned char* uncompressed_data,unsigned char* ptr){
     if (ptr==0)
         return 0;
-    ptr=ptr-0x4000000; // offset in our decompressed data
+    ptr=convertBankPtr(ptr);
     unsigned char* newPtr=uncompressed_data+(unsigned int)ptr;
     Lights1* lights = malloc(sizeof(Lights1));
     Lights1 tempLight = gdSPDefLights1(newPtr[0],newPtr[1],newPtr[2],newPtr[8],newPtr[9],newPtr[10],newPtr[16],newPtr[17],newPtr[18]);
