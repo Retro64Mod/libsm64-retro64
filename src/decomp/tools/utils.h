@@ -153,4 +153,6 @@ void dir_list_free(dir_list *list);
 // returns 1 if 'str' ends with 'suffix'
 int str_ends_with(const char *str, const char *suffix);
 
+unsigned char* load_MI0_data_from_rom( unsigned char *rom,unsigned int offset);
+
 #endif // UTILS_H_

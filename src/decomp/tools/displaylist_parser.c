@@ -1,5 +1,4 @@
 #include "displaylist_parser.h"
-#include "libmio0.h"
 #include "../../debug_print.h"
 #include "utils.h"
 #include <stdarg.h>
@@ -30,19 +29,6 @@ void paste_gfx_macro(Gfx* buf,int argnum,...){
     va_end(args);
 }
 
-void load_mario_data_from_rom( uint8_t *rom){
-    DL_DEBUG_PRINT("Loading Mario data from ROM...");
-    mio0_header_t head;
-    uint8_t *in_buf = rom + 0x114750;
-
-    mio0_decode_header( in_buf, &head );
-    uint8_t *out_buf = malloc( head.dest_size );
-    mio0_decode( in_buf, out_buf, NULL );
-
-    mario_data = (unsigned char*)out_buf;
-    DL_DEBUG_PRINT("Mario data loaded. Size: %d", head.dest_size);
-}
-
 Gfx* convertDLPtrMD(unsigned char* uncompressed_data,unsigned int ptr){
     unsigned char levelBank = ptr >> 24;
     if (levelBank==0x04)
@@ -57,15 +43,6 @@ Gfx* convertDLPtrMD(unsigned char* uncompressed_data,unsigned int ptr){
     unsigned char* newPtr=uncompressed_data+(unsigned int)ptr;
     Gfx* parsed=parseGFX(uncompressed_data,newPtr);
     return parsed;
-}
-
-Gfx* convertDLPtr(unsigned char* rom,unsigned int ptr) {
-    if (ptr==0)
-        return 0;
-    if (mario_data==0) {
-        load_mario_data_from_rom(rom);
-    }
-    return convertDLPtrMD(mario_data,ptr);
 }
 
 Vtx* convertVTXPtrMD(unsigned char* uncompressed_data,unsigned char* ptr,int amount){

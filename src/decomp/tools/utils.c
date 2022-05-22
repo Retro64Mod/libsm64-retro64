@@ -14,6 +14,7 @@
 #endif
 
 #include "utils.h"
+#include "libmio0.h"
 
 // global verbosity setting
 int g_verbosity = 0;
@@ -273,4 +274,17 @@ int str_ends_with(const char *str, const char *suffix)
       return 0;
    }
    return (0 == strncmp(str + len_str - len_suffix, suffix, len_suffix));
+}
+
+unsigned char* load_MI0_data_from_rom( unsigned char *rom,unsigned int offset){
+    //DEBUG_PRINT("Loading Compressed data from ROM...");
+    mio0_header_t head;
+    uint8_t *in_buf = rom + offset;
+
+    mio0_decode_header( in_buf, &head );
+    uint8_t *out_buf = malloc( head.dest_size );
+    mio0_decode( in_buf, out_buf, NULL );
+
+    return out_buf;
+    //DEBUG_PRINT("Compressed data loaded. Size: %d", head.dest_size);
 }

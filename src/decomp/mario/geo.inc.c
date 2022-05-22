@@ -8,6 +8,7 @@
 #include "../game/behavior_actions.h"
 #include "../tools/geolayout_parser.h"
 #include "../tools/convUtils.h"
+#include "../tools/utils.h"
 
 #define SHADOW_CIRCLE_PLAYER 99
 
@@ -17,7 +18,8 @@ void initMarioGeo(unsigned char* rom){
    if (mario_geo_ptr != 0x0){
       return;
    }
-   uintptr_t ptr = convertPtr_follow(rom,0x17002CE0); // 17002CE0 -> mario_geo_load_body
+   unsigned char* mario_data=load_MI0_data_from_rom(rom,0x114750);
+   uintptr_t ptr = convertPtr_follow(rom,0x17002CE0,mario_data); // 17002CE0 -> mario_geo_load_body
    uintptr_t data[]={
       GEO_SHADOW(SHADOW_CIRCLE_PLAYER, 0xB4, 100),
       GEO_OPEN_NODE(),
