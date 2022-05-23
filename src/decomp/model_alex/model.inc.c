@@ -4067,81 +4067,42 @@ Gfx model_alex_000_offset_007_mesh_layer_1_mat_override_metal_v3_0[] = {
 };
 
 Gfx model_alex_002_switch_option_left_hand_open_mesh_layer_1[] = {
-	gsSPDisplayList(mat_model_alex_gloves_v3),
-	gsSPDisplayList(model_alex_002_switch_option_left_hand_open_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_alex_002_switch_option_left_hand_open_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_alex_metal_v3),
-	gsSPDisplayList(model_alex_002_switch_option_left_hand_open_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_model_alex_metal_v3),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_alex_004_switch_option_left_hand_peace_mesh_layer_1[] = {
-	gsSPDisplayList(mat_model_alex_gloves_v3),
-	gsSPDisplayList(model_alex_004_switch_option_left_hand_peace_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_alex_004_switch_option_left_hand_peace_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_alex_metal_v3),
-	gsSPDisplayList(model_alex_004_switch_option_left_hand_peace_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_model_alex_metal_v3),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_alex_005_switch_option_left_hand_cap_mesh_layer_1[] = {
-	gsSPDisplayList(mat_model_alex_cap_v3),
-	gsSPDisplayList(model_alex_005_switch_option_left_hand_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_model_alex_gloves_v3),
-	gsSPDisplayList(model_alex_005_switch_option_left_hand_cap_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_alex_005_switch_option_left_hand_cap_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_alex_metal_v3),
-	gsSPDisplayList(model_alex_005_switch_option_left_hand_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(model_alex_005_switch_option_left_hand_cap_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_model_alex_metal_v3),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_alex_006_switch_option_left_hand_wing_cap_mesh_layer_1[] = {
-	gsSPDisplayList(mat_model_alex_cap_v3),
-	gsSPDisplayList(model_alex_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_model_alex_gloves_v3),
-	gsSPDisplayList(model_alex_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_alex_006_switch_option_left_hand_wing_cap_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_alex_metal_v3),
-	gsSPDisplayList(model_alex_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(model_alex_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_model_alex_metal_v3),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_alex_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4[] = {
-	gsSPDisplayList(mat_model_alex_wing_2_v3),
-	gsSPDisplayList(model_alex_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0),
-	gsSPDisplayList(mat_revert_model_alex_wing_2_v3),
-	gsSPDisplayList(mat_model_alex_wing_1_v3),
-	gsSPDisplayList(model_alex_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_model_alex_wing_1_v3),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_alex_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_alex_wing_2_v3),
-	gsSPDisplayList(model_alex_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0),
-	gsSPDisplayList(mat_revert_model_alex_wing_2_v3),
-	gsSPDisplayList(mat_model_alex_wing_1_v3),
-	gsSPDisplayList(model_alex_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_model_alex_wing_1_v3),
-	gsSPDisplayList(mat_revert_model_alex_metal_v3),
 	gsSPEndDisplayList(),
 };
 
