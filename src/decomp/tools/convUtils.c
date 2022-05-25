@@ -63,8 +63,10 @@ void ctl_free(){
 
 void snd_ptrs_to_offsets(struct Sound* snd, uintptr_t ctlData){
 	struct Sample* smp = snd->sample_addr;
-	smp->loop = (struct Loop*)((uintptr_t)(smp->loop) - ctlData);
-	smp->book = (struct Book*)((uintptr_t)(smp->book) - ctlData);
+	if((uintptr_t)(smp->loop) > ctlData)
+		smp->loop = (struct Loop*)((uintptr_t)(smp->loop) - ctlData);
+	if((uintptr_t)(smp->book) > ctlData)
+		smp->book = (struct Book*)((uintptr_t)(smp->book) - ctlData);
 	snd->sample_addr = (struct Sample*)((uintptr_t)(snd->sample_addr) - ctlData);
 }
 
