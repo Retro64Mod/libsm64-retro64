@@ -441,7 +441,7 @@ fclose(f);
 
 string[fsize] = 0;
     sm64_global_terminate();
-    sm64_global_init_audioBin( rom, string, texture, NULL );
+    sm64_global_init( rom, texture, &logm );
     sm64_static_surfaces_load( surfaces, surfaces_count );
     uint32_t mCharId = sm64_mChar_create( 0, 1000, 0 );
 initActor(1,-1000,100,-400);

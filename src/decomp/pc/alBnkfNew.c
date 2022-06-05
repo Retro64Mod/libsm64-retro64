@@ -1,7 +1,7 @@
 #include "libultra_internal.h"
 #include "libaudio_internal.h"
 
-#define PATCH(SRC, BASE, TYPE) SRC = (TYPE)((uintptr_t) SRC + (uintptr_t) BASE)
+#define PATCH(SRC, BASE, TYPE) //SRC = (TYPE)((uintptr_t) SRC + (uintptr_t) BASE)
 
 void alSeqFileNew(ALSeqFile *f, u8 *base) {
     int i;
