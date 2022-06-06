@@ -50,7 +50,7 @@ void initActorModels(char* rom){
     //gLoadedGraphNodes[MODEL_GOOMBA]=process_geo_layout(s_actor_geo_pool,convertPtr_follow(rom,0x0F0006E4,NULL)); // parse_full_geolayout
     //gLoadedGraphNodes[MODEL_YELLOW_COIN]=process_geo_layout(s_actor_geo_pool,yellow_coin_geo_ptr);
     GeoLayout* layout = convertPtr_follow(rom,0x0F0006E4,gData);
-    gLoadedGraphNodes[MODEL_STAR]=process_geo_layout(s_actor_geo_pool,layout);
+    gLoadedGraphNodes[MODEL_GOOMBA]=process_geo_layout(s_actor_geo_pool,layout);
 }
 
 struct GraphNode* getModel(int model){

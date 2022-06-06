@@ -91,6 +91,7 @@ bool parseGFXCommand(unsigned char* uncompressed_data,unsigned char* rawData,uns
     switch (rawData[0]){
         case 0x00: // G_SPNOOP - No operation. This should only be used for debugging purposes.
         case 0x01: // G_MTX - UI stuff?
+        case 0xBC: // G_MOVEWORD
         case 0xB6: // G_CLEARGEOMETRYMODE (gsSPClearGeometryMode)
         case 0xB7: // G_SETGEOMETRYMODE
         case 0xB9: // G_SetOtherMode_L (gsDPSetAlphaCompare)
@@ -102,6 +103,7 @@ bool parseGFXCommand(unsigned char* uncompressed_data,unsigned char* rawData,uns
         case 0xFB: // G_SETENVCOLOR
         case 0xFC: // G_SETCOMBINE
         case 0xFE: // G_SETZIMG
+        case 0xFF: // G_SETCIMG
             paste_gfx_macro(buf,1,GFXCMD_None);
             DL_DEBUG_PRINT("NO_OP (%X)",rawData[0]);
             *cmd_length=1;

@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 extern SM64DebugPrintFunctionPtr g_debug_print_func;
-/*
+
 #define DEBUG_PRINT( ... ) do { \
     if( g_debug_print_func ) { \
         char debugStr[1024]; \
@@ -15,6 +15,3 @@ extern SM64DebugPrintFunctionPtr g_debug_print_func;
         printf( "\n" ); \
     } \
 } while(0)
-*/
-
-#define DEBUG_PRINT //

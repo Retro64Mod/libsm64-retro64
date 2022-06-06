@@ -109,7 +109,12 @@ GeoLayout* parse_full_geolayout(unsigned char* rom,unsigned char* cmdData, unsig
         }
         memcpy(((unsigned char*)layout)+memoryUsed,buffer,(len*2));
         memoryUsed+=(len*2);
-        currentLayout+=len;
+        if ((char)buffer[0]==0x16){
+            currentLayout+=0x08; // patch to fix models in libsm64 - corrects incorrect length set in parse_command
+        }else{
+            currentLayout+=len;
+        }
+        
     }
     free(buffer);
     return layout;
@@ -343,9 +348,10 @@ _Bool parse_command(unsigned char* rom,unsigned char* cmd,GeoLayout* buf,uint8_t
         unsigned char shadow_type = cmd[3];
         unsigned char shadow_solidity = cmd[5];
         unsigned short shadow_scale = read_u16_be(cmd+6);
-        *cmd_length=0x8;
+        *cmd_length=0x10;
         GEO_DEBUG_PRINT("Start Geo Layout with Shadow - %d, %d, %d", shadow_type, shadow_solidity, shadow_scale);
-        paste_macro2(buf, GEO_SHADOW(shadow_type, shadow_solidity, shadow_scale));
+        paste_macro4(buf, GEO_SHADOW(shadow_type, shadow_solidity, shadow_scale)
+            ,GEO_OPEN_NODE(),GEO_ZBUFFER(1)); // patch to fix models in libsm64. cmd_length is now incorrect and will cause issues reading future data from rom, make sure to deal with this!!
     }else if (cmd[0]==0x17){
         // GeoLayout command 17: Create Object list. 17 00 00 00
         *cmd_length=0x4;
