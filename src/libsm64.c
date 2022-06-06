@@ -117,6 +117,7 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom, uint8_t *outTexture, SM64DebugP
     gBankSetsData[0x45]=0x00;
     ptrs_to_offsets(gSoundDataADSR);
     initMarioGeo(rom);
+    initActorModels(rom);
     if( s_init_global )
         sm64_global_terminate();
     s_init_global = true;

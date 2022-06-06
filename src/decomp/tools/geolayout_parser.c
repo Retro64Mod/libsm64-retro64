@@ -83,6 +83,9 @@ uintptr_t convertPtr(unsigned int oldPtr) {
         case 0x802776D8:
             out=geo_switch_mario_cap_effect;
             break;
+        case 0x8029DB48:
+            out=geo_switch_anim_state;
+            break;
         default:
             GEO_DEBUG_PRINT("Unknown pointer %X", oldPtr);
             break;
