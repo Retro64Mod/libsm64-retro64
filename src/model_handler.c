@@ -7,15 +7,16 @@
 #include "decomp/model_necoarc/geo.inc.h"
 #include "decomp/model_vibri/geo.inc.h"
 // models done
-#include "decomp/model_goomba/geo.inc.h"
 #include "decomp/model_coin/geo.inc.h"
 #include "decomp/model_star/geo.inc.h"
-#include "decomp/engine/geo_layout.h"
 #include "model_handler.h"
+#include "decomp/engine/geo_layout.h"
 #include "load_tex_data.h"
 #include "decomp/include/model_ids.h"
 #include "decomp/tools/geolayout_parser.h"
+#include "decomp/tools/anim_parser.h"
 #include "decomp/tools/utils.h"
+#include "anims.h"
 
 static void* modelPointers[ModelsUsed]={0x0};
 
@@ -46,11 +47,12 @@ void initActorModels(char* rom){
         s_init_one_actor=true;
         s_actor_geo_pool = alloc_only_pool_init();
     }
+
+    // GOOMBA //
     unsigned char* gData = load_MI0_data_from_rom(rom,0x1F2200); 
-    //gLoadedGraphNodes[MODEL_GOOMBA]=process_geo_layout(s_actor_geo_pool,convertPtr_follow(rom,0x0F0006E4,NULL)); // parse_full_geolayout
-    //gLoadedGraphNodes[MODEL_YELLOW_COIN]=process_geo_layout(s_actor_geo_pool,yellow_coin_geo_ptr);
     GeoLayout* layout = convertPtr_follow(rom,0x0F0006E4,gData);
     gLoadedGraphNodes[MODEL_GOOMBA]=process_geo_layout(s_actor_geo_pool,layout);
+    loadAnims(gData,MODEL_GOOMBA);
 }
 
 struct GraphNode* getModel(int model){

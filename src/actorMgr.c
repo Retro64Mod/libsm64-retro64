@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include "libsm64.h"
-#include "decomp/model_goomba/anims/table.inc.c"
 #include "decomp/include/PR/os_cont.h"
 #include "decomp/include/sm64.h"
 #include "decomp/memory.h"
@@ -29,6 +28,7 @@
 #include "decomp/game/object_collision.h"
 #include "decomp/include/model_ids.h"
 #include "actorMgr.h"
+#include "model_handler.h"
 struct ObjPool s_actor_instance_pool = { 0, 0 };
 
 
@@ -123,7 +123,7 @@ SM64_LIB_FN void tickActorAnim(int actorID,uint32_t stateFlags,struct AnimInfo* 
         gCurrentObject->header.gfx.animInfo.animFrameAccelAssist=info->animFrameAccelAssist;
         gCurrentObject->header.gfx.animInfo.animID=info->animID;
         gCurrentObject->header.gfx.animInfo.animFrame=0;
-        gCurrentObject->header.gfx.animInfo.curAnim=goomba_seg8_anims_0801DA4C[0];
+        //gCurrentObject->header.gfx.animInfo.curAnim=goomba_seg8_anims_0801DA4C[0];
         //gCurrentObject->header.gfx.throwMatrix=NULL;
     }else if (gCurrentObject->header.gfx.animInfo.animAccel!=info->animAccel){
         gCurrentObject->header.gfx.animInfo.animAccel=info->animAccel; // only change accel

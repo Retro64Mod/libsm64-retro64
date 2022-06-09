@@ -160,7 +160,7 @@ extern const Gfx goomba_seg8_dl_0801CF78[];
 extern const Gfx goomba_seg8_dl_0801D0D0[];
 extern const Gfx goomba_seg8_dl_0801D360[];
 extern const Gfx goomba_seg8_dl_0801D760[];
-extern const struct Animation *const goomba_seg8_anims_0801DA4C[];
+extern struct Animation * goomba_seg8_anims_0801DA4C[];
 
 // heart
 extern const GeoLayout heart_geo[];
