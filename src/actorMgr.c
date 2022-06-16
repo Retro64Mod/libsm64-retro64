@@ -29,6 +29,7 @@
 #include "decomp/include/model_ids.h"
 #include "actorMgr.h"
 #include "model_handler.h"
+#include "decomp/game/actors/common0.h"
 struct ObjPool s_actor_instance_pool = { 0, 0 };
 
 
@@ -45,6 +46,7 @@ SM64_LIB_FN int initActor(int actorType,float x,float y,float z){
     //g_state->mgCurrentObject=NULL;
     if (actorType==ACTOR_TYPE_GOOMBA){
         obj = spawn_object_at_origin(NULL,0,MODEL_GOOMBA,bhvGoomba);
+        obj->header.gfx.animInfo.curAnim=goomba_seg8_anims_0801DA4C[0];
     }else if (actorType==ACTOR_TYPE_STAR){
         obj = spawn_object_at_origin(NULL,0,MODEL_STAR,bhvStar);
     }else{
@@ -115,8 +117,8 @@ SM64_LIB_FN void tickActorAnim(int actorID,uint32_t stateFlags,struct AnimInfo* 
     global_state_bind( s_actor_instance_pool.objects[ actorID ] );
 
     //gCurrentObject->activeFlags=stateFlags;
-    if (gCurrentObject->header.gfx.animInfo.curAnim==NULL)
-        gCurrentObject->header.gfx.animInfo.curAnim=info->curAnim;
+    //if (gCurrentObject->header.gfx.animInfo.curAnim==NULL)
+        //gCurrentObject->header.gfx.animInfo.curAnim=info->curAnim;
 
     if (gCurrentObject->header.gfx.animInfo.animID!=info->animID && info->animID!=-1){
         gCurrentObject->header.gfx.animInfo.animAccel=info->animAccel;
@@ -124,7 +126,7 @@ SM64_LIB_FN void tickActorAnim(int actorID,uint32_t stateFlags,struct AnimInfo* 
         gCurrentObject->header.gfx.animInfo.animID=info->animID;
         gCurrentObject->header.gfx.animInfo.animFrame=0;
         //gCurrentObject->header.gfx.animInfo.curAnim=goomba_seg8_anims_0801DA4C[0];
-        //gCurrentObject->header.gfx.throwMatrix=NULL;
+        gCurrentObject->header.gfx.throwMatrix=NULL;
     }else if (gCurrentObject->header.gfx.animInfo.animAccel!=info->animAccel){
         gCurrentObject->header.gfx.animInfo.animAccel=info->animAccel; // only change accel
     }
