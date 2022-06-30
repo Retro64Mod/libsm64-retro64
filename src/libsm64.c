@@ -40,6 +40,7 @@
 #include "decomp/pc/audio/audio_wasapi.h"
 #include "decomp/pc/audio/audio_pulse.h"
 #include "decomp/pc/audio/audio_alsa.h"
+#include "decomp/pc/audio/audio_sdl.h"
 #include "decomp/audio/external.h"
 
 #include "decomp/game/config.h"
@@ -127,6 +128,11 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom, uint8_t *outTexture, SM64DebugP
     load_mario_anims_from_rom( rom );
 
     memory_init();
+    #ifdef __APPLE__
+    if (audio_api == NULL && audio_sdl.init()) {
+        audio_api = &audio_sdl;
+    }
+    #endif
     #if HAVE_WASAPI
     if (audio_api == NULL && audio_wasapi.init()) {
         audio_api = &audio_wasapi;
