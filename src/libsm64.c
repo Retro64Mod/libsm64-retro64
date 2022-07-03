@@ -56,6 +56,9 @@ static struct AudioAPI *audio_api;
 static bool s_init_global = false;
 static bool s_init_one_mario = false;
 static bool modelsInit=false;
+
+static Mat4 cameraMatrix;
+
 struct MarioInstance
 {
     struct GlobalState *globalState;
@@ -157,7 +160,7 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom, uint8_t *outTexture, SM64DebugP
 
     // start audio thread
     pthread_create(&gSoundThread, NULL, audio_thread, NULL);
-    
+    mtxf_identity(*cameraMatrix);
 }
 
 SM64_LIB_FN void sm64_global_terminate( void )
@@ -322,6 +325,7 @@ SM64_LIB_FN void sm64_mChar_tick( int32_t marioId, const struct SM64MarioInputs 
 
     geo_process_root_hack_single_node( getModel(currentModel) );
     
+    mtxf_lookat(cameraMatrix,outState->camPos,outState->camFocus,0);
 
     gAreaUpdateCounter++;
 
@@ -548,6 +552,10 @@ SM64_LIB_FN int sm64_set_volume(float vol){
 
 SM64_LIB_FN int sm64_get_version(){
     return LIB_VER; // used for compability checking with Retro64
+}
+
+Mat4* getCameraMatrix(){
+    return &cameraMatrix;
 }
 
 #ifdef VERSION_EU

@@ -18,7 +18,7 @@
 #include "../engine/graph_node.h"
 
 #include "../include/PR/gbi.h"
-
+#include "../../libsm64.h"
 
 // PATCH
 static Vec3s gVec3sZero = { 0, 0, 0 };
@@ -474,7 +474,8 @@ static void geo_process_billboard(struct GraphNodeBillboard *node) {
 
     gMatStackIndex++;
     vec3s_to_vec3f(translation, node->translation);
-    mtxf_billboard(gMatStack[gMatStackIndex], gMatStack[gMatStackIndex - 1], translation,
+    Mat4* cam = getCameraMatrix();
+    mtxf_billboard(gMatStack[gMatStackIndex], *cam, translation,
                    /*gCurGraphNodeCamera->roll*/0);
     if (gCurGraphNodeHeldObject != NULL) {
         mtxf_scale_vec3f(gMatStack[gMatStackIndex], gMatStack[gMatStackIndex],

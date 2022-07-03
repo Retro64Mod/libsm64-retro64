@@ -49,6 +49,8 @@ struct SM64MarioState
 {
     float position[3];
     float velocity[3];
+    float camPos[3];
+    float camFocus[3];
     float faceAngle;
     int16_t health;
     uint32_t flags;
@@ -127,5 +129,7 @@ extern SM64_LIB_FN void destroyActor(int actorID);
 extern SM64_LIB_FN struct AnimInfo* tickActor(int actorID,struct SM64ActorState* state,struct SM64MarioGeometryBuffers *outBuffers);
 SM64_LIB_FN void tickActorAnim(int actorID,uint32_t stateFlags,struct AnimInfo* info,struct SM64MarioGeometryBuffers *outBuffers,int16_t rot[3],float scale[3]);
 extern SM64_LIB_FN void sm64_actor_static_surfaces_load( int actorID,const struct SM64Surface *surfaceArray, uint32_t numSurfaces );
+
+Mat4* getCameraMatrix();
 
 #endif//LIB_SM64_H
