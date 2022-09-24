@@ -39,6 +39,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: install
       run: brew install make mingw-w64 gcc sdl2 pkg-config glew glfw libusb audiofile coreutils
+    - name: Setup upterm session
+      uses: lhotari/action-upterm@v1
     - name: make
       run: gmake -j M1_CPU=Y
     - uses: actions/upload-artifact@v3
