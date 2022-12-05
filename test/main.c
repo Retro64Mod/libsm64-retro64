@@ -444,7 +444,8 @@ string[fsize] = 0;
     sm64_global_init( rom, texture, &logm );
     sm64_static_surfaces_load( surfaces, surfaces_count );
     uint32_t mCharId = sm64_mChar_create( 0, 1000, 0 );
-initActor(1,-1000,100,-400);
+initActor(0,-1000,200,-400);
+sm64_actor_static_surfaces_load(0,surfaces, surfaces_count);
     free( rom );
 
     RenderState renderState;
@@ -490,6 +491,13 @@ initActor(1,-1000,100,-400);
         mCharInputs.camLookZ = mCharState.position[2] - cameraPos[2];
         mCharInputs.stickX = x_axis;
         mCharInputs.stickY = y_axis;
+
+        mCharState.camPos[0]=cameraPos[0];
+        mCharState.camPos[1]=cameraPos[1];
+        mCharState.camPos[2]=cameraPos[2];
+        mCharState.camFocus[0]=mCharState.position[0];
+        mCharState.camFocus[1]=mCharState.position[1];
+        mCharState.camFocus[2]=mCharState.position[2];
 
         mCharState.currentModel=0;
 
