@@ -89,6 +89,7 @@ extern SM64_LIB_FN void sm64_mChar_set_velocity( int32_t marioId, float x, float
 extern SM64_LIB_FN void sm64_mChar_apply_damage( int32_t marioId, uint32_t damage,uint32_t interactionSubtype,float xSrc,float ySrc,float zSrc);
 extern SM64_LIB_FN void sm64_mChar_set_state(int32_t marioId, uint32_t capType);
 extern SM64_LIB_FN void sm64_mChar_set_action( int32_t marioId, uint32_t actionId );
+extern SM64_LIB_FN void sm64_mChar_set_action_with_arg( int32_t marioId, uint32_t actionId,uint32_t actionArg );
 extern SM64_LIB_FN void sm64_mChar_set_action_state( int32_t marioId, u16 actionState );
 extern SM64_LIB_FN void sm64_mChar_set_water_level( int32_t marioId, signed int yLevel );
 extern SM64_LIB_FN void sm64_mChar_set_gas_level( int32_t marioId, signed int yLevel );

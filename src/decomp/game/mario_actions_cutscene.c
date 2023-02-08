@@ -952,16 +952,21 @@ s32 act_entering_star_door(struct MarioState *m) {
 s32 act_going_through_door(struct MarioState *m) {
     if (m->actionTimer == 0) {
         if (m->actionArg & 1) {
-            m->interactObj->oInteractStatus = 0x00010000;
+            if (m->interactObj != NULL)
+                m->interactObj->oInteractStatus = 0x00010000;
             set_mario_animation(m, MARIO_ANIM_PULL_DOOR_WALK_IN);
         } else {
-            m->interactObj->oInteractStatus = 0x00020000;
+            if (m->interactObj != NULL)
+                m->interactObj->oInteractStatus = 0x00020000;
             set_mario_animation(m, MARIO_ANIM_PUSH_DOOR_WALK_IN);
         }
     }
-    m->faceAngle[1] = m->usedObj->oMoveAngleYaw;
-    m->pos[0] = m->usedObj->oPosX;
-    m->pos[2] = m->usedObj->oPosZ;
+    if (m->usedObj != NULL)
+    {
+        m->faceAngle[1] = m->usedObj->oMoveAngleYaw;
+        m->pos[0] = m->usedObj->oPosX;
+        m->pos[2] = m->usedObj->oPosZ;
+    }
 
     update_mario_pos_for_anim(m);
     stop_and_set_height_to_floor(m);

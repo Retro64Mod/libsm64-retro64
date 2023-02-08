@@ -220,8 +220,8 @@ void update_mario_pos_for_anim(struct MarioState *m) {
     flags = find_mario_anim_flags_and_translation(m->marioObj, m->faceAngle[1], translation);
 
     if (flags & (ANIM_FLAG_HOR_TRANS | ANIM_FLAG_6)) {
-        m->pos[0] += (f32) translation[0];
-        m->pos[2] += (f32) translation[2];
+        m->pos[0] += (f32) translation[0]/25.0; // I'm not sure why the translation is divided
+        m->pos[2] += (f32) translation[2]/25.0; // but it seems to be necessary to get the correct position.
     }
 
     if (flags & (ANIM_FLAG_VERT_TRANS | ANIM_FLAG_6)) {
