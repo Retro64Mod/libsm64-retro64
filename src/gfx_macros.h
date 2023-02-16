@@ -73,6 +73,9 @@ typedef struct {
 #define	G_OFF                 0
 #define	G_TEXTURE_IMAGE_FRAC  2
 
+#define G_TT_RGBA16 0
+#define G_TT_NONE 0
+
 #define gdSPDefLights1(ar,ag,ab,r1,g1,b1,x1,y1,z1) {{{ {ar,ag,ab},0,{ar,ag,ab},0}}, {{{ {r1,g1,b1},0,{r1,g1,b1},0,{x1,y1,z1},0}}} }
 
 #define gsSPVertex(v, n, v0) \
@@ -137,6 +140,9 @@ typedef struct {
 #define gsDPSetTile(fmt, siz, line, tmem, tile, palette, cmt, maskt, shiftt, cms, masks, shifts) (GFXCMD_None)
 #define gsDPLoadBlock(tile, uls, ult, lrs, dxt) (GFXCMD_None)
 #define gsDPLoadSync() (GFXCMD_None)
+#define gsDPLoadTile(tile, uls, ult, lrs, dxt) (GFXCMD_None)
+#define gsDPLoadTLUTCmd(a, b) (GFXCMD_None)
+#define gsDPSetTextureLUT(lut) (GFXCMD_None)
 
 #define gsSPSetLights1(name)						\
 	gsSPLight(&name.l,1),					\

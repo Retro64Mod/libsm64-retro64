@@ -22,7 +22,7 @@ jobs:
           dist/libsm64.so
           dist/debug.map
   build-macos:
-    runs-on: macos-10.15
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
     - name: install
@@ -33,6 +33,20 @@ jobs:
       with:
         name: libsm64-mac_os
         path: dist/libsm64.dylib
+#  build-macos-m1:
+#    runs-on: macos-latest
+#    steps:
+#    - uses: actions/checkout@v3
+#    - name: install
+#      run: brew install make mingw-w64 gcc sdl2 pkg-config glew glfw libusb audiofile coreutils
+#    - name: Setup upterm session
+#      uses: lhotari/action-upterm@v1
+#    - name: make
+#      run: gmake -j M1_CPU=Y
+#    - uses: actions/upload-artifact@v3
+#      with:
+#        name: libsm64-mac_os_m1
+#        path: dist/libsm64.dylib
   build-windows:
     runs-on: windows-latest
     defaults:

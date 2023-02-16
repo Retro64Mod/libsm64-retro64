@@ -9,7 +9,7 @@
 #include <imagehlp.h>
 
 
-void windows_print_stacktrace(CONTEXT* context)
+void windows_print_stacktrace(CONTEXT* context,FILE* crashlog)
 {
   SymInitialize(GetCurrentProcess(), 0, true);
  
@@ -34,7 +34,7 @@ void windows_print_stacktrace(CONTEXT* context)
                    SymGetModuleBase,
                    0 ) )
   {
-      printf("[%i]: PC:%p (PCR:%p) ST:%p FR:%p\n",i, 
+      fprintf(crashlog,"[%i]: PC:%p (PCR:%p) ST:%p FR:%p\n",i, 
       (void*)frame.AddrPC.Offset,
       ((void*)frame.AddrPC.Offset)-baddr,
       (void*)frame.AddrStack.Offset,
@@ -46,10 +46,11 @@ void windows_print_stacktrace(CONTEXT* context)
 
 LONG WINAPI windows_exception_handler(EXCEPTION_POINTERS * ExceptionInfo)
 {
+  FILE* crashlog = fopen("retro64_crash.log", "w");
   void* addr = GetModuleHandle("sm64.dll");
-  printf("== LIBSM64 RETRO64 CRASH ==\n");
-  printf("Exception: %p\n", ExceptionInfo->ExceptionRecord->ExceptionAddress);
-  printf("Base: %p\n", addr);
+  fprintf(crashlog,"== LIBSM64 RETRO64 CRASH ==\n");
+  fprintf(crashlog,"Exception: %p\n", ExceptionInfo->ExceptionRecord->ExceptionAddress);
+  fprintf(crashlog,"Base: %p\n", addr);
   switch(ExceptionInfo->ExceptionRecord->ExceptionCode)
   {
     case EXCEPTION_ACCESS_VIOLATION:
@@ -121,18 +122,20 @@ LONG WINAPI windows_exception_handler(EXCEPTION_POINTERS * ExceptionInfo)
     where the error happened */
   if (EXCEPTION_STACK_OVERFLOW != ExceptionInfo->ExceptionRecord->ExceptionCode)
   {
-      windows_print_stacktrace(ExceptionInfo->ContextRecord);
+      windows_print_stacktrace(ExceptionInfo->ContextRecord,crashlog);
   }
   else
   {
-      printf("[RIP]: %p ", (void*)ExceptionInfo->ContextRecord->Rip);
+      fprintf(crashlog,"[RIP]: %p ", (void*)ExceptionInfo->ContextRecord->Rip,crashlog);
   }
- fflush(stdout);
+  fflush(crashlog);
+  fclose(crashlog);
   return EXCEPTION_EXECUTE_HANDLER;
 }
-
+#include <signal.h>
 void handleErrors(){
-    SetUnhandledExceptionFilter(windows_exception_handler);
+    //SetUnhandledExceptionFilter(windows_exception_handler);
+    signal( SIGSEGV, windows_exception_handler );
 }
 #else
 #include <signal.h>
@@ -141,13 +144,15 @@ void handleErrors(){
 void handler(int sig) {
   void *array[10];
   size_t size;
-
+  FILE* crashlog = fopen("retro64_crash.log", "w");
   // get void*'s for all entries on the stack
   size = backtrace(array, 10);
 
   // print out all the frames to stderr
-  fprintf(stderr, "Error: signal %d:\n", sig);
-  backtrace_symbols_fd(array, size, STDERR_FILENO);
+  fprintf(crashlog, "Error: signal %d:\n", sig);
+  backtrace_symbols_fd(array, size, crashlog);
+  fflush(crashlog);
+  fclose(crashlog);
   exit(1);
 }
 void handleErrors(){

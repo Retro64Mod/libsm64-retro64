@@ -4054,15 +4054,10 @@ Gfx model_steve_000_offset_004_mesh_layer_1_mat_override_metal_v3_0[] = {
 };
 
 Gfx model_steve_002_switch_option_right_hand_open_mesh_layer_1[] = {
-	gsSPDisplayList(mat_model_steve_gloves_v3),
-	gsSPDisplayList(model_steve_002_switch_option_right_hand_open_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_steve_002_switch_option_right_hand_open_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_steve_metal_v3),
-	gsSPDisplayList(model_steve_002_switch_option_right_hand_open_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_model_steve_metal_v3),
 	gsSPEndDisplayList(),
 };
 
@@ -4097,81 +4092,42 @@ Gfx model_steve_000_offset_007_mesh_layer_1_mat_override_metal_v3_0[] = {
 };
 
 Gfx model_steve_002_switch_option_left_hand_open_mesh_layer_1[] = {
-	gsSPDisplayList(mat_model_steve_gloves_v3),
-	gsSPDisplayList(model_steve_002_switch_option_left_hand_open_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_steve_002_switch_option_left_hand_open_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_steve_metal_v3),
-	gsSPDisplayList(model_steve_002_switch_option_left_hand_open_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_model_steve_metal_v3),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_steve_004_switch_option_left_hand_peace_mesh_layer_1[] = {
-	gsSPDisplayList(mat_model_steve_gloves_v3),
-	gsSPDisplayList(model_steve_004_switch_option_left_hand_peace_mesh_layer_1_tri_0),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_steve_004_switch_option_left_hand_peace_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_steve_metal_v3),
-	gsSPDisplayList(model_steve_004_switch_option_left_hand_peace_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_revert_model_steve_metal_v3),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_steve_005_switch_option_left_hand_cap_mesh_layer_1[] = {
-	gsSPDisplayList(mat_model_steve_cap_v3),
-	gsSPDisplayList(model_steve_005_switch_option_left_hand_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_model_steve_gloves_v3),
-	gsSPDisplayList(model_steve_005_switch_option_left_hand_cap_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_steve_005_switch_option_left_hand_cap_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_steve_metal_v3),
-	gsSPDisplayList(model_steve_005_switch_option_left_hand_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(model_steve_005_switch_option_left_hand_cap_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_model_steve_metal_v3),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_steve_006_switch_option_left_hand_wing_cap_mesh_layer_1[] = {
-	gsSPDisplayList(mat_model_steve_cap_v3),
-	gsSPDisplayList(model_steve_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(mat_model_steve_gloves_v3),
-	gsSPDisplayList(model_steve_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_steve_006_switch_option_left_hand_wing_cap_mesh_layer_1_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_steve_metal_v3),
-	gsSPDisplayList(model_steve_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_0),
-	gsSPDisplayList(model_steve_006_switch_option_left_hand_wing_cap_mesh_layer_1_tri_1),
-	gsSPDisplayList(mat_revert_model_steve_metal_v3),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_steve_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4[] = {
-	gsSPDisplayList(mat_model_steve_wing_2_v3),
-	gsSPDisplayList(model_steve_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0),
-	gsSPDisplayList(mat_revert_model_steve_wing_2_v3),
-	gsSPDisplayList(mat_model_steve_wing_1_v3),
-	gsSPDisplayList(model_steve_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_model_steve_wing_1_v3),
 	gsSPEndDisplayList(),
 };
 
 Gfx model_steve_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_mat_override_metal_v3_0[] = {
-	gsSPDisplayList(mat_model_steve_wing_2_v3),
-	gsSPDisplayList(model_steve_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_0),
-	gsSPDisplayList(mat_revert_model_steve_wing_2_v3),
-	gsSPDisplayList(mat_model_steve_wing_1_v3),
-	gsSPDisplayList(model_steve_006_switch_option_left_hand_wing_cap_wings_mesh_layer_4_tri_1),
-	gsSPDisplayList(mat_revert_model_steve_wing_1_v3),
-	gsSPDisplayList(mat_revert_model_steve_metal_v3),
 	gsSPEndDisplayList(),
 };
 

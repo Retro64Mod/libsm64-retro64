@@ -99,6 +99,7 @@ extern SM64_LIB_FN void sm64_mChar_set_velocity( int32_t marioId, float x, float
 extern SM64_LIB_FN void sm64_mChar_apply_damage( int32_t marioId, uint32_t damage,uint32_t interactionSubtype,float xSrc,float ySrc,float zSrc);
 extern SM64_LIB_FN void sm64_mChar_set_state(int32_t marioId, uint32_t capType);
 extern SM64_LIB_FN void sm64_mChar_set_action( int32_t marioId, uint32_t actionId );
+extern SM64_LIB_FN void sm64_mChar_set_action_with_arg( int32_t marioId, uint32_t actionId,uint32_t actionArg );
 extern SM64_LIB_FN void sm64_mChar_set_action_state( int32_t marioId, u16 actionState );
 extern SM64_LIB_FN void sm64_mChar_set_water_level( int32_t marioId, signed int yLevel );
 extern SM64_LIB_FN void sm64_mChar_set_gas_level( int32_t marioId, signed int yLevel );
@@ -118,6 +119,9 @@ extern SM64_LIB_FN void sm64_play_sound(s32 soundBits, f32 *pos);
 extern SM64_LIB_FN void sm64_play_sound_global(s32 soundBits);
 extern SM64_LIB_FN int sm64_set_volume(float vol);
 extern SM64_LIB_FN int sm64_get_version();
+extern SM64_LIB_FN void sm64_set_redive(u8 val);
+extern SM64_LIB_FN void sm64_set_ground_pound_jump(u8 val);
+extern bool hasAudio;
 extern int getCurrentModel();
 extern struct ObjPool s_mario_instance_pool;
 void audio_tick();

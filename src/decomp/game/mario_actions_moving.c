@@ -19,6 +19,8 @@
 #include "../include/object_fields.h"
 #include "../include/mario_geo_switch_case_ids.h"
 
+#include "config.h"
+
 struct LandingAction {
     s16 numFrames;
     s16 unk02;
@@ -1563,12 +1565,26 @@ s32 act_hold_stomach_slide(struct MarioState *m) {
 }
 
 s32 act_dive_slide(struct MarioState *m) {
-    if (!(m->input & INPUT_ABOVE_SLIDE) && (m->input & (INPUT_A_PRESSED | INPUT_B_PRESSED))) {
+    if (!configRedive) {
+        if (!(m->input & INPUT_ABOVE_SLIDE) && (m->input & (INPUT_A_PRESSED | INPUT_B_PRESSED))) {
 #ifdef VERSION_SH
-        queue_rumble_data(5, 80);
+            queue_rumble_data(5, 80);
 #endif
-        return set_mario_action(m, m->forwardVel > 0.0f ? ACT_FORWARD_ROLLOUT : ACT_BACKWARD_ROLLOUT,
-                                0);
+            return set_mario_action(m, m->forwardVel > 0.0f ? ACT_FORWARD_ROLLOUT : ACT_BACKWARD_ROLLOUT, 0);
+        }
+    } else {
+        if (!(m->input & INPUT_ABOVE_SLIDE) && (m->input & (INPUT_A_PRESSED))) {
+#ifdef VERSION_SH
+            queue_rumble_data(5, 80);
+#endif
+            return set_mario_action(m, m->forwardVel > 0.0f ? ACT_FORWARD_ROLLOUT : ACT_BACKWARD_ROLLOUT, 0);
+        }
+
+        if (m->input & INPUT_B_PRESSED) {
+            m->forwardVel += 30;
+            m->vel[1] += 30;
+            return set_mario_action(m, ACT_DIVE, 0);
+        }
     }
 
     play_mario_landing_sound_once(m, SOUND_ACTION_TERRAIN_BODY_HIT_GROUND);

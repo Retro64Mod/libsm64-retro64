@@ -40,7 +40,10 @@
 #include "decomp/pc/audio/audio_wasapi.h"
 #include "decomp/pc/audio/audio_pulse.h"
 #include "decomp/pc/audio/audio_alsa.h"
+#include "decomp/pc/audio/audio_sdl.h"
 #include "decomp/audio/external.h"
+
+#include "decomp/game/config.h"
 
 #include "decomp/audio/load_dat.h"
 #include "decomp/tools/convUtils.h"
@@ -130,6 +133,11 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom, uint8_t *outTexture, SM64DebugP
     load_mario_anims_from_rom( rom );
 
     memory_init();
+    #ifdef __APPLE__
+    if (audio_api == NULL && audio_sdl.init()) {
+        audio_api = &audio_sdl;
+    }
+    #endif
     #if HAVE_WASAPI
     if (audio_api == NULL && audio_wasapi.init()) {
         audio_api = &audio_wasapi;
@@ -161,6 +169,7 @@ SM64_LIB_FN void sm64_global_init( uint8_t *rom, uint8_t *outTexture, SM64DebugP
     // start audio thread
     pthread_create(&gSoundThread, NULL, audio_thread, NULL);
     mtxf_identity(*cameraMatrix);
+    
 }
 
 SM64_LIB_FN void sm64_global_terminate( void )
@@ -432,6 +441,18 @@ SM64_LIB_FN void sm64_mChar_set_action( int32_t marioId, uint32_t actionId ){
     set_mario_action( gMarioState, actionId, 0);
 }
 
+SM64_LIB_FN void sm64_mChar_set_action_with_arg( int32_t marioId, uint32_t actionId,uint32_t actionArg ){
+    if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
+    {
+        DEBUG_PRINT("Tried to set action of non-existant Mario with ID: %u", marioId);
+        return;
+    }
+
+    global_state_bind( ((struct MarioInstance *)s_mario_instance_pool.objects[ marioId ])->globalState );
+
+    set_mario_action( gMarioState, actionId, actionArg);
+}
+
 SM64_LIB_FN void sm64_mChar_set_action_state( int32_t marioId, u16 actionState ){
     if( marioId >= s_mario_instance_pool.size || s_mario_instance_pool.objects[marioId] == NULL )
     {
@@ -556,6 +577,12 @@ SM64_LIB_FN int sm64_get_version(){
 
 Mat4* getCameraMatrix(){
     return &cameraMatrix;
+}
+SM64_LIB_FN void sm64_set_redive(u8 val) {
+    configRedive = val;
+}
+SM64_LIB_FN void sm64_set_ground_pound_jump(u8 val) {
+    configGroundPoundJump = val;
 }
 
 #ifdef VERSION_EU

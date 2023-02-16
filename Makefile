@@ -5,11 +5,16 @@ CXX 	:= g++
 CFLAGS  := -g -Wall -fPIC -DSM64_LIB_EXPORT -DGBI_FLOATS -DVERSION_US -DNO_SEGMENTED_MEMORY
 LDFLAGS := -lm -shared -lpthread
 ENDFLAGS := -fPIC
+M1_CPU := N
 
 ifeq ($(shell uname),Darwin)
-CFLAGS := $(CFLAGS) -I/opt/homebrew/include -I/usr/local/include -I.
+CFLAGS := $(CFLAGS) -I/opt/homebrew/include -I/usr/local/include -I. -Wno-error=implicit-function-declaration
 else
 LDFLAGS := $(LDFLAGS) -Xlinker -Map=dist/debug.map # export map file on linux and windows, macos throws "unknown option: -Map=dist/debug.map"
+endif
+
+ifeq ($(M1_CPU),Y)
+CFLAGS := $(CFLAGS) --target=arm64-apple-darwin # unsure about this flag
 endif
 
 ifeq ($(OS),Windows_NT)
@@ -22,7 +27,7 @@ ENDFLAGS := $(LDFLAGS) -lasound -lpulse
 endif
 endif
 
-SRC_DIRS  := src src/decomp src/decomp/engine src/decomp/include/PR src/decomp/game src/decomp/pc src/decomp/pc/audio src/decomp/mario src/decomp/tools src/decomp/audio src/decomp/model_luigi src/decomp/model_alex src/decomp/model_steve src/decomp/model_necoarc src/decomp/model_vibri src/decomp/model_coin src/decomp/model_star src/decomp/data
+SRC_DIRS  := src src/decomp src/decomp/engine src/decomp/include/PR src/decomp/game src/decomp/pc src/decomp/pc/audio src/decomp/mario src/decomp/tools src/decomp/audio src/decomp/model_luigi src/decomp/model_alex src/decomp/model_steve src/decomp/model_necoarc src/decomp/model_vibri src/decomp/model_sonic src/decomp/model_coin src/decomp/model_star src/decomp/data
 BUILD_DIR := build
 DIST_DIR  := dist
 ALL_DIRS  := $(addprefix $(BUILD_DIR)/,$(SRC_DIRS))
