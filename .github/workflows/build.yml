@@ -30,7 +30,7 @@ jobs:
     - name: make
       run: gmake -j
     - name: testCheckDeps
-      run otool -L dist/libsm64.dylib
+      run: otool -L dist/libsm64.dylib
     - uses: actions/upload-artifact@v3
       with:
         name: libsm64-mac_os
