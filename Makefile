@@ -13,10 +13,6 @@ else
 LDFLAGS := $(LDFLAGS) -Xlinker -Map=dist/debug.map # export map file on linux and windows, macos throws "unknown option: -Map=dist/debug.map"
 endif
 
-ifeq ($(M1_CPU),Y)
-CFLAGS := $(CFLAGS) --target=arm64-apple-darwin # unsure about this flag
-endif
-
 ifeq ($(OS),Windows_NT)
 LDFLAGS := $(LDFLAGS) -mwindows
 ENDFLAGS := -static -lole32 -lstdc++ -limagehlp

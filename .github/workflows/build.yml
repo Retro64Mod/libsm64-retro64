@@ -29,6 +29,8 @@ jobs:
       run: brew install make mingw-w64 gcc sdl2 pkg-config glew glfw libusb audiofile coreutils
     - name: make
       run: gmake -j
+    - name: testCheckDeps
+      run otool -L dist/libsm64.dylib
     - uses: actions/upload-artifact@v3
       with:
         name: libsm64-mac_os
