@@ -21,7 +21,7 @@ ifeq ($(OS),Windows_NT)
 LDFLAGS := $(LDFLAGS) -mwindows
 ENDFLAGS := -static -lole32 -lstdc++ -limagehlp
 else
-LDFLAGS := $(LDFLAGS) `sdl2-config --libs` -L/usr/lib -lSDL2 # Add alsa and pulseaudio libraries for linux audio
+LDFLAGS := $(LDFLAGS) `sdl2-config --static-libs` -L/usr/lib -lSDL2 # Add alsa and pulseaudio libraries for linux audio
 ifneq ($(shell uname),Darwin) # Audio does not seem to be working with these flags on macosx
 ENDFLAGS := $(LDFLAGS) -lasound -lpulse
 endif
