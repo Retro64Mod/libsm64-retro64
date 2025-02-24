@@ -135,7 +135,7 @@ LONG WINAPI windows_exception_handler(EXCEPTION_POINTERS * ExceptionInfo)
 #include <signal.h>
 void handleErrors(){
     //SetUnhandledExceptionFilter(windows_exception_handler);
-    signal( SIGSEGV, windows_exception_handler );
+    //signal( SIGSEGV, windows_exception_handler );
 }
 #else
 #include <signal.h>
