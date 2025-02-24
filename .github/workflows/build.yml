@@ -15,7 +15,7 @@ jobs:
       run: sudo apt-get update -y && sudo apt-get install -y build-essential git python3 libsdl2-dev libpulse-dev
     - name: make
       run: make
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: libsm64-linux
         path: |
@@ -64,7 +64,7 @@ jobs:
     - name: make
       run: |
         make
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: sm64-windows
         path: |
